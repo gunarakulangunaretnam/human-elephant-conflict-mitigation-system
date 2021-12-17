@@ -22,16 +22,6 @@ engine.setProperty('voice', en_voice_id)
 rate = engine.getProperty('rate')
 engine.setProperty('rate', rate - 25)
 
-alarm_text_to_speech_notes = ""
-
-def load_alarm_text_to_speech_notes():
-    global alarm_text_to_speech_notes
-
-    file = open('system-files//alarm-text-to-speech-notes.txt')
-    alarm_text_to_speech_notes = file.readline().strip()
-        
-
-load_alarm_text_to_speech_notes()
 
 def talk_function(text):               # Text to speech convertion
     print("Computer: {}".format(text))
@@ -44,7 +34,7 @@ def play_alarm():                     # Function to play sound
     global number_of_time_detected
     number_of_time_detected
     playsound.playsound("system-files//alarm.mp3")
-    talk_function(alarm_text_to_speech_notes)
+    talk_function("Warning, Warning, elephant has been intrusion detected")
     number_of_time_detected = 0
 
 # Enable GPU dynamic memory allocation
