@@ -14,14 +14,6 @@ from object_detection.utils import config_util                             # To 
 from object_detection.utils import visualization_utils as viz_utils        # To draw rectangles.
 from object_detection.builders import model_builder                        # To load & Build models.
 
-ap = argparse.ArgumentParser()                                                                          # Create argparse object
-ap.add_argument("-m", "--model_name", required=True, help="Name of the model")                          # Create model_name argument
-ap.add_argument("-l", "--labels", required=True, help="Labels that are needed to be detected")          # Create labels argument
-ap.add_argument("-a", "--alarm", required=True, help="Alram status")                                    # Alarm required or not argument
-ap.add_argument("-t", "--minimum_threshold", required=True, help="Minimum threshold of detection rate") # minimum_threshol
-ap.add_argument("-s", "--source", required=True, help="Source of processing")                           # video / webcam
-args = vars(ap.parse_args())                                                                            # Build argparse
-
 #Text to speech setup.
 engine = pyttsx3.init()
 en_voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0"  # female
@@ -35,9 +27,8 @@ alarm_text_to_speech_notes = ""
 def load_alarm_text_to_speech_notes():
     global alarm_text_to_speech_notes
 
-    if args["alarm"] == "[TRUE]":
-        file = open('system-files//alarm-text-to-speech-notes.txt')
-        alarm_text_to_speech_notes = file.readline().strip()
+    file = open('system-files//alarm-text-to-speech-notes.txt')
+    alarm_text_to_speech_notes = file.readline().strip()
         
 
 load_alarm_text_to_speech_notes()
@@ -62,26 +53,9 @@ for gpu in gpus:
     tf.config.experimental.set_memory_growth(gpu, True)
 
 
-processing_type = ""          		# Store processing type.
-labels = []					  		# Store Labels in a list.
-
-
 model_config_path =  f'data/models/{args["model_name"]}/pipeline.config'        # Store the path of config file
 checkpoint_model_path   =  f'data/models/{args["model_name"]}/checkpoint/ckpt-0'      # Store the path of model
 label_map_path    =  f'data/mscoco_label_map.pbtxt'                             # Store the path of label_map
-
-if args['labels'] == "all_labels":
-
-    processing_type = "all_labels"	# Change processing_type as all_labels
-
-else:
-    processing_type = "labels"      # Change as labels to perform
-
-
-if processing_type == "labels":
-    labels = args['labels'].split(",")    # Store given labels to the labels list.
-
-
 
 
 # Load pipeline config and build a detection model
@@ -108,17 +82,7 @@ def detect_fn(image):
 category_index = label_map_util.create_category_index_from_labelmap(label_map_path,
                                                                     use_display_name=True)
 
-video_source = "";
-
-if str(args["source"]).split("|")[0] == "[WEBCAM]":
-
-    video_source = int(args["source"].split("|")[1])
-
-elif str(args["source"]).split("|")[0] == "[VIDEO]":
-
-    video_source = str(args["source"].split("|")[1])
-
-cap = cv2.VideoCapture(video_source)
+cap = cv2.VideoCapture(0)
 
 while True:
     # Read frame from camera
@@ -141,7 +105,7 @@ while True:
     label_id_offset = 1
     image_np_with_detections = image_np.copy()
 
-    min_score_thresh = int(f'{args["minimum_threshold"]}') / 100
+    min_score_thresh = 50
 
     box_to_display_str_map = collections.defaultdict(list)
     box_to_color_map = collections.defaultdict(str)
@@ -180,7 +144,7 @@ while True:
     	w = xmax - xmin
     	h = ymax - ymin
 
-    	if box_to_display_str_map[box][0].replace("_"," ") in labels: # Get only label name not the total number of items
+    	if box_to_display_str_map[box][0].replace("_"," ") == "elephant": # Get only label name not the total number of items
 
 
             try: # Getting color from labelcolors.label_with_colors
@@ -194,13 +158,12 @@ while True:
                 b = 0
 
 
-            if args["alarm"] == "[TRUE]":
 
-                number_of_time_detected = number_of_time_detected + 1
+            number_of_time_detected = number_of_time_detected + 1
 
-                if number_of_time_detected == 20:
-                    thread1 = threading.Thread(target = play_alarm)
-                    thread1.start()
+            if number_of_time_detected == 20:
+                thread1 = threading.Thread(target = play_alarm)
+                thread1.start()
 
             cv2.rectangle(image_np_with_detections, (int(x),int(y)), (int(x) + int(w), int(y) + int(h)), (b, g, r), 4)
 
