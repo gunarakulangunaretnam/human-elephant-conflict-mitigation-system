@@ -226,3 +226,12 @@ Now, it's time to run our app. We have installed all of the important frameworks
   git clone https://github.com/GunarakulanGunaretnam/elephant-detection-system-tensorflow.git
 
 ```
+ This repo contains 4 different projects related to elephant detection system.
+
+ ### Project Directory layout
+
+    .
+    ├── 0-elephant-detection-only
+    ├── 1-elephant-detection-with-alarm-and-email-alert
+    ├── 2-elephant-detection-with-tensorflow-lite
+    ├── 3-elephant-detection-custom-trained-model
