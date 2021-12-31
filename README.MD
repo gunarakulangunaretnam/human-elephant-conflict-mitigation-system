@@ -235,3 +235,31 @@ Now, it's time to run our app. We have installed all of the important frameworks
     ├── 1-elephant-detection-with-alarm-and-email-alert
     ├── 2-elephant-detection-with-tensorflow-lite
     ├── 3-elephant-detection-custom-trained-model
+
+
+ #### 0-elephant-detection-only
+ =====================
+
+This folder contains the basic elephant detection system. It does only identifying the elephant in video frame. It has no alarming or email sending features. It only has detection part.
+
+ ##### Running
+
+ ```
+  python run.py
+
+ ```
+
+ ##### To change video source or webcam.
+
+![TensorFlow Versions](github-readme-content/0-elephant-detection-only-webcam.jpg)
+
+Note:- We can give the path of the video to process. If we want to use it as a real time webcam. We can simply put the index of the camera
+
+Example:-
+
+```
+ cap = cv2.VideoCapture(0)
+
+```
+
+Note:- 0 is the first camera, 1 is the second camera and 2,3 and etc.
