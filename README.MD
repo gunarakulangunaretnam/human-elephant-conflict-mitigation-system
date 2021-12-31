@@ -30,7 +30,7 @@ If you don't have a GPU, you can still install this application with CPU-TensorF
 
 If your computer has a GPU, you need to install CUDA & CUDDN to enable the GPU support for TensorFlow. Installation process of CUDA & CUDDN is a bit tricker than the normal TensorFlow installation.
 
-### Installing CUDA & CUDDN
+### 01. Installing CUDA & CUDDN
 
 If your computer has no GPU, You should skip this installation, you can run this application with CPU. However, It will be much slower. If your computer has a GPU but, you don't like to install CUDA & CUDDN, you can still skip this process. But, this application will only use CPU for tensor processing even though you have a hardware-based GPU. Therefore, CUDA & CUDDN installation process is very essential to enable the GPU support for computer that a GPU.
 
@@ -114,7 +114,7 @@ Note: Make sure to add the correct path.
 
 If it shows like above, that means you have successfully installed CUDA in your computer.
 
-### Installing TensorFlow
+### 02. Installing TensorFlow
 
 Now, It's time to install TensorFlow. It is simple now. Just open CMD and type following command, that will install TensorFlow for both environments including GPU.
 
@@ -138,7 +138,7 @@ To check whether this installed TensorFlow utilize the GPU. Open python interpre
 
 Note: If your computer does not have a GPU, you need to check it. You can simply skip everything, including CUDA & CUDDN installation and only install "pip install tensorflow" and go ahead with the next step.
 
-### Installing Object Detection Framework
+### 03. Installing Object Detection Framework
 
 In order to install the object detection framework, clone the following repository. This repo contains Google Research of TensorFlow and Object Detection essential Contents.
 
@@ -180,7 +180,7 @@ Download Protobuf:- [https://github.com/protocolbuffers/protobuf/releases](https
 
 04.After the installation, we don't need the cloned models repo anymore.
 
-### Installing Other Frameworks
+### 04. Installing Other Frameworks
 
 
 - Installing TF-Slim
@@ -211,12 +211,6 @@ Download Protobuf:- [https://github.com/protocolbuffers/protobuf/releases](https
 
   ```
     pip install playsound
-  ```
-
-- Installing Pyttsx3
-
-  ```
-    pip install pyttsx3
   ```
 
 
