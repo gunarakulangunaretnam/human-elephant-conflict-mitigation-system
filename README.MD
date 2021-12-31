@@ -9,6 +9,10 @@ Therefore, this research tries to innovate a prototype to prevent elephant attac
 
 Basically, this research is trying to build a prototype (An Elephant Detection System) that identifies an elephant in the video frame. For an example, the video source might be coming from CCTV or other cameras, then the video will be analyzed frame by frame to identify elephants in it. A warning message is sent as soon as the position of the elephant overlaps with the area of conflict. Afterwards, the warning alarm will be turned on.
 
+![Demo1](github-readme-content/diagram.jpg)
+
+
+
 ### Programming Languages & Frameworks
 - Python
 - SMTPLIB
