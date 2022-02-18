@@ -1,5 +1,6 @@
+# Human Elephant Conflict Mitigation System
 
-# Introduction to Elephant Detection System
+## Introduction
 
 This Elephant Detection System prevents human-elephant conflict and tracking of elephants using deep learning. The major aim of the study is to minimize the human-elephant conflict in the  rural areas of Sri Lanka to protect human lives from elephant attacks.
 
