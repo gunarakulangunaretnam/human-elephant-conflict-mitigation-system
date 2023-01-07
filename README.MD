@@ -25,7 +25,7 @@ Basically, this research is trying to build a prototype (An Elephant Detection S
 ### Technical Requirements
 
 - Python 3.8
-- TensorFlow 2.5
+- TensorFlow 2.7.0
 
 ## Configuration & Setup
 
@@ -128,7 +128,7 @@ Note: If your computer does not have a GPU, You can still install it. It will on
 - Installing TensorFlow
 
   ```
-    pip install tensorflow==2.5
+    pip install tensorflow==2.7.0
   ```
 
 To check whether this installed TensorFlow utilize the GPU. Open python interpreter and write following code. It will show the GPU memory.  
