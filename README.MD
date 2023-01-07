@@ -200,10 +200,10 @@ Download Protobuf:- [https://github.com/protocolbuffers/protobuf/releases](https
     pip install tf-models-official==2.7.0
   ```
 
-- Installing mediapipe==0.8.9.1
+- Installing Mediapipe
 
   ```
-    pip install mediapipe
+    pip install mediapipe==0.8.9.1
   ```
 
 - Installing Opencv
