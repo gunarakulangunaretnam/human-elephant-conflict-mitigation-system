@@ -217,6 +217,12 @@ Download Protobuf:- [https://github.com/protocolbuffers/protobuf/releases](https
   ```
     pip install playsound
   ```
+  
+ - Installing pyttsx3
+
+   ```
+     pip install pyttsx3
+   ```
 
 
 Note: If you encounter any module missing issue, just try with "pip install MODULENAME", if it does not work try search on Google for answers.
