@@ -191,7 +191,7 @@ Download Protobuf:- [https://github.com/protocolbuffers/protobuf/releases](https
 - Installing TF-Slim
 
   ```
-    pip install tf-slim
+    pip install tf-slim==1.1.0
   ```
 
 - Installing tf-models-official
@@ -200,7 +200,7 @@ Download Protobuf:- [https://github.com/protocolbuffers/protobuf/releases](https
     pip install tf-models-official==2.7.0
   ```
 
-- Installing Mediapipe
+- Installing mediapipe==0.8.9.1
 
   ```
     pip install mediapipe
