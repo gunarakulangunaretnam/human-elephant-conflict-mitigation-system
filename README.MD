@@ -203,7 +203,7 @@ Download Protobuf:- [https://github.com/protocolbuffers/protobuf/releases](https
 - Installing Mediapipe
 
   ```
-    pip install mediapipe==0.8.9.1
+    pip install mediapipe==0.8.9
   ```
 
 - Installing Opencv
