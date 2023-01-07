@@ -128,7 +128,7 @@ Note: If your computer does not have a GPU, You can still install it. It will on
 - Installing TensorFlow
 
   ```
-    pip install tensorflow
+    pip install tensorflow==2.5
   ```
 
 To check whether this installed TensorFlow utilize the GPU. Open python interpreter and write following code. It will show the GPU memory.  
@@ -197,7 +197,7 @@ Download Protobuf:- [https://github.com/protocolbuffers/protobuf/releases](https
 - Installing tf-models-official
 
   ```
-    pip install tf-models-official
+    pip install tf-models-official==2.7.0
   ```
 
 - Installing Mediapipe
