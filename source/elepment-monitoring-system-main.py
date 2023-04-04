@@ -4,27 +4,33 @@ from tkinter import ttk
 from tkinter import filedialog
 from PIL import Image, ImageTk
 import PIL.Image, PIL.ImageTk
-import os                                                                  # To Perform OS level works.
+import os  
+import sys
 import six
-import cv2                                                                 # OpenCV for Computer Vision                                                        # It has a dictionary that contains colors for each label
-import argparse                                                            # To get arguments
+import cv2   
+import uuid                                                                                                                              # OpenCV for Computer Vision                                                        # It has a dictionary that contains colors for each label
+import argparse                                                            
 import collections
 import numpy as np
-import pyttsx3                                                             # To perform text to speech function
-import threading                                                           # To perform multi-threading operations
-import playsound                                                           # To play sounds
-import tensorflow as tf                                                    # Main Library.
-from object_detection.utils import label_map_util                          # To handle label map.
-from object_detection.utils import config_util                             # To load model pipeline.
-from object_detection.utils import visualization_utils as viz_utils        # To draw rectangles.
-from object_detection.builders import model_builder                        # To load & Build models.
+import pyttsx3                                                            
+import threading                                                          
+import playsound                                                          
+import tensorflow as tf 
 
+sys.path.append('assets')                                                  
+from object_detection.utils import label_map_util                         
+from object_detection.utils import config_util                             
+from object_detection.utils import visualization_utils as viz_utils      
+from object_detection.builders import model_builder                       
+
+
+number_of_time_detected = 0
+alaram_threshold = 5
 
 # Enable GPU dynamic memory allocation
 gpus = tf.config.experimental.list_physical_devices('GPU')
 for gpu in gpus:
     tf.config.experimental.set_memory_growth(gpu, True)
-
 
 model_config_path =  f'assets/model-data/models/ssd_mobilenet_v2_320x320_coco17_tpu-8/pipeline.config'        # Store the path of config file
 checkpoint_model_path   =  f'assets/model-data/models/ssd_mobilenet_v2_320x320_coco17_tpu-8/checkpoint/ckpt-0'      # Store the path of model
@@ -170,8 +176,6 @@ class App:
         self.window.update()
 
     def detect_fn(self, image):
-        """Detect objects in image."""
-
         image, shapes = detection_model.preprocess(image)
         prediction_dict = detection_model.predict(image, shapes)
         detections = detection_model.postprocess(prediction_dict, shapes)
@@ -179,6 +183,8 @@ class App:
         return detections, prediction_dict, tf.reshape(shapes, [-1])
 
     def update(self):
+        global number_of_time_detected, alaram_threshold
+
         if hasattr(self, 'vid'):
             # Get a frame from the video source
             ret, frame = self.vid.read()
@@ -196,7 +202,7 @@ class App:
                 box_to_display_str_map = collections.defaultdict(list)
                 box_to_color_map = collections.defaultdict(str)
 
-                number_of_items = 0
+                number_of_elephants = 0
 
                 for i in range(detections['detection_boxes'][0].numpy().shape[0]):
 
@@ -211,7 +217,9 @@ class App:
                             display_str = '{}'.format(class_name)
 
                             box_to_display_str_map[box].append(display_str) # Join the number of eleements with label Name
-
+                            
+                            if "elephant" in box_to_display_str_map[box][0]:
+                                number_of_elephants = number_of_elephants + 1
 
                 im_width, im_height = frame.shape[1::-1]
 
@@ -236,6 +244,12 @@ class App:
                         # Prints the text.
                         img = cv2.rectangle(image_np_with_detections, (int(x), int(y) - 30), (int(x) + 20 + tw, int(y)), (0, 0, 255), -1)
                         img = cv2.putText(image_np_with_detections, box_to_display_str_map[box][0].upper(), (int(x)+5, int(y) - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0,0,0), 2)
+
+                        number_of_time_detected = number_of_time_detected + 1
+
+                        if number_of_time_detected == alaram_threshold:
+                            cv2.imwrite(f"predictions/{uuid.uuid1()}.jpg", image_np_with_detections)
+                            number_of_time_detected = 0
 
                 final_frame = cv2.cvtColor(image_np_with_detections, cv2.COLOR_BGR2RGB)
                 final_frame = cv2.resize(final_frame, (self.width, self.height))
