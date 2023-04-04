@@ -26,10 +26,9 @@ for gpu in gpus:
     tf.config.experimental.set_memory_growth(gpu, True)
 
 
-model_config_path =  f'data/models/ssd_mobilenet_v2_320x320_coco17_tpu-8/pipeline.config'        # Store the path of config file
-checkpoint_model_path   =  f'data/models/ssd_mobilenet_v2_320x320_coco17_tpu-8/checkpoint/ckpt-0'      # Store the path of model
-label_map_path    =  f'data/mscoco_label_map.pbtxt'                             # Store the path of label_map
-
+model_config_path =  f'assets/model-data/models/ssd_mobilenet_v2_320x320_coco17_tpu-8/pipeline.config'        # Store the path of config file
+checkpoint_model_path   =  f'assets/model-data/models/ssd_mobilenet_v2_320x320_coco17_tpu-8/checkpoint/ckpt-0'      # Store the path of model
+label_map_path    =  f'assets/model-data/mscoco_label_map.pbtxt'                             # Store the path of label_map
 
 # Load pipeline config and build a detection model
 configs = config_util.get_configs_from_pipeline_file(model_config_path)
@@ -39,18 +38,6 @@ detection_model = model_builder.build(model_config=model_config, is_training=Fal
 # Restore checkpoint
 ckpt = tf.compat.v2.train.Checkpoint(model=detection_model)
 ckpt.restore(checkpoint_model_path).expect_partial()
-
-@tf.function
-
-def detect_fn(image):
-    """Detect objects in image."""
-
-    image, shapes = detection_model.preprocess(image)
-    prediction_dict = detection_model.predict(image, shapes)
-    detections = detection_model.postprocess(prediction_dict, shapes)
-
-    return detections, prediction_dict, tf.reshape(shapes, [-1])
-
 
 category_index = label_map_util.create_category_index_from_labelmap(label_map_path,use_display_name=True)
 
@@ -182,7 +169,7 @@ class App:
         self.vid = cv2.VideoCapture(self.video_source)
         self.window.update()
 
-    def detect_fn(image):
+    def detect_fn(self, image):
         """Detect objects in image."""
 
         image, shapes = detection_model.preprocess(image)
@@ -199,7 +186,7 @@ class App:
             if ret:
                 image_np_expanded = np.expand_dims(frame, axis=0)
                 input_tensor = tf.convert_to_tensor(np.expand_dims(frame, 0), dtype=tf.float32)
-                detections, predictions_dict, shapes = detect_fn(input_tensor)
+                detections, predictions_dict, shapes = self.detect_fn(input_tensor)
 
                 label_id_offset = 1
                 image_np_with_detections = frame.copy()
