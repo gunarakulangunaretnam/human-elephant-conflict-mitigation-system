@@ -8,7 +8,8 @@ import os
 import sys
 import six
 import cv2   
-import uuid                                                                                                                              # OpenCV for Computer Vision                                                        # It has a dictionary that contains colors for each label
+import uuid  
+import pygame                                                                                                                            # OpenCV for Computer Vision                                                        # It has a dictionary that contains colors for each label
 import argparse                                                            
 import collections
 import numpy as np
@@ -26,6 +27,9 @@ from object_detection.builders import model_builder
 
 number_of_time_detected = 0
 alaram_threshold = 5
+
+is_audio_playing = False
+pygame.mixer.init()
 
 # Enable GPU dynamic memory allocation
 gpus = tf.config.experimental.list_physical_devices('GPU')
@@ -182,8 +186,24 @@ class App:
 
         return detections, prediction_dict, tf.reshape(shapes, [-1])
 
+
+    def bees_sound_effect_function(self):
+        global is_audio_playing
+
+        pygame.mixer.music.load('assets\\bees-sound-effect.mp3')
+        pygame.mixer.music.play()
+
+
+        while pygame.mixer.music.get_busy():
+            pass
+        
+        is_audio_playing = False
+
+        print("dd")
+
+
     def update(self):
-        global number_of_time_detected, alaram_threshold
+        global number_of_time_detected, alaram_threshold, is_audio_playing
 
         if hasattr(self, 'vid'):
             # Get a frame from the video source
@@ -248,6 +268,12 @@ class App:
                         number_of_time_detected = number_of_time_detected + 1
 
                         if number_of_time_detected == alaram_threshold:
+
+                            if is_audio_playing == False:
+                                is_audio_playing = True
+                                bees_sound_effect_function = threading.Thread(target = self.bees_sound_effect_function, args=(), daemon=True)
+                                bees_sound_effect_function.start()
+                            
                             cv2.imwrite(f"predictions/{uuid.uuid1()}.jpg", image_np_with_detections)
                             number_of_time_detected = 0
 
