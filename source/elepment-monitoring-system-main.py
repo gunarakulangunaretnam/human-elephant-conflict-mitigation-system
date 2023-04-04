@@ -17,7 +17,7 @@ import pyttsx3
 import threading                                                          
 import playsound                                                          
 import tensorflow as tf 
-
+from datetime import datetime
 sys.path.append('assets')                                                  
 from object_detection.utils import label_map_util                         
 from object_detection.utils import config_util                             
@@ -152,7 +152,6 @@ class App:
         self.contrast_slider.set(50)
         self.contrast_slider.place(x=250, y=460)
 
-
         self.contrast_slider_label = tk.Label(self.options_frame, text="Gaussian Blur",font=("Arial", 12, "bold"))
         self.contrast_slider_label.place(x=30, y=550)
 
@@ -186,21 +185,16 @@ class App:
 
         return detections, prediction_dict, tf.reshape(shapes, [-1])
 
-
     def bees_sound_effect_function(self):
         global is_audio_playing
 
         pygame.mixer.music.load('assets\\bees-sound-effect.mp3')
         pygame.mixer.music.play()
 
-
         while pygame.mixer.music.get_busy():
             pass
         
         is_audio_playing = False
-
-        print("dd")
-
 
     def update(self):
         global number_of_time_detected, alaram_threshold, is_audio_playing
@@ -223,6 +217,11 @@ class App:
                 box_to_color_map = collections.defaultdict(str)
 
                 number_of_elephants = 0
+
+                current_time = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+
+                cv2.putText(image_np_with_detections, f'{current_time} ', (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+
 
                 for i in range(detections['detection_boxes'][0].numpy().shape[0]):
 
@@ -273,9 +272,12 @@ class App:
                                 is_audio_playing = True
                                 bees_sound_effect_function = threading.Thread(target = self.bees_sound_effect_function, args=(), daemon=True)
                                 bees_sound_effect_function.start()
+
+                            current_time_str = datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")[:-3]
                             
-                            cv2.imwrite(f"predictions/{uuid.uuid1()}.jpg", image_np_with_detections)
+                            cv2.imwrite(f"predictions/{current_time_str}.jpg", image_np_with_detections)
                             number_of_time_detected = 0
+                            
 
                 final_frame = cv2.cvtColor(image_np_with_detections, cv2.COLOR_BGR2RGB)
                 final_frame = cv2.resize(final_frame, (self.width, self.height))
@@ -291,7 +293,6 @@ class App:
     def browse_file(self):
         filetypes = (("Video Files", "*.mp4 *.avi"), ("All Files", "*.*"))
         filename = filedialog.askopenfilename(title="Select a File", filetypes=filetypes)
-        print(filename)
 
     def toggle_textbox(self, target):
         if target == "[DEVICE_CAMERA]":
@@ -339,7 +340,6 @@ class App:
             # Set the file path in the entry widget
             self.file_path_text.delete(0, "end")
             self.file_path_text.insert(0, file_path)
-            print(file_path)
 
     def __del__(self):
         # Release the video source when the object is destroyed
