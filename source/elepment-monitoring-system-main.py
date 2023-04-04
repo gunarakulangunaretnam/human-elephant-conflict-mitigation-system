@@ -4,6 +4,7 @@ from tkinter import ttk
 from tkinter import filedialog
 from PIL import Image, ImageTk
 import PIL.Image, PIL.ImageTk
+from PIL import ImageGrab
 import os  
 import sys
 import six
@@ -30,6 +31,8 @@ alaram_threshold = 5
 
 is_audio_playing = False
 pygame.mixer.init()
+
+global_variable_snapshot_frame = ""
 
 # Enable GPU dynamic memory allocation
 gpus = tf.config.experimental.list_physical_devices('GPU')
@@ -85,7 +88,7 @@ class App:
 
 
         # Create a button for Snapshot
-        self.snapshot_button = tk.Button(window, text ="Snapshot", font=("Arial", 12, "bold"))
+        self.snapshot_button = tk.Button(window, text ="Snapshot", font=("Arial", 12, "bold"), command=lambda: self.take_snapshots())
         self.snapshot_button.configure(bg="dark green", fg="white")
         self.snapshot_button.place(x=925, y=740)
 
@@ -196,8 +199,13 @@ class App:
         
         is_audio_playing = False
 
+    def take_snapshots(self):
+        global global_variable_snapshot_frame
+        current_time_str = datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")[:-3]
+        cv2.imwrite(f"snapshots/{current_time_str}.jpg", global_variable_snapshot_frame)
+
     def update(self):
-        global number_of_time_detected, alaram_threshold, is_audio_playing
+        global number_of_time_detected, alaram_threshold, is_audio_playing, global_variable_snapshot_frame
 
         if hasattr(self, 'vid'):
             # Get a frame from the video source
@@ -221,7 +229,6 @@ class App:
                 current_time = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
 
                 cv2.putText(image_np_with_detections, f'{current_time} ', (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
-
 
                 for i in range(detections['detection_boxes'][0].numpy().shape[0]):
 
@@ -277,6 +284,9 @@ class App:
                             
                             cv2.imwrite(f"predictions/{current_time_str}.jpg", image_np_with_detections)
                             number_of_time_detected = 0
+
+
+                global_variable_snapshot_frame = image_np_with_detections
                             
 
                 final_frame = cv2.cvtColor(image_np_with_detections, cv2.COLOR_BGR2RGB)
