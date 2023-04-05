@@ -135,7 +135,7 @@ class App:
         self.threshold_slider_label.place(x=30, y=298)
 
         self.threshold_slider = tk.Scale(self.options_frame, from_=0, to=100, width=30,length=500, orient=tk.HORIZONTAL)
-        self.threshold_slider.set(60)
+        self.threshold_slider.set(65)
         self.threshold_slider.place(x=250, y=270)
 
         self.alarm_label = tk.Label(self.options_frame, text="Alarm", font=("Arial", 12, "bold"))
@@ -156,16 +156,14 @@ class App:
         self.sound_effects_combobox.bind("<<ComboboxSelected>>", self.on_sound_effect_change)
         self.sound_effects_combobox.place(x=250, y=440)
 
-
         self.sound_effect_label = tk.Label(self.options_frame, text="Model Architecture:", font=("Arial", 12, "bold"))
         self.sound_effect_label.place(x=30, y=500)
 
-        self.model_architecture_combobox_options = ["SSD M-Net V2 FPN Keras 320x320 (Hight Speed | Low Accuracy)", "SSD M-Net V2 FPN Lite 320x320 (Medium Speed | Medium Accuracy)" ,  "SSD M-Net V1 FPN 640x640 (Low Speed | High Accuracy)", "SSD M-Net V1 FPN Lite 640x640 (Low Speed | High Accuracy)", "SSD M-Net V1 FPN 640x640 (Low Speed | High Accuracy)"]
+        self.model_architecture_combobox_options = ["SSD M-Net V2 FPN Keras 320x320 (High Speed | Low Accuracy)", "SSD M-Net V2 FPN LITE 320x320 (Medium Speed | Medium Accuracy)", "SSD M-Net V2 Keras 320x320 (Medium Speed | High Accuracy)", "SSD M-Net V1 FPN 640x640 (Low Speed | High Accuracy)", "SSD M-Net V2 FPN LITE 640x640 (Low Speed | High Accuracy)"]
         self.model_architecture_combobox = ttk.Combobox(self.options_frame, values=self.model_architecture_combobox_options, font=("Arial", 10), width=52, state="readonly")
-        self.model_architecture_combobox.current(1)
-        self.model_architecture_combobox.bind("<<ComboboxSelected>>", self.on_sound_effect_change)
+        self.model_architecture_combobox.current(2)
+        self.model_architecture_combobox.bind("<<ComboboxSelected>>", self.on_model_architecture_change)
         self.model_architecture_combobox.place(x=250, y=500)
-
 
         # Create a horizontal separator
         self.separator = ttk.Separator(self.options_frame, orient='horizontal')
@@ -303,6 +301,22 @@ class App:
                 alarm_sound_effect_function = threading.Thread(target = self.alarm_sound_effect_function, args=(), daemon=True)
                 alarm_sound_effect_function.start()
                 is_sound_effect_changed = False
+
+    def on_model_architecture_change(self, event):
+
+        selected_model_architecture = self.model_architecture_combobox.get()
+
+        if selected_model_architecture == "SSD M-Net V2 FPN Keras 320x320 (High Speed | Low Accuracy)":
+            self.threshold_slider.set(40)
+        elif selected_model_architecture == "SSD M-Net V2 FPN LITE 320x320 (Medium Speed | Medium Accuracy)":
+            self.threshold_slider.set(60)
+        elif selected_model_architecture == "SSD M-Net V2 Keras 320x320 (Medium Speed | High Accuracy)":
+            self.threshold_slider.set(65)
+        elif selected_model_architecture == "SSD M-Net V1 FPN 640x640 (Low Speed | High Accuracy)":
+            self.threshold_slider.set(70)
+        elif selected_model_architecture == "SSD M-Net V2 FPN LITE 640x640 (Low Speed | High Accuracy)":
+            self.threshold_slider.set(75)
+        
 
         
         # do something with the selected option here
