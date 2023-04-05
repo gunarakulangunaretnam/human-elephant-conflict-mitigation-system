@@ -32,6 +32,7 @@ number_of_time_detected = 0
 alaram_threshold = 5
 
 is_processing = False
+is_sound_effect_changed = False
 is_audio_playing = False
 
 pygame.mixer.init()
@@ -149,11 +150,11 @@ class App:
         self.sound_effect_label = tk.Label(self.options_frame, text="Sound Effect:", font=("Arial", 12, "bold"))
         self.sound_effect_label.place(x=30, y=420)
 
-        self.sound_effects_combobox_options = ["Buzzing Bees Sound", "Warning Alarm Sound"]
+        self.sound_effects_combobox_options = ["Buzzing Bees Sound", "Firecrackers Sound" ,  "Warning Alarm Sound"]
         self.sound_effects_combobox = ttk.Combobox(self.options_frame, values=self.sound_effects_combobox_options, font=("Arial", 11))
         self.sound_effects_combobox.current(0)
+        self.sound_effects_combobox.bind("<<ComboboxSelected>>", self.on_sound_effect_change)
         self.sound_effects_combobox.place(x=250, y=420)
-
 
         # Create a horizontal separator
         self.separator = ttk.Separator(self.options_frame, orient='horizontal')
@@ -221,7 +222,6 @@ class App:
              
              if self.vid.isOpened():
                 self.vid.release()
-
                 
     def switch_on_off_function(self):
 
@@ -241,25 +241,59 @@ class App:
 
         return detections, prediction_dict, tf.reshape(shapes, [-1])
 
-    def bees_sound_effect_function(self):
-        global is_audio_playing, is_processing
+    def alarm_sound_effect_function(self):
+        global is_audio_playing, is_processing, is_sound_effect_changed
 
-        pygame.mixer.music.load('assets\\music\\alarm-sound-effects\\0-bees-sound-effect.mp3')
+        selected_sound_effect = self.sound_effects_combobox.get()
+        sound_effect_path = ""
+
+        if selected_sound_effect == "Buzzing Bees Sound":
+           sound_effect_path = 'assets\\music\\alarm-sound-effects\\0-bees-sound-effect.mp3'
+        elif selected_sound_effect == "Firecrackers Sound":
+            sound_effect_path = 'assets\\music\\alarm-sound-effects\\1-firecrackers-sound-effect.mp3'
+        elif selected_sound_effect == "Warning Alarm Sound":
+            sound_effect_path = 'assets\\music\\alarm-sound-effects\\2-warning-alarm.mp3'
+
+        pygame.mixer.music.load(sound_effect_path)
         pygame.mixer.music.play()
 
         while pygame.mixer.music.get_busy():
             if is_processing == True:
 
-                if self.switch_status == True:
-                    pygame.mixer.music.set_volume(1.0) 
+                if is_sound_effect_changed == False:
+
+                    if self.switch_status == True:
+                        pygame.mixer.music.set_volume(1.0) 
+                    else:
+                        pygame.mixer.music.set_volume(0.0) # Mute
                 else:
-                    pygame.mixer.music.set_volume(0.0) # Mute
+                    break
             else:
                 pygame.mixer.music.stop()
                 break
+
+        if is_processing == False and is_sound_effect_changed == False:
+            is_audio_playing = False
+
+        elif is_processing == True and is_sound_effect_changed == False:
+            is_audio_playing = False
+
+        elif is_processing == True and is_sound_effect_changed == True: # On Audio Change
+            is_audio_playing = True
+
+    def on_sound_effect_change(self, event):
+        global is_sound_effect_changed, is_processing, is_audio_playing
+
+        if is_processing == True and is_audio_playing == True:
+            if is_sound_effect_changed == False:
+                is_sound_effect_changed = True
+                alarm_sound_effect_function = threading.Thread(target = self.alarm_sound_effect_function, args=(), daemon=True)
+                alarm_sound_effect_function.start()
+                is_sound_effect_changed = False
+
         
-        is_audio_playing = False
-    
+        # do something with the selected option here
+
     def snapshot_sound_effect_function(self):
         snap_sound = pygame.mixer.Sound('assets\\music\\system-sound-effects\\0-camera-shutter-click.mp3')
         snap_sound.play()
@@ -352,8 +386,8 @@ class App:
 
                             if is_audio_playing == False:
                                 is_audio_playing = True
-                                bees_sound_effect_function = threading.Thread(target = self.bees_sound_effect_function, args=(), daemon=True)
-                                bees_sound_effect_function.start()
+                                alarm_sound_effect_function = threading.Thread(target = self.alarm_sound_effect_function, args=(), daemon=True)
+                                alarm_sound_effect_function.start()
 
                                 current_time_str = datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")[:-3]
                                 cv2.imwrite(f"predictions/{current_time_str}.jpg", image_np_with_detections)
