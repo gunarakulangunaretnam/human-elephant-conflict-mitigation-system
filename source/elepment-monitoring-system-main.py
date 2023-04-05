@@ -19,6 +19,8 @@ import threading
 import playsound                                                          
 import tensorflow as tf 
 from datetime import datetime
+from tkinter import messagebox
+
 sys.path.append('assets')                                                  
 from object_detection.utils import label_map_util                         
 from object_detection.utils import config_util                             
@@ -29,7 +31,9 @@ from object_detection.builders import model_builder
 number_of_time_detected = 0
 alaram_threshold = 5
 
+is_processing = False
 is_audio_playing = False
+
 pygame.mixer.init()
 
 global_variable_snapshot_frame = ""
@@ -65,11 +69,11 @@ class App:
         self.width = 1000
         self.height = 700
 
-        # create a canvas that can fit the above video source size
+        # Create a canvas that can fit the above video source size
         self.canvas = tk.Canvas(window, width=self.width, height=self.height)
         self.canvas.place(x=30, y=30)
 
-        # set up the main loop
+        # Set up the main loop
         self.delay = 15 # milliseconds
         self.update()
 
@@ -85,7 +89,6 @@ class App:
         self.camera_placeholder = tk.PhotoImage(file="assets/camera-placeholder.png")
         self.camera_placeholder_label = tk.Label(window, image=self.camera_placeholder)
         self.camera_placeholder_label.place(x=30, y=30)
-
 
         # Create a button for Snapshot
         self.snapshot_button = tk.Button(window, text ="Snapshot", font=("Arial", 12, "bold"), command=lambda: self.take_snapshots())
@@ -176,10 +179,17 @@ class App:
         self.window.mainloop()
 
     def start_processing(self):
-        # open video source (by default this will try to open the computer webcam)
-        self.camera_placeholder_label.place_forget()
-        self.vid = cv2.VideoCapture(self.video_source)
-        self.window.update()
+        global is_processing
+
+        # Open video source (by default this will try to open the computer webcam)
+
+        if is_processing == False:
+            self.camera_placeholder_label.place_forget()
+            self.vid = cv2.VideoCapture(self.video_source)
+            self.window.update()
+        else:
+             messagebox.showerror("Process Initialization Failed ", "Unable to start a new process: A processing function is currently active.")
+
 
     def detect_fn(self, image):
         image, shapes = detection_model.preprocess(image)
@@ -200,9 +210,14 @@ class App:
         is_audio_playing = False
 
     def take_snapshots(self):
-        global global_variable_snapshot_frame
-        current_time_str = datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")[:-3]
-        cv2.imwrite(f"snapshots/{current_time_str}.jpg", global_variable_snapshot_frame)
+        global is_processing, global_variable_snapshot_frame
+
+        if is_processing == True:
+            current_time_str = datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")[:-3]
+            cv2.imwrite(f"snapshots/{current_time_str}.jpg", global_variable_snapshot_frame)
+        else:
+            messagebox.showerror("Snapshot Capture Failed", "The processing function is not active. Please initiate the processing before taking a snapshot.")
+
 
     def update(self):
         global number_of_time_detected, alaram_threshold, is_audio_playing, global_variable_snapshot_frame
@@ -282,6 +297,7 @@ class App:
 
                                 current_time_str = datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")[:-3]
                                 cv2.imwrite(f"predictions/{current_time_str}.jpg", image_np_with_detections)
+
                             number_of_time_detected = 0
 
 
@@ -357,4 +373,4 @@ class App:
 
     
 # Create the application window
-App(tk.Tk(), "Elephant Monitoring System")
+App(tk.Tk(), "HECMS - Monitoring System")
