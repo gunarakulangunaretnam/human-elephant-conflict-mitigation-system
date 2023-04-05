@@ -112,9 +112,9 @@ class App:
         self.device_camera_rb = tk.Radiobutton(self.options_frame, text="Device Camera", font=("Arial", 12, "bold"), command=lambda: self.toggle_textbox("[DEVICE_CAMERA]"),  variable=self.r1_v, value=1)
         self.device_camera_rb.place(x=20, y=40)
 
-        # Create a text box for Device Camera
-        self.device_camera_text = tk.Entry(self.options_frame, width=50, state="disabled")
-        self.device_camera_text.place(x=250, y=45)
+        self.device_camera_combo = ttk.Combobox(self.options_frame, state="disabled", width=47)
+        self.device_camera_combo.place(x=250, y=45)
+        self.get_all_cameras()
 
         # Create a radio button for IP Camera
         self.ip_camera_rb = tk.Radiobutton(self.options_frame, text="IP Camera", font=("Arial", 12, "bold"), command=lambda: self.toggle_textbox("[IP_CAMERA]"), variable = self.r1_v, value=2)
@@ -393,6 +393,21 @@ class App:
         else:
             messagebox.showerror("Snapshot Capture Failed", "The processing function is not active. Please initiate the processing before taking a snapshot.")
 
+    def get_all_cameras(self):
+        i = 0
+        while True:
+            cap = cv2.VideoCapture(i)
+            if cap.isOpened():
+                width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+                height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+                fps = int(cap.get(cv2.CAP_PROP_FPS))
+                camera_name = f"Camera {i}: ({width}x{height}, {fps}fps)"
+                self.device_camera_combo["values"] = (*self.device_camera_combo["values"], camera_name)
+                cap.release()
+                i += 1
+            else:
+                cap.release()
+                break
 
     def update(self):
 
@@ -497,11 +512,11 @@ class App:
     def toggle_textbox(self, target):
         if target == "[DEVICE_CAMERA]":
 
-            self.device_camera_text.delete(0, "end")
+            self.device_camera_combo.delete(0, "end")
             self.ip_camera_text.delete(0, "end")
             self.file_path_text.delete(0, "end")
 
-            self.device_camera_text.configure(state="normal")
+            self.device_camera_combo.configure(state="readonly")
             self.ip_camera_text.configure(state="disabled")
             self.file_path_text.configure(state="disabled")
 
@@ -510,11 +525,11 @@ class App:
 
         elif target == "[IP_CAMERA]":
 
-            self.device_camera_text.delete(0, "end")
+            self.device_camera_combo.delete(0, "end")
             self.ip_camera_text.delete(0, "end")
             self.file_path_text.delete(0, "end")
 
-            self.device_camera_text.configure(state="disabled")
+            self.device_camera_combo.configure(state="disabled")
             self.ip_camera_text.configure(state="normal")
             self.file_path_text.configure(state="disabled")
 
@@ -522,11 +537,11 @@ class App:
 
         elif target == "[VIDEO]":
 
-            self.device_camera_text.delete(0, "end")
+            self.device_camera_combo.delete(0, "end")
             self.ip_camera_text.delete(0, "end")
             self.file_path_text.delete(0, "end")
 
-            self.device_camera_text.configure(state="disabled")
+            self.device_camera_combo.configure(state="disabled")
             self.ip_camera_text.configure(state="disabled")
             self.file_path_text.configure(state="normal")
 
