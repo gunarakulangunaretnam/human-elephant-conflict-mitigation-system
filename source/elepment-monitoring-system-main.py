@@ -95,7 +95,7 @@ class App:
 
         # Create a label frame for the options
         self.options_frame = tk.LabelFrame(window, text="Options", font=("Arial", 12, "bold"))
-        self.options_frame.place(x=1100, y=20, width=790, height=900)
+        self.options_frame.place(x=1100, y=20, width=790, height=940)
 
         self.r1_v = tk.IntVar()
 
@@ -139,57 +139,68 @@ class App:
         self.threshold_slider.place(x=250, y=270)
 
         self.alarm_label = tk.Label(self.options_frame, text="Alarm", font=("Arial", 12, "bold"))
-        self.alarm_label.place(x=30, y=360)
+        self.alarm_label.place(x=30, y=370)
 
         self.switch_status = True
         self.on_button_image = tk.PhotoImage(file = "assets/styles/switch-button/on.png")
         self.off_button_image = tk.PhotoImage(file = "assets/styles/switch-button/off.png")
         self.on_button = tk.Button(self.options_frame, image = self.on_button_image, bd = 0, command = self.switch_on_off_function)
-        self.on_button.place(x=250, y=350)
+        self.on_button.place(x=250, y=360)
 
         self.sound_effect_label = tk.Label(self.options_frame, text="Sound Effect:", font=("Arial", 12, "bold"))
-        self.sound_effect_label.place(x=30, y=420)
+        self.sound_effect_label.place(x=30, y=440)
 
         self.sound_effects_combobox_options = ["Buzzing Bees Sound", "Firecrackers Sound" ,  "Warning Alarm Sound"]
-        self.sound_effects_combobox = ttk.Combobox(self.options_frame, values=self.sound_effects_combobox_options, font=("Arial", 11))
+        self.sound_effects_combobox = ttk.Combobox(self.options_frame, values=self.sound_effects_combobox_options, font=("Arial", 10), width=30)
         self.sound_effects_combobox.current(0)
         self.sound_effects_combobox.bind("<<ComboboxSelected>>", self.on_sound_effect_change)
-        self.sound_effects_combobox.place(x=250, y=420)
+        self.sound_effects_combobox.place(x=250, y=440)
+
+
+        self.sound_effect_label = tk.Label(self.options_frame, text="Model Architecture:", font=("Arial", 12, "bold"))
+        self.sound_effect_label.place(x=30, y=500)
+
+        self.model_architecture_combobox_options = ["SSD M-Net V2 FPN Keras 320x320 (Hight Speed | Low Accuracy)", "SSD M-Net V2 FPN Lite 320x320 (Medium Speed | Medium Accuracy)" ,  "SSD M-Net V1 FPN 640x640 (Low Speed | High Accuracy)", "SSD M-Net V1 FPN Lite 640x640 (Low Speed | High Accuracy)", "SSD M-Net V1 FPN 640x640 (Low Speed | High Accuracy)"]
+        self.model_architecture_combobox = ttk.Combobox(self.options_frame, values=self.model_architecture_combobox_options, font=("Arial", 10), width=52)
+        self.model_architecture_combobox.current(1)
+        self.model_architecture_combobox.bind("<<ComboboxSelected>>", self.on_sound_effect_change)
+        self.model_architecture_combobox.place(x=250, y=500)
+
 
         # Create a horizontal separator
         self.separator = ttk.Separator(self.options_frame, orient='horizontal')
-        self.separator.place(x=20, y=500, relwidth=0.96)
+        self.separator.place(x=20, y=570, relwidth=0.96)
 
         self.brightness_slider_label = tk.Label(self.options_frame, text="Brightness",font=("Arial", 12, "bold"))
-        self.brightness_slider_label.place(x=30, y=550)
+        self.brightness_slider_label.place(x=30, y=620)
 
         self.brightness_slider = tk.Scale(self.options_frame, from_=0, to=100, width=30,length=500, orient=tk.HORIZONTAL)
         self.brightness_slider.set(50)
-        self.brightness_slider.place(x=250, y=520)
+        self.brightness_slider.place(x=250, y=590)
 
         self.contrast_slider_label = tk.Label(self.options_frame, text="Contrast",font=("Arial", 12, "bold"))
-        self.contrast_slider_label.place(x=30, y=630)
+        self.contrast_slider_label.place(x=30, y=690)
 
         self.contrast_slider = tk.Scale(self.options_frame, from_=0, to=100, width=30,length=500, orient=tk.HORIZONTAL)
         self.contrast_slider.set(50)
-        self.contrast_slider.place(x=250, y=600)
+        self.contrast_slider.place(x=250, y=660)
 
         self.contrast_slider_label = tk.Label(self.options_frame, text="Gaussian Blur",font=("Arial", 12, "bold"))
-        self.contrast_slider_label.place(x=30, y=710)
+        self.contrast_slider_label.place(x=30, y=760)
 
         self.contrast_slider = tk.Scale(self.options_frame, from_=0, to=100, width=30,length=500, orient=tk.HORIZONTAL)
         self.contrast_slider.set(50)
-        self.contrast_slider.place(x=250, y=680)
+        self.contrast_slider.place(x=250, y=730)
 
         # Create a browse button for Pre-Recorded Videos
         self.start_processing_nutton = tk.Button(self.options_frame, text="Start Processing", font=("Arial", 12, "bold"), command=self.start_processing)
         self.start_processing_nutton.configure(bg="dark green", fg="white")
-        self.start_processing_nutton.place(x=576, y=810)
+        self.start_processing_nutton.place(x=576, y=830)
 
         # Create a browse button for Pre-Recorded Videos
         self.stop_processing_nutton = tk.Button(self.options_frame, text="Stop Processing", font=("Arial", 12, "bold"), command=self.stop_processing)
         self.stop_processing_nutton.configure(bg="dark red", fg="white")
-        self.stop_processing_nutton.place(x=40, y=810)
+        self.stop_processing_nutton.place(x=40, y=830)
 
         # Start the GUI loop
         self.window.mainloop()
