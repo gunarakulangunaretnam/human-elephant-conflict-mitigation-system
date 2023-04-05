@@ -1,49 +1,33 @@
-import tkinter as tk
-from tkinter import ttk
 import cv2
 
-def get_cameras():
-    """
-    Returns a list of connected cameras with their names and indices
-    """
-    cameras = []
-    for i in range(20):
-        cap = cv2.VideoCapture(i)
-        if cap.isOpened():
-            width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-            height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-            fps = int(cap.get(cv2.CAP_PROP_FPS))
-            camera_name = f"Camera: {i} |({width}x{height}, {fps}fps)"
-            cameras.append((camera_name, i))
-        cap.release()
+# set IP address and port number of depth camera server
+ip_address = "192.168.8.171"
+port = "5000"
 
-def open_camera():
-    """
-    Opens the camera selected in the combo box
-    """
-    selected_camera = combo_box.get()
-    print(combo_box.getvar("value"))
-    camera_index = int(combo_box.getvar("value"))
-    cap = cv2.VideoCapture(camera_index)
-    while True:
-        ret, frame = cap.read()
-        if ret:
-            cv2.imshow("Camera", frame)
-            if cv2.waitKey(1) == 27:
-                break
-        else:
+# set video stream URL
+url = "http://{}:{}/stream.mjpg".format(ip_address, port)
+
+# create VideoCapture object
+cap = cv2.VideoCapture(url)
+
+# check if camera opened successfully
+if not cap.isOpened():
+    print("Error opening video stream or file")
+
+# read frames from the camera
+while cap.isOpened():
+    ret, frame = cap.read()
+
+    if ret:
+        # display the resulting frame
+        cv2.imshow('iVCAM Stream', frame)
+
+        # press 'q' to exit
+        if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-    cap.release()
-    cv2.destroyAllWindows()
+    else:
+        break
 
-root = tk.Tk()
-
-cameras = get_cameras()
-
-combo_box = tk.ttk.Combobox(root, values=cameras, textvariable=tk.StringVar())
-combo_box.pack()
-
-open_button = tk.Button(root, text="Open Camera", command=open_camera)
-open_button.pack()
-
-root.mainloop()
+# release the camera and close all windows
+cap.release()
+cv2.destroyAllWindows()

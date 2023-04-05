@@ -254,6 +254,7 @@ class App:
 
 
             input_source = ""
+            input_source_testing_passed = False
 
             print(self.device_camera_combo["state"]) # It is a bug, If I don't print it, it does not work in the if condition.
 
@@ -275,27 +276,62 @@ class App:
                 if selected_value != "":
                     input_source = selected_value
                 else:
-                    messagebox.showerror("Error", "IP address not provided")
+                    messagebox.showerror("Error", "Please provide an IP address")
 
-                
+            elif self.file_path_text['state'] == "normal":
+
+                selected_value= self.file_path_text.get()
+
+                if selected_value != "":
+                    input_source = selected_value
+                else:
+                    messagebox.showerror("Error", "Please choose a video file")
+
 
             if self.device_camera_combo["state"] == "readonly":
 
                 test_cap = cv2.VideoCapture(int(input_source))
 
                 if not test_cap.isOpened():
-                    messagebox.showerror("Error", "The target camera failed to open.")
+                    messagebox.showerror("Error", "The target webcam camera failed to open.")
+                    input_source_testing_passed = False
                 else:
                     self.vid = cv2.VideoCapture(int(input_source))
+                    #input_source_testing_passed = True
 
+            elif self.ip_camera_text["state"] == "normal":
+                test_cap = cv2.VideoCapture(input_source)
 
-            load_model_function(model_config_path, checkpoint_model_path, label_map_path)
-            self.camera_window.place(x=30, y=30)
-            self.model_architecture_combobox.configure(state="disabled")
-            self.camera_placeholder_label.place_forget()
-            self.delay = 15 # milliseconds
-            self.update()
-            self.job_id = "" 
+                if not test_cap.isOpened():
+                    messagebox.showerror("Error", "The target IP camera failed to open.")
+                    input_source_testing_passed = False
+                else:
+                    self.vid = cv2.VideoCapture(input_source)
+                    #input_source_testing_passed = True
+
+            elif self.file_path_text["state"] == "normal":
+                test_cap = cv2.VideoCapture(input_source)
+
+                if not test_cap.isOpened():
+                    messagebox.showerror("Error", "The chosen file failed to open.")
+                    input_source_testing_passed = False
+                else:
+                    self.vid = cv2.VideoCapture(input_source)
+                    #input_source_testing_passed = True
+            
+
+            if input_source_testing_passed == True:
+
+                load_model_function(model_config_path, checkpoint_model_path, label_map_path)
+                self.camera_window.place(x=30, y=30)
+                self.model_architecture_combobox.configure(state="disabled")
+                self.camera_placeholder_label.place_forget()
+                self.delay = 15 # milliseconds
+                self.update()
+                self.job_id = ""
+            else:
+                messagebox.showerror("Error", "Something went wrong with input source.")
+
             
         else:
              messagebox.showerror("Process Initialization Failed ", "A processing function is currently active. Please stop the current process to initiate a new process.")
