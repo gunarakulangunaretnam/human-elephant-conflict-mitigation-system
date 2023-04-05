@@ -138,13 +138,22 @@ class App:
         self.threshold_slider.place(x=250, y=270)
 
         self.alarm_label = tk.Label(self.options_frame, text="Alarm", font=("Arial", 12, "bold"))
-        self.alarm_label.place(x=30, y=370)
+        self.alarm_label.place(x=30, y=360)
 
         self.switch_status = True
         self.on_button_image = tk.PhotoImage(file = "assets/styles/switch-button/on.png")
         self.off_button_image = tk.PhotoImage(file = "assets/styles/switch-button/off.png")
         self.on_button = tk.Button(self.options_frame, image = self.on_button_image, bd = 0, command = self.switch_on_off_function)
-        self.on_button.place(x=250, y=360)
+        self.on_button.place(x=250, y=350)
+
+        self.sound_effect_label = tk.Label(self.options_frame, text="Sound Effect:", font=("Arial", 12, "bold"))
+        self.sound_effect_label.place(x=30, y=420)
+
+        self.sound_effects_combobox_options = ["Buzzing Bees Sound", "Warning Alarm Sound"]
+        self.sound_effects_combobox = ttk.Combobox(self.options_frame, values=self.sound_effects_combobox_options, font=("Arial", 11))
+        self.sound_effects_combobox.current(0)
+        self.sound_effects_combobox.place(x=250, y=420)
+
 
         # Create a horizontal separator
         self.separator = ttk.Separator(self.options_frame, orient='horizontal')
@@ -218,9 +227,11 @@ class App:
 
         if self.switch_status == True:
             self.switch_status = False 
+            self.sound_effects_combobox.config(state='disabled')
             self.on_button.config(image = self.off_button_image)            
         else:
             self.switch_status = True 
+            self.sound_effects_combobox.config(state='normal')
             self.on_button.config(image = self.on_button_image) 
 
 
