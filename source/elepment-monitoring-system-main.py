@@ -80,6 +80,10 @@ class App:
         self.height = 700
         self.detection_threshold = 60
 
+        self.brightness = 50
+        self.contrast = 50
+        self.blur = 0
+
         # Create a canvas that can fit the above video source size
         self.camera_window = tk.Canvas(window, width=self.width, height=self.height)
         self.camera_window.place(x=30, y=30)
@@ -183,33 +187,38 @@ class App:
         self.brightness_slider_label = tk.Label(self.options_frame, text="Brightness",font=("Arial", 12, "bold"))
         self.brightness_slider_label.place(x=30, y=620)
 
-        self.brightness_slider = tk.Scale(self.options_frame, from_=0, to=100, width=30,length=500, orient=tk.HORIZONTAL)
-        self.brightness_slider.set(50)
+        self.brightness_slider = tk.Scale(self.options_frame, from_=0, to=100, width=30,length=500, orient=tk.HORIZONTAL, command=self.set_brightness)
+        self.brightness_slider.set(self.brightness)
         self.brightness_slider.place(x=250, y=590)
 
         self.contrast_slider_label = tk.Label(self.options_frame, text="Contrast",font=("Arial", 12, "bold"))
         self.contrast_slider_label.place(x=30, y=690)
 
-        self.contrast_slider = tk.Scale(self.options_frame, from_=0, to=100, width=30,length=500, orient=tk.HORIZONTAL)
-        self.contrast_slider.set(50)
+        self.contrast_slider = tk.Scale(self.options_frame, from_=0, to=100, width=30,length=500, orient=tk.HORIZONTAL, command=self.set_contrast)
+        self.contrast_slider.set(self.contrast)
         self.contrast_slider.place(x=250, y=660)
 
-        self.contrast_slider_label = tk.Label(self.options_frame, text="Gaussian Blur",font=("Arial", 12, "bold"))
-        self.contrast_slider_label.place(x=30, y=760)
+        self.gaussian_blur_slider_label = tk.Label(self.options_frame, text="Gaussian Blur",font=("Arial", 12, "bold"))
+        self.gaussian_blur_slider_label.place(x=30, y=760)
 
-        self.contrast_slider = tk.Scale(self.options_frame, from_=0, to=100, width=30,length=500, orient=tk.HORIZONTAL)
-        self.contrast_slider.set(50)
-        self.contrast_slider.place(x=250, y=730)
+        self.gaussian_blur_slider = tk.Scale(self.options_frame, from_=0, to=100, width=30,length=500, orient=tk.HORIZONTAL, command=self.set_blur)
+        self.gaussian_blur_slider.set(self.blur)
+        self.gaussian_blur_slider.place(x=250, y=730)
+
+        # Create a browse button for Pre-Recorded Videos
+        self.start_processing_nutton = tk.Button(self.options_frame, text="Restore Default Settings", font=("Arial", 12, "bold"), command=self.restore_default_settings)
+        self.start_processing_nutton.configure(bg="dark blue", fg="white")
+        self.start_processing_nutton.place(x=272, y=835)
 
         # Create a browse button for Pre-Recorded Videos
         self.start_processing_nutton = tk.Button(self.options_frame, text="Start Processing", font=("Arial", 12, "bold"), command=self.start_processing)
         self.start_processing_nutton.configure(bg="dark green", fg="white")
-        self.start_processing_nutton.place(x=576, y=830)
+        self.start_processing_nutton.place(x=576, y=835)
 
         # Create a browse button for Pre-Recorded Videos
         self.stop_processing_nutton = tk.Button(self.options_frame, text="Stop Processing", font=("Arial", 12, "bold"), command=self.stop_processing)
         self.stop_processing_nutton.configure(bg="dark red", fg="white")
-        self.stop_processing_nutton.place(x=38, y=830)
+        self.stop_processing_nutton.place(x=38, y=835)
 
         # Start the GUI loop
         self.window.mainloop()
@@ -342,13 +351,15 @@ class App:
         global is_processing, number_of_time_detected
 
         if is_processing == True:
+
              is_processing = False
+
              number_of_time_detected = 0 # Set it to count from 0
              self.camera_window.place_forget()
              self.model_architecture_combobox.configure(state="normal")
              self.camera_placeholder_label.place(x=30, y=30)
              self.window.after_cancel(self.job_id)
-             
+         
              if self.vid.isOpened():
                 self.vid.release()
                 
@@ -425,7 +436,40 @@ class App:
                 is_sound_effect_changed = False
 
     def on_threshold_change(self, val):
-        self.detection_threshold =  val 
+        self.detection_threshold =  val
+
+    def set_brightness(self, val):
+        self.brightness = int(val)
+        
+    def set_contrast(self, val):
+        self.contrast = int(val)
+        
+    def set_blur(self, val):
+        self.blur = int(val) 
+
+    def restore_default_settings(self):
+        self.brightness = 50
+        self.contrast = 50
+        self.blur = 0
+        self.detection_threshold = 60
+        self.switch_status = True 
+        
+        self.sound_effects_combobox.config(state='normal')
+        self.on_button.config(image = self.on_button_image) 
+        self.model_architecture_combobox.current(4)
+        self.threshold_slider.set(60)
+        self.brightness_slider.set(50)
+        self.contrast_slider.set(50)
+        self.gaussian_blur_slider.set(0)
+        self.sound_effects_combobox.current(0)
+
+        self.ip_camera_text.delete(0, "end")
+        self.file_path_text.delete(0, "end")
+
+        self.device_camera_combo.configure(state="disabled")
+        self.ip_camera_text.configure(state="disabled")
+        self.file_path_text.configure(state="disabled")
+        self.browse_button.configure(state="disabled")
 
     def on_model_architecture_change(self, event):
 
@@ -494,6 +538,10 @@ class App:
 
             if ret:
                 image_np_expanded = np.expand_dims(frame, axis=0)
+
+                frame = cv2.convertScaleAbs(frame, alpha=(self.contrast / 50), beta=(self.brightness - 50))
+                frame = cv2.GaussianBlur(frame, (self.blur*2+1, self.blur*2+1), 0)
+
                 input_tensor = tf.convert_to_tensor(np.expand_dims(frame, 0), dtype=tf.float32)
                 detections, predictions_dict, shapes = self.detect_fn(input_tensor)
 
