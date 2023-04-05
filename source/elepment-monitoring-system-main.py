@@ -203,6 +203,7 @@ class App:
              
              if self.vid.isOpened():
                 self.vid.release()
+
                 
              
 
@@ -227,11 +228,19 @@ class App:
                 break
         
         is_audio_playing = False
+    
+    def snapshot_sound_effect_function(self):
+        snap_sound = pygame.mixer.Sound('assets\\camera-shutter-click.mp3')
+        snap_sound.play()
 
     def take_snapshots(self):
         global is_processing, global_variable_snapshot_frame
 
         if is_processing == True:
+
+            snapshot_sound_effect_function = threading.Thread(target = self.snapshot_sound_effect_function, args=(), daemon=True)
+            snapshot_sound_effect_function.start()
+
             current_time_str = datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")[:-3]
             cv2.imwrite(f"snapshots/{current_time_str}.jpg", global_variable_snapshot_frame)
         else:
