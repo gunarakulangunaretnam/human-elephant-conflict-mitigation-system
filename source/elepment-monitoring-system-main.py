@@ -95,7 +95,7 @@ class App:
 
         # Create a label frame for the options
         self.options_frame = tk.LabelFrame(window, text="Options", font=("Arial", 12, "bold"))
-        self.options_frame.place(x=1100, y=30, width=790, height=900)
+        self.options_frame.place(x=1100, y=20, width=790, height=900)
 
         self.r1_v = tk.IntVar()
 
