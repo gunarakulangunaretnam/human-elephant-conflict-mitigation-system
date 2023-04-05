@@ -83,7 +83,7 @@ class App:
         self.window.state("zoomed")
 
         # Setup placeholder image
-        self.camera_placeholder = tk.PhotoImage(file="assets/camera-placeholder.png")
+        self.camera_placeholder = tk.PhotoImage(file="assets/styles/camera-placeholder.png")
         self.camera_placeholder_label = tk.Label(window, image=self.camera_placeholder)
         self.camera_placeholder_label.place(x=30, y=30)
 
@@ -94,7 +94,7 @@ class App:
 
         # Create a label frame for the options
         self.options_frame = tk.LabelFrame(window, text="Options", font=("Arial", 12, "bold"))
-        self.options_frame.place(x=1100, y=30, width=790, height=750)
+        self.options_frame.place(x=1100, y=30, width=790, height=900)
 
         self.r1_v = tk.IntVar()
 
@@ -137,40 +137,49 @@ class App:
         self.threshold_slider.set(60)
         self.threshold_slider.place(x=250, y=270)
 
+        self.alarm_label = tk.Label(self.options_frame, text="Alarm", font=("Arial", 12, "bold"))
+        self.alarm_label.place(x=30, y=370)
+
+        self.switch_status = True
+        self.on_button_image = tk.PhotoImage(file = "assets/styles/switch-button/on.png")
+        self.off_button_image = tk.PhotoImage(file = "assets/styles/switch-button/off.png")
+        self.on_button = tk.Button(self.options_frame, image = self.on_button_image, bd = 0, command = self.switch_on_off_function)
+        self.on_button.place(x=250, y=360)
+
         # Create a horizontal separator
         self.separator = ttk.Separator(self.options_frame, orient='horizontal')
-        self.separator.place(x=20, y=370, relwidth=0.96)
+        self.separator.place(x=20, y=500, relwidth=0.96)
 
         self.brightness_slider_label = tk.Label(self.options_frame, text="Brightness",font=("Arial", 12, "bold"))
-        self.brightness_slider_label.place(x=30, y=430)
+        self.brightness_slider_label.place(x=30, y=550)
 
         self.brightness_slider = tk.Scale(self.options_frame, from_=0, to=100, width=30,length=500, orient=tk.HORIZONTAL)
         self.brightness_slider.set(50)
-        self.brightness_slider.place(x=250, y=400)
+        self.brightness_slider.place(x=250, y=520)
 
         self.contrast_slider_label = tk.Label(self.options_frame, text="Contrast",font=("Arial", 12, "bold"))
-        self.contrast_slider_label.place(x=30, y=490)
+        self.contrast_slider_label.place(x=30, y=630)
 
         self.contrast_slider = tk.Scale(self.options_frame, from_=0, to=100, width=30,length=500, orient=tk.HORIZONTAL)
         self.contrast_slider.set(50)
-        self.contrast_slider.place(x=250, y=460)
+        self.contrast_slider.place(x=250, y=600)
 
         self.contrast_slider_label = tk.Label(self.options_frame, text="Gaussian Blur",font=("Arial", 12, "bold"))
-        self.contrast_slider_label.place(x=30, y=550)
+        self.contrast_slider_label.place(x=30, y=710)
 
         self.contrast_slider = tk.Scale(self.options_frame, from_=0, to=100, width=30,length=500, orient=tk.HORIZONTAL)
         self.contrast_slider.set(50)
-        self.contrast_slider.place(x=250, y=520)
+        self.contrast_slider.place(x=250, y=680)
 
         # Create a browse button for Pre-Recorded Videos
         self.start_processing_nutton = tk.Button(self.options_frame, text="Start Processing", font=("Arial", 12, "bold"), command=self.start_processing)
         self.start_processing_nutton.configure(bg="dark green", fg="white")
-        self.start_processing_nutton.place(x=576, y=650)
+        self.start_processing_nutton.place(x=576, y=810)
 
         # Create a browse button for Pre-Recorded Videos
         self.stop_processing_nutton = tk.Button(self.options_frame, text="Stop Processing", font=("Arial", 12, "bold"), command=self.stop_processing)
         self.stop_processing_nutton.configure(bg="dark red", fg="white")
-        self.stop_processing_nutton.place(x=40, y=650)
+        self.stop_processing_nutton.place(x=40, y=810)
 
         # Start the GUI loop
         self.window.mainloop()
@@ -205,7 +214,16 @@ class App:
                 self.vid.release()
 
                 
-             
+    def switch_on_off_function(self):
+
+        if self.switch_status == True:
+            self.switch_status = False 
+            self.on_button.config(image = self.off_button_image)            
+        else:
+            self.switch_status = True 
+            self.on_button.config(image = self.on_button_image) 
+
+
 
     def detect_fn(self, image):
         image, shapes = detection_model.preprocess(image)
