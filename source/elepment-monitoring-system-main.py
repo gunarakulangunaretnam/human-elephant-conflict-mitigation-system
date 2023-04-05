@@ -1,3 +1,4 @@
+import re
 import cv2
 import tkinter as tk
 from tkinter import ttk
@@ -71,11 +72,10 @@ def load_model_function(model_config_path, checkpoint_model_path, label_map_path
 
 class App:
 
-    def __init__(self, window, window_title, video_source='test-video.m4v'):
+    def __init__(self, window, window_title):
         self.window = window
         self.window.title(window_title)
 
-        self.video_source = video_source
         self.width = 1000
         self.height = 700
 
@@ -253,12 +253,46 @@ class App:
                 label_map_path    =  f'assets/label-maps/mscoco-label-map.pbtxt'
 
 
+            input_source = ""
+
+            print(self.device_camera_combo["state"]) # It is a bug, If I don't print it, it does not work in the if condition.
+
+            if self.device_camera_combo["state"] == "readonly":
+                
+                selected_value= self.device_camera_combo.get()
+
+                if selected_value != "":
+                    first_part = selected_value.split(":")[0].strip()
+                    input_source = re.findall(r'\d+', first_part)[0]
+                     
+                else:
+                    messagebox.showerror("Error", "Please choose a camera")
+
+            elif self.ip_camera_text['state'] == "normal":
+
+                selected_value= self.ip_camera_text.get()
+
+                if selected_value != "":
+                    input_source = selected_value
+                else:
+                    messagebox.showerror("Error", "IP address not provided")
+
+                
+
+            if self.device_camera_combo["state"] == "readonly":
+
+                test_cap = cv2.VideoCapture(int(input_source))
+
+                if not test_cap.isOpened():
+                    messagebox.showerror("Error", "The target camera failed to open.")
+                else:
+                    self.vid = cv2.VideoCapture(int(input_source))
+
+
             load_model_function(model_config_path, checkpoint_model_path, label_map_path)
             self.camera_window.place(x=30, y=30)
             self.model_architecture_combobox.configure(state="disabled")
             self.camera_placeholder_label.place_forget()
-            self.vid = cv2.VideoCapture(self.video_source)
-            # Run the processing
             self.delay = 15 # milliseconds
             self.update()
             self.job_id = "" 
@@ -511,40 +545,33 @@ class App:
 
     def toggle_textbox(self, target):
         if target == "[DEVICE_CAMERA]":
-
-            self.device_camera_combo.delete(0, "end")
+          
             self.ip_camera_text.delete(0, "end")
             self.file_path_text.delete(0, "end")
 
             self.device_camera_combo.configure(state="readonly")
             self.ip_camera_text.configure(state="disabled")
             self.file_path_text.configure(state="disabled")
-
             self.browse_button.configure(state="disabled")
-            
 
         elif target == "[IP_CAMERA]":
-
-            self.device_camera_combo.delete(0, "end")
+      
             self.ip_camera_text.delete(0, "end")
             self.file_path_text.delete(0, "end")
 
             self.device_camera_combo.configure(state="disabled")
             self.ip_camera_text.configure(state="normal")
             self.file_path_text.configure(state="disabled")
-
             self.browse_button.configure(state="disabled")
 
         elif target == "[VIDEO]":
-
-            self.device_camera_combo.delete(0, "end")
+    
             self.ip_camera_text.delete(0, "end")
             self.file_path_text.delete(0, "end")
 
             self.device_camera_combo.configure(state="disabled")
             self.ip_camera_text.configure(state="disabled")
             self.file_path_text.configure(state="normal")
-
             self.browse_button.configure(state="normal")
 
     def browse_file(self):
