@@ -280,9 +280,8 @@ class App:
                                 bees_sound_effect_function = threading.Thread(target = self.bees_sound_effect_function, args=(), daemon=True)
                                 bees_sound_effect_function.start()
 
-                            current_time_str = datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")[:-3]
-                            
-                            cv2.imwrite(f"predictions/{current_time_str}.jpg", image_np_with_detections)
+                                current_time_str = datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")[:-3]
+                                cv2.imwrite(f"predictions/{current_time_str}.jpg", image_np_with_detections)
                             number_of_time_detected = 0
 
 
