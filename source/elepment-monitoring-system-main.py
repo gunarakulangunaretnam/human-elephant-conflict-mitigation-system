@@ -78,6 +78,7 @@ class App:
 
         self.width = 1000
         self.height = 700
+        self.detection_threshold = 60
 
         # Create a canvas that can fit the above video source size
         self.camera_window = tk.Canvas(window, width=self.width, height=self.height)
@@ -144,7 +145,8 @@ class App:
         self.threshold_slider_label.place(x=30, y=298)
 
         self.threshold_slider = tk.Scale(self.options_frame, from_=0, to=100, width=30,length=500, orient=tk.HORIZONTAL)
-        self.threshold_slider.set(65)
+        self.threshold_slider.set(self.detection_threshold)
+        self.threshold_slider.bind("<ButtonRelease-1>", lambda event: self.on_threshold_change(self.threshold_slider.get()))
         self.threshold_slider.place(x=250, y=270)
 
         self.alarm_label = tk.Label(self.options_frame, text="Alarm", font=("Arial", 12, "bold"))
@@ -170,7 +172,7 @@ class App:
 
         self.model_architecture_combobox_options = ["SSD M-Net V2 FPN Keras 320x320 (High Speed | Low Accuracy)", "SSD M-Net V2 Keras 320x320 (Medium Speed | Medium Accuracy)", "SSD M-Net V2 FPN LITE 320x320 (Medium Speed | High Accuracy)", "SSD M-Net V2 FPN LITE 640x640 (Low Speed | High Accuracy)", "SSD M-Net V1 FPN 640x640 (Low Speed | High Accuracy)"]
         self.model_architecture_combobox = ttk.Combobox(self.options_frame, values=self.model_architecture_combobox_options, font=("Arial", 10), width=52, state="readonly")
-        self.model_architecture_combobox.current(2)
+        self.model_architecture_combobox.current(4)
         self.model_architecture_combobox.bind("<<ComboboxSelected>>", self.on_model_architecture_change)
         self.model_architecture_combobox.place(x=250, y=500)
 
@@ -217,9 +219,7 @@ class App:
         global is_processing, selected_model, model_config_path, checkpoint_model_path, label_map_path, configs, model_config, detection_model, ckpt, category_index 
 
         if is_processing == False:
-            
-            is_processing = True
-
+        
             selected_model_architecture = self.model_architecture_combobox.get()
 
             if selected_model_architecture == "SSD M-Net V2 FPN Keras 320x320 (High Speed | Low Accuracy)":
@@ -297,7 +297,7 @@ class App:
                     input_source_testing_passed = False
                 else:
                     self.vid = cv2.VideoCapture(int(input_source))
-                    #input_source_testing_passed = True
+                    input_source_testing_passed = True
 
             elif self.ip_camera_text["state"] == "normal":
                 test_cap = cv2.VideoCapture(input_source)
@@ -307,7 +307,7 @@ class App:
                     input_source_testing_passed = False
                 else:
                     self.vid = cv2.VideoCapture(input_source)
-                    #input_source_testing_passed = True
+                    input_source_testing_passed = True
 
             elif self.file_path_text["state"] == "normal":
                 test_cap = cv2.VideoCapture(input_source)
@@ -317,10 +317,12 @@ class App:
                     input_source_testing_passed = False
                 else:
                     self.vid = cv2.VideoCapture(input_source)
-                    #input_source_testing_passed = True
+                    input_source_testing_passed = True
             
 
             if input_source_testing_passed == True:
+
+                is_processing = True
 
                 load_model_function(model_config_path, checkpoint_model_path, label_map_path)
                 self.camera_window.place(x=30, y=30)
@@ -422,29 +424,32 @@ class App:
                 alarm_sound_effect_function.start()
                 is_sound_effect_changed = False
 
+    def on_threshold_change(self, val):
+        self.detection_threshold =  val 
+
     def on_model_architecture_change(self, event):
 
         selected_model_architecture = self.model_architecture_combobox.get()
 
         if selected_model_architecture == "SSD M-Net V2 FPN Keras 320x320 (High Speed | Low Accuracy)":
             self.threshold_slider.set(40)
-
+            self.detection_threshold = 40
 
         elif selected_model_architecture == "SSD M-Net V2 Keras 320x320 (Medium Speed | Medium Accuracy)":
-            self.threshold_slider.set(60)
-
+            self.threshold_slider.set(45)
+            self.detection_threshold = 45
         
         elif selected_model_architecture == "SSD M-Net V2 FPN LITE 320x320 (Medium Speed | High Accuracy)":   
-            self.threshold_slider.set(65)
-
+            self.threshold_slider.set(50)
+            self.detection_threshold = 50
 
         elif selected_model_architecture == "SSD M-Net V2 FPN LITE 640x640 (Low Speed | High Accuracy)":    
-            self.threshold_slider.set(70)
-
+            self.threshold_slider.set(55)
+            self.detection_threshold = 55
         
         elif selected_model_architecture == "SSD M-Net V1 FPN 640x640 (Low Speed | High Accuracy)":     
-            self.threshold_slider.set(75)
- 
+            self.threshold_slider.set(60)
+            self.detection_threshold = 60
 
     def snapshot_sound_effect_function(self):
         snap_sound = pygame.mixer.Sound('assets\\music\\system-sound-effects\\0-camera-shutter-click.mp3')
@@ -495,7 +500,7 @@ class App:
                 label_id_offset = 1
                 image_np_with_detections = frame.copy()
 
-                min_score_thresh = 0.50
+                min_score_thresh = self.detection_threshold / 100.0 
 
                 box_to_display_str_map = collections.defaultdict(list)
                 box_to_color_map = collections.defaultdict(str)
@@ -612,7 +617,7 @@ class App:
 
     def browse_file(self):
         # Ask user to select a video file
-        file_path = filedialog.askopenfilename(filetypes=[("Video Files", "*.mp4;*.avi;*.mkv")])
+        file_path = filedialog.askopenfilename(filetypes=[("Video Files", "*.mp4;*.avi;*.mkv;*.m4v;*.flv;*.mov;*.wmv;*.webm;*.mpg;*.mpeg;*.m2ts;*.mts;*.ts;*.vob;*.3gp;*.3g2;")])
     
         if file_path:
             # Set the file path in the entry widget
