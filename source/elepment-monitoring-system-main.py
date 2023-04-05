@@ -212,6 +212,7 @@ class App:
         if is_processing == False:
             is_processing = True
             self.camera_window.place(x=30, y=30)
+            self.model_architecture_combobox.configure(state="disabled")
             self.camera_placeholder_label.place_forget()
             self.vid = cv2.VideoCapture(self.video_source)
             # Run the processing
@@ -228,6 +229,7 @@ class App:
         if is_processing == True:
              is_processing = False
              self.camera_window.place_forget()
+             self.model_architecture_combobox.configure(state="normal")
              self.camera_placeholder_label.place(x=30, y=30)
              self.window.after_cancel(self.job_id)
              
