@@ -151,7 +151,7 @@ class App:
         self.sound_effect_label.place(x=30, y=440)
 
         self.sound_effects_combobox_options = ["Buzzing Bees Sound", "Firecrackers Sound" ,  "Warning Alarm Sound"]
-        self.sound_effects_combobox = ttk.Combobox(self.options_frame, values=self.sound_effects_combobox_options, font=("Arial", 10), width=30)
+        self.sound_effects_combobox = ttk.Combobox(self.options_frame, values=self.sound_effects_combobox_options, font=("Arial", 10), width=30, state="readonly")
         self.sound_effects_combobox.current(0)
         self.sound_effects_combobox.bind("<<ComboboxSelected>>", self.on_sound_effect_change)
         self.sound_effects_combobox.place(x=250, y=440)
@@ -161,7 +161,7 @@ class App:
         self.sound_effect_label.place(x=30, y=500)
 
         self.model_architecture_combobox_options = ["SSD M-Net V2 FPN Keras 320x320 (Hight Speed | Low Accuracy)", "SSD M-Net V2 FPN Lite 320x320 (Medium Speed | Medium Accuracy)" ,  "SSD M-Net V1 FPN 640x640 (Low Speed | High Accuracy)", "SSD M-Net V1 FPN Lite 640x640 (Low Speed | High Accuracy)", "SSD M-Net V1 FPN 640x640 (Low Speed | High Accuracy)"]
-        self.model_architecture_combobox = ttk.Combobox(self.options_frame, values=self.model_architecture_combobox_options, font=("Arial", 10), width=52)
+        self.model_architecture_combobox = ttk.Combobox(self.options_frame, values=self.model_architecture_combobox_options, font=("Arial", 10), width=52, state="readonly")
         self.model_architecture_combobox.current(1)
         self.model_architecture_combobox.bind("<<ComboboxSelected>>", self.on_sound_effect_change)
         self.model_architecture_combobox.place(x=250, y=500)
@@ -200,7 +200,7 @@ class App:
         # Create a browse button for Pre-Recorded Videos
         self.stop_processing_nutton = tk.Button(self.options_frame, text="Stop Processing", font=("Arial", 12, "bold"), command=self.stop_processing)
         self.stop_processing_nutton.configure(bg="dark red", fg="white")
-        self.stop_processing_nutton.place(x=40, y=830)
+        self.stop_processing_nutton.place(x=38, y=830)
 
         # Start the GUI loop
         self.window.mainloop()
