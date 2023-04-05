@@ -29,7 +29,9 @@ from object_detection.builders import model_builder
 
 
 number_of_time_detected = 0
-alaram_threshold = 5
+alaram_threshold = 6
+
+selected_model = "SSD M-Net V2 Keras 320x320 (Medium Speed | High Accuracy)"
 
 is_processing = False
 is_sound_effect_changed = False
@@ -44,20 +46,27 @@ gpus = tf.config.experimental.list_physical_devices('GPU')
 for gpu in gpus:
     tf.config.experimental.set_memory_growth(gpu, True)
 
-model_config_path =  f'assets/model-data/models/ssd_mobilenet_v2_320x320_coco17_tpu-8/pipeline.config'        # Store the path of config file
-checkpoint_model_path   =  f'assets/model-data/models/ssd_mobilenet_v2_320x320_coco17_tpu-8/checkpoint/ckpt-0'      # Store the path of model
-label_map_path    =  f'assets/model-data/mscoco_label_map.pbtxt'                             # Store the path of label_map
 
-# Load pipeline config and build a detection model
-configs = config_util.get_configs_from_pipeline_file(model_config_path)
-model_config = configs['model']
-detection_model = model_builder.build(model_config=model_config, is_training=False)
 
-# Restore checkpoint
-ckpt = tf.compat.v2.train.Checkpoint(model=detection_model)
-ckpt.restore(checkpoint_model_path).expect_partial()
+global_configs = ""
+global_model_config = ""
+global_detection_model = ""
+global_ckpt = ""
+global_category_index = ""
 
-category_index = label_map_util.create_category_index_from_labelmap(label_map_path,use_display_name=True)
+def load_model_function(model_config_path, checkpoint_model_path, label_map_path):
+    global global_configs, global_model_config, global_detection_model, global_ckpt, global_category_index, global_category_index
+                                         
+    # Load pipeline config and build a detection model
+    global_configs = config_util.get_configs_from_pipeline_file(model_config_path)
+    global_model_config = global_configs['model']
+    global_detection_model = model_builder.build(model_config=global_model_config, is_training=False)
+
+    # Restore checkpoint
+    global_ckpt = tf.compat.v2.train.Checkpoint(model=global_detection_model)
+    global_ckpt.restore(checkpoint_model_path).expect_partial()
+
+    global_category_index = label_map_util.create_category_index_from_labelmap(label_map_path,use_display_name=True)
 
 
 class App:
@@ -159,7 +168,7 @@ class App:
         self.sound_effect_label = tk.Label(self.options_frame, text="Model Architecture:", font=("Arial", 12, "bold"))
         self.sound_effect_label.place(x=30, y=500)
 
-        self.model_architecture_combobox_options = ["SSD M-Net V2 FPN Keras 320x320 (High Speed | Low Accuracy)", "SSD M-Net V2 FPN LITE 320x320 (Medium Speed | Medium Accuracy)", "SSD M-Net V2 Keras 320x320 (Medium Speed | High Accuracy)", "SSD M-Net V1 FPN 640x640 (Low Speed | High Accuracy)", "SSD M-Net V2 FPN LITE 640x640 (Low Speed | High Accuracy)"]
+        self.model_architecture_combobox_options = ["SSD M-Net V2 FPN Keras 320x320 (High Speed | Low Accuracy)", "SSD M-Net V2 Keras 320x320 (Medium Speed | Medium Accuracy)", "SSD M-Net V2 FPN LITE 320x320 (Medium Speed | High Accuracy)", "SSD M-Net V2 FPN LITE 640x640 (Low Speed | High Accuracy)", "SSD M-Net V1 FPN 640x640 (Low Speed | High Accuracy)"]
         self.model_architecture_combobox = ttk.Combobox(self.options_frame, values=self.model_architecture_combobox_options, font=("Arial", 10), width=52, state="readonly")
         self.model_architecture_combobox.current(2)
         self.model_architecture_combobox.bind("<<ComboboxSelected>>", self.on_model_architecture_change)
@@ -205,10 +214,46 @@ class App:
 
     def start_processing(self):
        
-        global is_processing
+        global is_processing, selected_model, model_config_path, checkpoint_model_path, label_map_path, configs, model_config, detection_model, ckpt, category_index 
 
         if is_processing == False:
+            
             is_processing = True
+
+            selected_model_architecture = self.model_architecture_combobox.get()
+
+            if selected_model_architecture == "SSD M-Net V2 FPN Keras 320x320 (High Speed | Low Accuracy)":
+
+                model_config_path =  f'assets/models/ssd-m-net-v2-fpn-keras-320x320-(high-speed-low-accuracy)/pipeline.config'                
+                checkpoint_model_path   =  f'assets/models/ssd-m-net-v2-fpn-keras-320x320-(high-speed-low-accuracy)/checkpoint/ckpt-0'     
+                label_map_path    =  f'assets/label-maps/custom-label-map.pbtxt'
+
+            elif selected_model_architecture == "SSD M-Net V2 Keras 320x320 (Medium Speed | Medium Accuracy)":
+
+                model_config_path =  f'assets/models/ssd-m-net-v2-keras-320x320-(medium-speed -medium-accuracy)/pipeline.config'                
+                checkpoint_model_path   =  f'assets/models/ssd-m-net-v2-keras-320x320-(medium-speed -medium-accuracy)/checkpoint/ckpt-0'     
+                label_map_path    =  f'assets/label-maps/mscoco-label-map.pbtxt'
+            
+            elif selected_model_architecture == "SSD M-Net V2 FPN LITE 320x320 (Medium Speed | High Accuracy)": 
+                
+                model_config_path =  f'assets/models/ssd-m-net-v2-fpn-lite-320x320-(medium-speed-high-accuracy)/pipeline.config'                
+                checkpoint_model_path   =  f'assets/models/ssd-m-net-v2-fpn-lite-320x320-(medium-speed-high-accuracy)/checkpoint/ckpt-0'     
+                label_map_path    =  f'assets/label-maps/mscoco-label-map.pbtxt' 
+
+            elif selected_model_architecture == "SSD M-Net V2 FPN LITE 640x640 (Low Speed | High Accuracy)":
+                
+                model_config_path =  f'assets/models/ssd-m-net-v2-fpn-lite-640x640-(low-speed-high-accuracy)/pipeline.config'                
+                checkpoint_model_path   =  f'assets/models/ssd-m-net-v2-fpn-lite-640x640-(low-speed-high-accuracy)/checkpoint/ckpt-0'     
+                label_map_path    =  f'assets/label-maps/mscoco-label-map.pbtxt'
+            
+            elif selected_model_architecture == "SSD M-Net V1 FPN 640x640 (Low Speed | High Accuracy)": 
+                
+                model_config_path =  f'assets/models/ssd-m-net-v1-fpn-640x640-(low-speed-high-accuracy)/pipeline.config'                
+                checkpoint_model_path   =  f'assets/models/ssd-m-net-v1-fpn-640x640-(low-speed-high-accuracy)/checkpoint/ckpt-0'     
+                label_map_path    =  f'assets/label-maps/mscoco-label-map.pbtxt'
+
+
+            load_model_function(model_config_path, checkpoint_model_path, label_map_path)
             self.camera_window.place(x=30, y=30)
             self.model_architecture_combobox.configure(state="disabled")
             self.camera_placeholder_label.place_forget()
@@ -222,10 +267,11 @@ class App:
              messagebox.showerror("Process Initialization Failed ", "A processing function is currently active. Please stop the current process to initiate a new process.")
 
     def stop_processing(self):
-        global is_processing
+        global is_processing, number_of_time_detected
 
         if is_processing == True:
              is_processing = False
+             number_of_time_detected = 0 # Set it to count from 0
              self.camera_window.place_forget()
              self.model_architecture_combobox.configure(state="normal")
              self.camera_placeholder_label.place(x=30, y=30)
@@ -246,9 +292,11 @@ class App:
             self.on_button.config(image = self.on_button_image) 
 
     def detect_fn(self, image):
-        image, shapes = detection_model.preprocess(image)
-        prediction_dict = detection_model.predict(image, shapes)
-        detections = detection_model.postprocess(prediction_dict, shapes)
+        global global_detection_model
+
+        image, shapes = global_detection_model.preprocess(image)
+        prediction_dict = global_detection_model.predict(image, shapes)
+        detections = global_detection_model.postprocess(prediction_dict, shapes)
 
         return detections, prediction_dict, tf.reshape(shapes, [-1])
 
@@ -260,8 +308,10 @@ class App:
 
         if selected_sound_effect == "Buzzing Bees Sound":
            sound_effect_path = 'assets\\music\\alarm-sound-effects\\0-bees-sound-effect.mp3'
+
         elif selected_sound_effect == "Firecrackers Sound":
             sound_effect_path = 'assets\\music\\alarm-sound-effects\\1-firecrackers-sound-effect.mp3'
+
         elif selected_sound_effect == "Warning Alarm Sound":
             sound_effect_path = 'assets\\music\\alarm-sound-effects\\2-warning-alarm.mp3'
 
@@ -308,18 +358,23 @@ class App:
 
         if selected_model_architecture == "SSD M-Net V2 FPN Keras 320x320 (High Speed | Low Accuracy)":
             self.threshold_slider.set(40)
-        elif selected_model_architecture == "SSD M-Net V2 FPN LITE 320x320 (Medium Speed | Medium Accuracy)":
+
+
+        elif selected_model_architecture == "SSD M-Net V2 Keras 320x320 (Medium Speed | Medium Accuracy)":
             self.threshold_slider.set(60)
-        elif selected_model_architecture == "SSD M-Net V2 Keras 320x320 (Medium Speed | High Accuracy)":
-            self.threshold_slider.set(65)
-        elif selected_model_architecture == "SSD M-Net V1 FPN 640x640 (Low Speed | High Accuracy)":
-            self.threshold_slider.set(70)
-        elif selected_model_architecture == "SSD M-Net V2 FPN LITE 640x640 (Low Speed | High Accuracy)":
-            self.threshold_slider.set(75)
-        
 
         
-        # do something with the selected option here
+        elif selected_model_architecture == "SSD M-Net V2 FPN LITE 320x320 (Medium Speed | High Accuracy)":   
+            self.threshold_slider.set(65)
+
+
+        elif selected_model_architecture == "SSD M-Net V2 FPN LITE 640x640 (Low Speed | High Accuracy)":    
+            self.threshold_slider.set(70)
+
+        
+        elif selected_model_architecture == "SSD M-Net V1 FPN 640x640 (Low Speed | High Accuracy)":     
+            self.threshold_slider.set(75)
+ 
 
     def snapshot_sound_effect_function(self):
         snap_sound = pygame.mixer.Sound('assets\\music\\system-sound-effects\\0-camera-shutter-click.mp3')
@@ -374,8 +429,8 @@ class App:
 
                         display_str = ""
 
-                        if(detections['detection_classes'][0].numpy() + label_id_offset).astype(int)[i] in six.viewkeys(category_index):
-                            class_name = category_index[(detections['detection_classes'][0].numpy() + label_id_offset).astype(int)[i]]['name']
+                        if(detections['detection_classes'][0].numpy() + label_id_offset).astype(int)[i] in six.viewkeys(global_category_index):
+                            class_name = global_category_index[(detections['detection_classes'][0].numpy() + label_id_offset).astype(int)[i]]['name']
                             display_str = '{}'.format(class_name)
 
                             box_to_display_str_map[box].append(display_str) # Join the number of eleements with label Name
