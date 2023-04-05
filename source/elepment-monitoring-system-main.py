@@ -70,12 +70,9 @@ class App:
         self.height = 700
 
         # Create a canvas that can fit the above video source size
-        self.canvas = tk.Canvas(window, width=self.width, height=self.height)
-        self.canvas.place(x=30, y=30)
-
-        # Set up the main loop
-        self.delay = 15 # milliseconds
-        self.update()
+        self.camera_window = tk.Canvas(window, width=self.width, height=self.height)
+        self.camera_window.place(x=30, y=30)
+        self.camera_window.place_forget()
 
         # Create a full screen window
         width = window.winfo_screenwidth()
@@ -171,7 +168,7 @@ class App:
         self.start_processing_nutton.place(x=576, y=650)
 
         # Create a browse button for Pre-Recorded Videos
-        self.stop_processing_nutton = tk.Button(self.options_frame, text="Stop Processing", font=("Arial", 12, "bold"))
+        self.stop_processing_nutton = tk.Button(self.options_frame, text="Stop Processing", font=("Arial", 12, "bold"), command=self.stop_processing)
         self.stop_processing_nutton.configure(bg="dark red", fg="white")
         self.stop_processing_nutton.place(x=40, y=650)
 
@@ -179,17 +176,35 @@ class App:
         self.window.mainloop()
 
     def start_processing(self):
+       
         global is_processing
 
-        # Open video source (by default this will try to open the computer webcam)
-
         if is_processing == False:
+            is_processing = True
+            self.camera_window.place(x=30, y=30)
             self.camera_placeholder_label.place_forget()
             self.vid = cv2.VideoCapture(self.video_source)
-            self.window.update()
+            # Run the processing
+            self.delay = 15 # milliseconds
+            self.update()
+            self.job_id = "" 
+            
         else:
-             messagebox.showerror("Process Initialization Failed ", "Unable to start a new process: A processing function is currently active.")
+             messagebox.showerror("Process Initialization Failed ", "A processing function is currently active. Please stop the current process to initiate a new process.")
 
+    def stop_processing(self):
+        global is_processing
+
+        if is_processing == True:
+             is_processing = False
+             self.camera_window.place_forget()
+             self.camera_placeholder_label.place(x=30, y=30)
+             self.window.after_cancel(self.job_id)
+             
+             if self.vid.isOpened():
+                self.vid.release()
+                
+             
 
     def detect_fn(self, image):
         image, shapes = detection_model.preprocess(image)
@@ -199,13 +214,17 @@ class App:
         return detections, prediction_dict, tf.reshape(shapes, [-1])
 
     def bees_sound_effect_function(self):
-        global is_audio_playing
+        global is_audio_playing, is_processing
 
         pygame.mixer.music.load('assets\\bees-sound-effect.mp3')
         pygame.mixer.music.play()
 
         while pygame.mixer.music.get_busy():
-            pass
+            if is_processing == True:
+                pass
+            else:
+                pygame.mixer.music.stop()
+                break
         
         is_audio_playing = False
 
@@ -220,6 +239,7 @@ class App:
 
 
     def update(self):
+
         global number_of_time_detected, alaram_threshold, is_audio_playing, global_variable_snapshot_frame
 
         if hasattr(self, 'vid'):
@@ -308,11 +328,10 @@ class App:
                 final_frame = cv2.resize(final_frame, (self.width, self.height))
 
                 self.photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(final_frame))
-                self.canvas.create_image(0, 0, image=self.photo, anchor=tk.NW)
+                self.camera_window.create_image(0, 0, image=self.photo, anchor=tk.NW)
 
                            
-        # Schedule the next update after a delay
-        self.window.after(self.delay, self.update)
+        self.job_id = self.window.after(self.delay, self.update)
         
 
     def browse_file(self):
