@@ -234,8 +234,6 @@ class App:
             self.sound_effects_combobox.config(state='normal')
             self.on_button.config(image = self.on_button_image) 
 
-
-
     def detect_fn(self, image):
         image, shapes = detection_model.preprocess(image)
         prediction_dict = detection_model.predict(image, shapes)
@@ -246,12 +244,16 @@ class App:
     def bees_sound_effect_function(self):
         global is_audio_playing, is_processing
 
-        pygame.mixer.music.load('assets\\bees-sound-effect.mp3')
+        pygame.mixer.music.load('assets\\music\\alarm-sound-effects\\0-bees-sound-effect.mp3')
         pygame.mixer.music.play()
 
         while pygame.mixer.music.get_busy():
             if is_processing == True:
-                pass
+
+                if self.switch_status == True:
+                    pygame.mixer.music.set_volume(1.0) 
+                else:
+                    pygame.mixer.music.set_volume(0.0) # Mute
             else:
                 pygame.mixer.music.stop()
                 break
@@ -259,7 +261,7 @@ class App:
         is_audio_playing = False
     
     def snapshot_sound_effect_function(self):
-        snap_sound = pygame.mixer.Sound('assets\\camera-shutter-click.mp3')
+        snap_sound = pygame.mixer.Sound('assets\\music\\system-sound-effects\\0-camera-shutter-click.mp3')
         snap_sound.play()
 
     def take_snapshots(self):
