@@ -613,8 +613,14 @@ class App:
 
                                 current_time_str = datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")[:-3]
                                 cv2.imwrite(f"predictions/{current_time_str}.jpg", image_np_with_detections)
-                                email_thread = threading.Thread(target=self.send_email, args=(("gunarakulan@gmail.com", "1234", "Batticaloa", "Loca", number_of_elephants)))
-                                email_thread.start()
+
+                                location = {
+                                    "latitude": 7.8075040425217646,
+                                    "longitude": 81.57280014098717
+                                }
+                                                                
+                                #email_thread = threading.Thread(target=self.send_email, args=(("gunarakulan@gmail.com", "1234", "Batticaloa, Kallady Device 01", location, number_of_elephants)))
+                                #email_thread.start()
                                 # Send SMS HERE
 
                             number_of_time_detected = 0
@@ -685,7 +691,7 @@ class App:
         email_sender = email
         email_password = password
         email_receiver = recipient_email
-        email_subject = f'Warning: Human-Elephant Conflict Detected at {location}'
+        email_subject = f'Warning: Human-Elephant Conflict Detected from {device_name}'
 
         now = datetime.now()
         current_date = now.strftime("%Y-%m-%d")
@@ -721,7 +727,7 @@ class App:
             <h1 style="text-align:center;">HECMS</h1>
             <hr>
             <h1>Human Element Conflict Early Warning</h1>
-            <p>Dear Recipient Name,</p>
+            <p>Dear Recipient,</p>
             <p>We are writing to inform you of a human element conflict incident that occurred on <span style='font-weight:bold; color:red;'>{current_date}</span> at <span style='font-weight:bold; color:red;'>{current_time}</span>. Our system detected a conflict at the following location:</p>
             <table>
                 <tr>
@@ -734,7 +740,7 @@ class App:
                 </tr>
                 <tr>
                     <th>Location:</th>
-                    <td>{location}</td>
+                    <td><a href="https://www.google.com/maps?q={location['latitude']} ,{location['longitude']}" target="_blank">View on Google Maps</a></td>
                 </tr>
                 <tr>
                     <th>Number of Elephants:</th>
@@ -769,7 +775,7 @@ class App:
         session.sendmail(email_sender, email_receiver, text)
         session.quit()
 
-        print('Email sent successfully')
+        print('Early warning email sent successfully!')
 
 
     def browse_file(self):
