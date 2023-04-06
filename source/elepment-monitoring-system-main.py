@@ -21,6 +21,9 @@ import playsound
 import tensorflow as tf 
 from datetime import datetime
 from tkinter import messagebox
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 sys.path.append('assets')                                                  
 from object_detection.utils import label_map_util                         
@@ -663,6 +666,93 @@ class App:
             self.ip_camera_text.configure(state="disabled")
             self.file_path_text.configure(state="normal")
             self.browse_button.configure(state="normal")
+
+    def send_email(self,recipient_email, date, time, device_id, device_name, location, number_of_elephants):
+        # email details
+        email_sender = 'your-email@example.com'
+        email_password = 'your-email-password'
+        email_receiver = recipient_email
+        email_subject = f'Warning: Human-Elephant Conflict Detected at {location}'
+        email_body = f"""<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <title>Human Element Conflict Early Warning</title>
+            <style>
+                table {{
+                    border-collapse: collapse;
+                    width: 100%;
+                    max-width: 600px;
+                    margin: 20px auto;
+                    font-family: Arial, sans-serif;
+                    border: 2px solid #999;
+                }}
+                th, td {{
+                    padding: 10px;
+                    text-align: left;
+                    border-bottom: 1px solid #999;
+                }}
+                th {{
+                    background-color: #ddd;
+                    font-weight: bold;
+                    border-right: 1px solid #999;
+                }}
+            </style>
+        </head>
+        <body>
+            <h1 style="text-align:center;">HECMS</h1>
+            <hr>
+            <h1>Human Element Conflict Early Warning</h1>
+            <p>Dear Recipient Name,</p>
+            <p>We are writing to inform you of a human element conflict incident that occurred on <span style='font-weight:bold; color:red;'>{date}</span> at <span style='font-weight:bold; color:red;'>{time}</span>. Our system detected a conflict at the following location:</p>
+            <table>
+                <tr>
+                    <th>Device ID:</th>
+                    <td>{device_id}</td>
+                </tr>
+                <tr>
+                    <th>Device Name:</th>
+                    <td>{device_name}</td>
+                </tr>
+                <tr>
+                    <th>Location:</th>
+                    <td>{location}</td>
+                </tr>
+                <tr>
+                    <th>Number of Elephants:</th>
+                    <td>{number_of_elephants}</td>
+                </tr>
+            </table>
+            <p>Please review this information and take any necessary action to prevent future conflicts.</p>
+            <p>Thank you,</p>
+            <p>HECMS</p>
+        </body>
+        </html>
+        """
+
+        # create message object
+        message = MIMEMultipart()
+        message['From'] = email_sender
+        message['To'] = email_receiver
+        message['Subject'] = email_subject
+        message.attach(MIMEText(email_body, 'html'))
+
+        # create SMTP session
+        smtp_server = 'smtp.gmail.com'
+        smtp_port = 587
+        session = smtplib.SMTP(smtp_server, smtp_port)
+        session.starttls()
+
+        # login to email account
+        session.login(email_sender, email_password)
+
+        # send email
+        text = message.as_string()
+        session.sendmail(email_sender, email_receiver, text)
+        session.quit()
+
+        print('Email sent successfully')
+
 
     def browse_file(self):
         # Ask user to select a video file
