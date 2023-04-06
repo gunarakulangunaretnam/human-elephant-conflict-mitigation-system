@@ -619,8 +619,8 @@ class App:
                                     "longitude": 81.57280014098717
                                 }
                                                                 
-                                #email_thread = threading.Thread(target=self.send_email, args=(("gunarakulan@gmail.com", "1234", "Batticaloa, Kallady Device 01", location, number_of_elephants)))
-                                #email_thread.start()
+                                email_thread = threading.Thread(target=self.send_email, args=(("gunarakulan@gmail.com", "1234", "Batticaloa, Kallady Device 01", location, number_of_elephants)))
+                                email_thread.start()
                                 # Send SMS HERE
 
                             number_of_time_detected = 0
@@ -754,28 +754,35 @@ class App:
         </html>
         """
 
-        # create message object
-        message = MIMEMultipart()
-        message['From'] = email_sender
-        message['To'] = email_receiver
-        message['Subject'] = email_subject
-        message.attach(MIMEText(email_body, 'html'))
+        try:
+            # create message object
+            message = MIMEMultipart()
+            message['From'] = email_sender
+            message['To'] = email_receiver
+            message['Subject'] = email_subject
+            message.attach(MIMEText(email_body, 'html'))
 
-        # create SMTP session
-        smtp_server = 'smtp.gmail.com'
-        smtp_port = 587
-        session = smtplib.SMTP(smtp_server, smtp_port)
-        session.starttls()
+            # create SMTP session
+            smtp_server = 'smtp.gmail.com'
+            smtp_port = 587
+            session = smtplib.SMTP(smtp_server, smtp_port)
+            session.starttls()
 
-        # login to email account
-        session.login(email_sender, email_password)
+            # login to email account
+            session.login(email_sender, email_password)
 
-        # send email
-        text = message.as_string()
-        session.sendmail(email_sender, email_receiver, text)
-        session.quit()
+            # send email
+            text = message.as_string()
+            session.sendmail(email_sender, email_receiver, text)
+            session.quit()
 
-        print('Early warning email sent successfully!')
+            print('Early warning email sent successfully!')
+
+        except Exception as e:
+            print('ERROR: Early warning did not send, something went wrong with SMTP server.')
+        
+
+
 
 
     def browse_file(self):
