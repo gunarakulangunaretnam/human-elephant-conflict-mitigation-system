@@ -16,8 +16,7 @@ import pygame                                                                   
 import argparse 
 import requests                                                           
 import collections
-import numpy as np
-import pyttsx3                                                            
+import numpy as np                                                        
 import threading                                                          
 import playsound                                                          
 import tensorflow as tf 
@@ -26,8 +25,8 @@ from tkinter import messagebox
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-import vonage
 from urllib.parse import quote
+import pyshorteners
 
 sys.path.append('assets')                                                  
 from object_detection.utils import label_map_util                         
@@ -798,16 +797,16 @@ class App:
         key = credentials['sms_gateway_server']['key']
         secret = credentials['sms_gateway_server']['secret']
 
-        client = vonage.Client(key=key, secret=secret)
-        sms = vonage.Sms(client)
-
         now = datetime.now()
         current_date = now.strftime("%Y-%m-%d")
         current_time = now.strftime("%H:%M:%S")
 
 
         location_link = f"https://www.google.com/maps?q={location['latitude']} ,{location['longitude']}"
-        message = f"URGENT: Elephant conflict detected on {current_date} at {current_time}. Device ID: {device_id}, Device Name: {device_name}, Number of Elephants: {number_of_elephants}, Location: {location_link}. Please take necessary precautions."
+
+        shortener = pyshorteners.Shortener()
+        location_link_short = shortener.tinyurl.short(location_link)
+        message = f"URGENT: Elephant conflict detected on {current_date} at {current_time}. Device ID: {device_id}, Device Name: {device_name}, Number of Elephants: {number_of_elephants}. Please take necessary precautions. \n \nLocation: {location_link_short}"
 
         gateway_url= f"https://app.notify.lk/api/v1/send?user_id={key}&api_key={secret}&sender_id=NotifyDEMO&to={recipient_phone_no}&message={message}"
 
