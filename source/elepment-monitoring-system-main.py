@@ -13,7 +13,8 @@ import cv2
 import uuid  
 import json
 import pygame                                                                                                                            # OpenCV for Computer Vision                                                        # It has a dictionary that contains colors for each label
-import argparse                                                            
+import argparse 
+import requests                                                           
 import collections
 import numpy as np
 import pyttsx3                                                            
@@ -25,6 +26,8 @@ from tkinter import messagebox
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import vonage
+from urllib.parse import quote
 
 sys.path.append('assets')                                                  
 from object_detection.utils import label_map_util                         
@@ -621,10 +624,11 @@ class App:
                                                                 
                                 email_thread = threading.Thread(target=self.send_email, args=(("gunarakulan@gmail.com", "1234", "Batticaloa, Kallady Device 01", location, number_of_elephants)))
                                 email_thread.start()
-                                # Send SMS HERE
+
+                                sms_thread = threading.Thread(target=self.send_sms, args=(("94740001141", "1234", "Batticaloa, Kallady Device 01", location, number_of_elephants)))
+                                sms_thread.start()
 
                             number_of_time_detected = 0
-
 
                 global_variable_snapshot_frame = image_np_with_detections
                             
@@ -781,9 +785,39 @@ class App:
         except Exception as e:
             print('ERROR: Early warning did not send, something went wrong with SMTP server.')
         
+    def send_sms(self,recipient_phone_no, device_id, device_name, location, number_of_elephants):
+
+        # Read the contents of the JSON file
+        with open('assets/credentials/credentials.json', 'r') as file:
+            contents = file.read()
+
+        # Parse the JSON contents into a dictionary
+        credentials = json.loads(contents)
+
+        # Access the values of the 'google_smtp_server' key
+        key = credentials['sms_gateway_server']['key']
+        secret = credentials['sms_gateway_server']['secret']
+
+        client = vonage.Client(key=key, secret=secret)
+        sms = vonage.Sms(client)
+
+        now = datetime.now()
+        current_date = now.strftime("%Y-%m-%d")
+        current_time = now.strftime("%H:%M:%S")
 
 
+        location_link = f"https://www.google.com/maps?q={location['latitude']} ,{location['longitude']}"
+        message = f"URGENT: Elephant conflict detected on {current_date} at {current_time}. Device ID: {device_id}, Device Name: {device_name}, Number of Elephants: {number_of_elephants}, Location: {location_link}. Please take necessary precautions."
 
+        gateway_url= f"https://app.notify.lk/api/v1/send?user_id={key}&api_key={secret}&sender_id=NotifyDEMO&to={recipient_phone_no}&message={message}"
+
+        response = requests.get(gateway_url)
+
+        # Check the status code
+        if response.status_code == 200:
+            print("Early warning SMS sent successfully!")
+        else:
+            print(f"Error: SMS sending failed: {response.status_code} {response.content}")
 
     def browse_file(self):
         # Ask user to select a video file

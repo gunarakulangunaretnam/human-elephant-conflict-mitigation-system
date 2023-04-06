@@ -1,17 +1,16 @@
-import vonage
+import requests
 
-client = vonage.Client(key="2f5efac9", secret="afzYx3ojfIS32ruz")
-sms = vonage.Sms(client)
+url = "https://send.lk/sms/send.php"
+params = {
+    "token": "1100|cJqH5b1Un4bpkkYYLu85gi9Tja5NezyZOkP7ekpm",
+    "to": "0740001141",
+    "from": "HECMS",
+    "message": "Hello"
+}
 
-responseData = sms.send_message(
-    {
-        "from": "Vonage APIs",
-        "to": "+94740001141",
-        "text": "Hello, This is Gunarakulan",
-    }
-)
+response = requests.get(url, params=params)
 
-if responseData["messages"][0]["status"] == "0":
-    print("Message sent successfully.")
+if response.status_code == 200:
+    print("SMS sent successfully")
 else:
-    print(f"Message failed with error: {responseData['messages'][0]['error-text']}")
+    print("Failed to send SMS")
