@@ -11,6 +11,7 @@ import sys
 import six
 import cv2   
 import uuid  
+import json
 import pygame                                                                                                                            # OpenCV for Computer Vision                                                        # It has a dictionary that contains colors for each label
 import argparse                                                            
 import collections
@@ -612,8 +613,8 @@ class App:
 
                                 current_time_str = datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")[:-3]
                                 cv2.imwrite(f"predictions/{current_time_str}.jpg", image_np_with_detections)
-
-                                # Send Email HERE
+                                email_thread = threading.Thread(target=self.send_email, args=(("gunarakulan@gmail.com", "1234", "Batticaloa", "Loca", number_of_elephants)))
+                                email_thread.start()
                                 # Send SMS HERE
 
                             number_of_time_detected = 0
@@ -667,12 +668,29 @@ class App:
             self.file_path_text.configure(state="normal")
             self.browse_button.configure(state="normal")
 
-    def send_email(self,recipient_email, date, time, device_id, device_name, location, number_of_elephants):
+    def send_email(self,recipient_email, device_id, device_name, location, number_of_elephants):
+        
+        # Read the contents of the JSON file
+        with open('assets/credentials/credentials.json', 'r') as file:
+            contents = file.read()
+
+        # Parse the JSON contents into a dictionary
+        credentials = json.loads(contents)
+
+        # Access the values of the 'google_smtp_server' key
+        email = credentials['google_smtp_server']['email']
+        password = credentials['google_smtp_server']['password']
+
         # email details
-        email_sender = 'your-email@example.com'
-        email_password = 'your-email-password'
+        email_sender = email
+        email_password = password
         email_receiver = recipient_email
         email_subject = f'Warning: Human-Elephant Conflict Detected at {location}'
+
+        now = datetime.now()
+        current_date = now.strftime("%Y-%m-%d")
+        current_time = now.strftime("%H:%M:%S")
+
         email_body = f"""<!DOCTYPE html>
         <html>
         <head>
@@ -704,7 +722,7 @@ class App:
             <hr>
             <h1>Human Element Conflict Early Warning</h1>
             <p>Dear Recipient Name,</p>
-            <p>We are writing to inform you of a human element conflict incident that occurred on <span style='font-weight:bold; color:red;'>{date}</span> at <span style='font-weight:bold; color:red;'>{time}</span>. Our system detected a conflict at the following location:</p>
+            <p>We are writing to inform you of a human element conflict incident that occurred on <span style='font-weight:bold; color:red;'>{current_date}</span> at <span style='font-weight:bold; color:red;'>{current_time}</span>. Our system detected a conflict at the following location:</p>
             <table>
                 <tr>
                     <th>Device ID:</th>
