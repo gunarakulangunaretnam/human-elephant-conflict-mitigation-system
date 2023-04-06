@@ -31,7 +31,8 @@ import six
 import cv2   
 import uuid  
 import json
-import pygame                                                                                                                            # OpenCV for Computer Vision                                                        # It has a dictionary that contains colors for each label
+import pygame   
+import base64                                                                                                                         # OpenCV for Computer Vision                                                        # It has a dictionary that contains colors for each label
 import argparse 
 import requests                                                           
 import collections
@@ -664,12 +665,16 @@ class App:
                                     "latitude": 7.8075040425217646,
                                     "longitude": 81.57280014098717
                                 }
-                                                                
-                                email_thread = threading.Thread(target=self.send_email, args=(("gunarakulan@gmail.com", "1234", "Batticaloa, Kallady Device 01", location, number_of_elephants)))
-                                email_thread.start()
 
-                                sms_thread = threading.Thread(target=self.send_sms, args=(("94740001141", "1234", "Batticaloa, Kallady Device 01", location, number_of_elephants)))
-                                sms_thread.start()
+
+                                update_database_thread = threading.Thread(target=self.update_database, args=(("device_id", number_of_elephants, image_np_with_detections)))
+                                update_database_thread.start()
+                                                                
+                                #email_thread = threading.Thread(target=self.send_email, args=(("gunarakulan@gmail.com", "1234", "Batticaloa, Kallady Device 01", location, number_of_elephants)))
+                                #email_thread.start()
+                                
+                                #sms_thread = threading.Thread(target=self.send_sms, args=(("94740001141", "1234", "Batticaloa, Kallady Device 01", location, number_of_elephants)))
+                                #sms_thread.start()
 
                             number_of_time_detected = 0
 
@@ -720,6 +725,39 @@ class App:
             self.ip_camera_text.configure(state="disabled")
             self.file_path_text.configure(state="normal")
             self.browse_button.configure(state="normal")
+
+    def update_database(self, device_id, number_of_elephants, frame):
+
+        # Convert the frame to a binary blob
+        success, encoded_image = cv2.imencode('.jpg', frame)
+        image_bytes = encoded_image.tobytes()
+
+        # Encode the binary blob as a base64-encoded string
+        img_base64 = base64.b64encode(image_bytes)
+
+        with open('data.txt', 'w') as f:
+            f.write(str(img_base64))
+
+        data_date_and_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        _date = data_date_and_time.split(' ')[0].strip()
+        _time =  data_date_and_time.split(' ')[1].strip()
+
+        data = {
+            'device_id': device_id,
+            'date': _date,
+            'time': _time,
+            'number_of_elephant': number_of_elephants,
+            'elephant_image': img_base64,
+        }
+
+        insert_query = ("INSERT INTO data (device_id, date, time, number_of_elephant, elephant_image)"
+            "VALUES (%(device_id)s, %(date)s, %(time)s, %(number_of_elephant)s, %(elephant_image)s)")
+
+        mycursor.execute(insert_query, data)
+        mydb.commit()
+
+        print("Database updated successfully")
+        
 
     def send_email(self, recipient_email, device_id, device_name, location, number_of_elephants):
         
