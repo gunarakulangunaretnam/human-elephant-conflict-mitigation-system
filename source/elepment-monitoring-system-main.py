@@ -225,8 +225,8 @@ class App:
 
     def start_processing(self):
        
-        global is_processing, selected_model, model_config_path, checkpoint_model_path, label_map_path, configs, model_config, detection_model, ckpt, category_index 
-
+        global is_processing, selected_model, model_config_path, checkpoint_model_path, label_map_path
+        
         if is_processing == False:
         
             selected_model_architecture = self.model_architecture_combobox.get()
@@ -341,9 +341,7 @@ class App:
                 self.update()
                 self.job_id = ""
             else:
-                messagebox.showerror("Error", "Something went wrong with input source.")
-
-            
+                messagebox.showerror("Error", "Invalid input source. Please provide a valid image or video file to proceed.")  
         else:
              messagebox.showerror("Process Initialization Failed ", "A processing function is currently active. Please stop the current process to initiate a new process.")
 
