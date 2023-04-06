@@ -610,6 +610,9 @@ class App:
                                 current_time_str = datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")[:-3]
                                 cv2.imwrite(f"predictions/{current_time_str}.jpg", image_np_with_detections)
 
+                                # Send Email
+                                # Send SMS
+
                             number_of_time_detected = 0
 
 
