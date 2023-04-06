@@ -1,3 +1,22 @@
+'''
+
+ * Date:            10-01-2023
+ * Organization:    Deep11
+ * Author:          Gunarakulan Gunaretnam
+ * Author Email:    gunarakulan@gmail.com
+ * Author Likedin:  https://www.linkedin.com/in/gunarakulangunaretnam/
+ * Author GitHub:   https://github.com/gunarakulangunaretnam 
+ * Project:         HECMS Human-Elephants Conflicts Mitigation System 
+
+  Source Info
+  -----------
+    This is the Human Elephant Conflict Mitigation System project script;
+    it can help mitigate human-elephant conflicts by sending early warning
+    emails and SMS notifications to relevant people.This script can also store
+    detection data in a database for further analysis and monitoring.
+
+ '''
+ 
 import re
 import cv2
 import tkinter as tk
@@ -18,7 +37,8 @@ import requests
 import collections
 import numpy as np                                                        
 import threading                                                          
-import playsound                                                          
+import playsound    
+import mysql.connector                                                      
 import tensorflow as tf 
 from datetime import datetime
 from tkinter import messagebox
@@ -27,7 +47,6 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from urllib.parse import quote
 import pyshorteners
-
 sys.path.append('assets')                                                  
 from object_detection.utils import label_map_util                         
 from object_detection.utils import config_util                             
@@ -53,13 +72,38 @@ gpus = tf.config.experimental.list_physical_devices('GPU')
 for gpu in gpus:
     tf.config.experimental.set_memory_growth(gpu, True)
 
-
-
 global_configs = ""
 global_model_config = ""
 global_detection_model = ""
 global_ckpt = ""
 global_category_index = ""
+
+
+### START DATABASE CONNECTION ###
+database_host = ""
+database_user = ""
+database_pass = ""
+database_name = ""
+
+with open('assets\\credentials\\database-credentials.json') as f:
+    config_data = json.load(f)
+
+    # Access the values from the dictionary
+    database_host = config_data['database_host']
+    database_user = config_data['database_user']
+    database_pass = config_data['database_password']
+    database_name = config_data['database_name']
+
+mydb = mysql.connector.connect(
+  host = database_host,
+  user = database_user,
+  password = database_pass,
+  database = database_name
+)
+
+mycursor = mydb.cursor()
+
+### END DATABASE CONNECTION ###
 
 def load_model_function(model_config_path, checkpoint_model_path, label_map_path):
     global global_configs, global_model_config, global_detection_model, global_ckpt, global_category_index, global_category_index
@@ -677,10 +721,10 @@ class App:
             self.file_path_text.configure(state="normal")
             self.browse_button.configure(state="normal")
 
-    def send_email(self,recipient_email, device_id, device_name, location, number_of_elephants):
+    def send_email(self, recipient_email, device_id, device_name, location, number_of_elephants):
         
         # Read the contents of the JSON file
-        with open('assets/credentials/credentials.json', 'r') as file:
+        with open('assets/credentials/api-credentials.json', 'r') as file:
             contents = file.read()
 
         # Parse the JSON contents into a dictionary
@@ -787,7 +831,7 @@ class App:
     def send_sms(self,recipient_phone_no, device_id, device_name, location, number_of_elephants):
 
         # Read the contents of the JSON file
-        with open('assets/credentials/credentials.json', 'r') as file:
+        with open('assets/credentials/api-credentials.json', 'r') as file:
             contents = file.read()
 
         # Parse the JSON contents into a dictionary
@@ -806,7 +850,7 @@ class App:
 
         shortener = pyshorteners.Shortener()
         location_link_short = shortener.tinyurl.short(location_link)
-        message = f"URGENT: Elephant conflict detected on {current_date} at {current_time}. Device ID: {device_id}, Device Name: {device_name}, Number of Elephants: {number_of_elephants}. Please take necessary precautions. \n \nLocation: {location_link_short}"
+        message = f"URGENT: Elephant conflict detected on {current_date} at {current_time}. Device ID: {device_id}, Device Name: {device_name}, Number of Elephants: {number_of_elephants}, Location: {location_link_short}. Please take necessary precautions."
 
         gateway_url= f"https://app.notify.lk/api/v1/send?user_id={key}&api_key={secret}&sender_id=NotifyDEMO&to={recipient_phone_no}&message={message}"
 
