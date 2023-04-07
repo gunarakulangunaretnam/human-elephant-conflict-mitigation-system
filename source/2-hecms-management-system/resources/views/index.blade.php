@@ -72,13 +72,14 @@
                                             <input type="password" class="form-control form-control-user" id="exampleInputPassword"
                                                    name="password" placeholder="Password" required>
                                         </div>
-                                        <div class="form-group" style="padding-bottom: 5%;">
-                                            <select class="form-control" name="account_type" required>
+                                        <div class="form-group" style="padding-bottom: 5%; width:99%; margin-left:2px;">
+                                            <select class="form-control rounded-pill" style="padding: 5px;" name="account_type" required>
                                                 <option value="" selected disabled>Select Account Type</option>
                                                 <option value="super_admin">Super Admin</option>
                                                 <option value="device_admin">Device Admin</option>
                                             </select>
                                         </div>
+                                        
                                         <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
                                     </form>                                                                    
                                 </div>
