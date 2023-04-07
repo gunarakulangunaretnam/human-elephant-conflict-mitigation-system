@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AI Customer Analyzer</title>
+    <title>HECMS</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('dashboard-template-assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -60,7 +60,7 @@
                             <div class="col-lg-6">
                                 <div class="p-5" style="height: 600px;">
                                     <div class="text-center" style="padding-bottom: 10%;">
-                                        <h1 class="h4 text-gray-900 mb-4">AI Customer Analyzer <br> Login</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">HECMS <br> Login</h1>
                                     </div>
                                     <form class="user" method="POST" action="{{ route('LoginFunctionLink') }}">
                                         @csrf

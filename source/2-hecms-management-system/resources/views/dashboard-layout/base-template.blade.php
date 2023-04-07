@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AI Customer Analyzer</title>
+    <title>HECMS</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('dashboard-template-assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -32,7 +32,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-text mx-3">AI Customer Analyzer</div>
+                <div class="sidebar-brand-text mx-3">HECMS</div>
             </a>
 
             <!-- Divider -->
@@ -123,7 +123,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>© 2023 AI Customer Analyzer | All rights reserved | Created by <a href="https://www.linkedin.com/in/gunarakulangunaretnam/" target="_blank">Gunarakulan Gunaretnam</a></span>
+                        <span>© 2023 HECMS | All rights reserved | Created by <a href="https://www.linkedin.com/in/gunarakulangunaretnam/" target="_blank">Gunarakulan Gunaretnam</a></span>
                     </div>
                 </div>
             </footer>
