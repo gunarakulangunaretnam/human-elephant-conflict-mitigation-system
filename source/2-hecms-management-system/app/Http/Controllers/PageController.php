@@ -99,24 +99,18 @@ class PageController extends Controller
         
     }
 
-    public function ViewAudioDataFunction(string $search_by_date){
+    public function ViewDeviceManagementFunction(string $search_by_date){
     
         $login_access_session = Session::get('LoginAccess');
     
-        if($login_access_session == '[TRUE]'){
-    
-            if($search_by_date == '[FALSE]'){
-    
-                $whole_audio_data = DB::table('audio_data')->paginate(25);
-                return view('audio-data',['PageName' => 'Audio Data',"type_of_search" => "[WHOLE_SEARCH]", "audio_data"=>$whole_audio_data]); 
-    
-            }else{
-    
-                $date_wise_audio_data = DB::table('audio_data')->where('date', $search_by_date)->paginate(25);
-                return view('audio-data',['PageName' => 'Audio Data',"type_of_search" => "[DATE_WISE_SEARCH]", "audio_data"=>$date_wise_audio_data]); 
-                
-            }
+        if($login_access_session == '[SUPER_ADMIN]'){
+
+            return view('device-management',['PageName' => 'Device Management']); 
             
+        }else if($login_access_session == '[DEVICE_ADMIN]'){
+
+            // Device Admin Logic Come Here
+
         }else{
     
             return redirect()->route('IndexPageLink');

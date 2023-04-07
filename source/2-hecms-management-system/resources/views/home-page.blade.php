@@ -79,7 +79,7 @@
                             <div class="text-md h5 mb-0 font-weight-bold text-gray-800" style="text-align: center;">{{reset($TotalElephantsDetected)->total_count}}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-camera fa-2x text-gray-300"></i>
+                            <i class="fa fa-line-chart fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>

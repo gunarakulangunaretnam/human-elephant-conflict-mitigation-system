@@ -25,9 +25,9 @@ Route::get('/home-page-view/{search_by_month}', [PageController::class, 'ViewHom
 
 Route::get('/show-image/{id}', [PageController::class, 'ShowImageFunctionInNewPage'])->name("ShowImageFunctionInNewPageViewLink");
 
-Route::get('/vision-data-view/{search_by_date}', [PageController::class, 'ViewDataManagementFunction'])->name("DataManagementViewLink");
+Route::get('/data-management-view/{search_by_date}', [PageController::class, 'ViewDataManagementFunction'])->name("DataManagementViewLink");
 
-Route::get('/audio-data-view/{search_by_date}', [PageController::class, 'ViewAudioDataFunction'])->name("AudioDataViewLink");
+Route::get('/device-management-view/{search_by_date}', [PageController::class, 'ViewDeviceManagementFunction'])->name("DeviceManagementViewLink");
 
 Route::get('/settings-view', [PageController::class, 'ViewSettingsFunction'])->name("SettingsViewLink");
 

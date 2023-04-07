@@ -12,6 +12,8 @@
     <title>HECMS</title>
 
     <!-- Custom fonts for this template-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ asset('dashboard-template-assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -19,6 +21,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('dashboard-template-assets/css/sb-admin-2.min.css')}}" rel="stylesheet">
+
 
 </head>
 
@@ -67,7 +70,7 @@
             </li>
 
             <li class="nav-item {{ $PageName == 'Audio Data' ? 'active' : '' }}">
-                <a class="nav-link collapsed" href="{{ route('AudioDataViewLink', ['search_by_date' => '[FALSE]']) }}" >
+                <a class="nav-link collapsed" href="{{ route('DeviceManagementViewLink', ['search_by_date' => '[FALSE]']) }}" >
                     <i class="fas fa-fw fa-microchip"></i>
                     <span>
                         
@@ -179,6 +182,7 @@
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('dashboard-template-assets/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src= "{{asset('dashboard-template-assets/vendor/bootstrap/js/bootstrap.bundle.min.js"')}}"></script>
 
     <!-- Core plugin JavaScript-->
