@@ -44,7 +44,7 @@ var myLineChart = new Chart(ctx, {
   data: {
     labels: labels,
     datasets: [{
-      label: "Customers: ",
+      label: "Elephant: ",
       lineTension: 0.3,
       backgroundColor: "rgba(78, 115, 223, 0.05)",
       borderColor: "rgba(78, 115, 223, 1)",

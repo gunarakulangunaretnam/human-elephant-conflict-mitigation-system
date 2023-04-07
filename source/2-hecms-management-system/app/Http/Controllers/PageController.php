@@ -20,7 +20,7 @@ class PageController extends Controller
         
         $login_access_session = Session::get('LoginAccess');
 
-        if($login_access_session == '[TRUE]'){
+        if($login_access_session == '[SUPER_ADMIN]'){
 
 
             $month_picker_display = "";
@@ -37,19 +37,17 @@ class PageController extends Controller
             }
 
             
-            $traffic_data = DB::select("SELECT DAY(date) AS day, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$search_data') AND YEAR(date) = YEAR('$search_data') GROUP BY DAY(date) ORDER BY day ASC;");
-            $gender_data = DB::select("SELECT gender, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$search_data') AND YEAR(date) = YEAR('$search_data') GROUP BY gender;");
-            $age_group_data = DB::select("SELECT age_category, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$search_data') AND YEAR(date) = YEAR('$search_data') GROUP BY age_category;");
-            $emotion_data = DB::select("SELECT emotion, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$search_data') AND YEAR(date) = YEAR('$search_data') GROUP BY emotion;");
-            $mask_data = DB::select("SELECT mask, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$search_data') AND YEAR(date) = YEAR('$search_data') GROUP BY mask;");
-            $race_data = DB::select("SELECT race, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$search_data') AND YEAR(date) = YEAR('$search_data') GROUP BY race;");
-            $sentiment_data = DB::select("SELECT prediction, COUNT(*) AS count FROM audio_data WHERE MONTH(date) = MONTH('$search_data') AND YEAR(date) = YEAR('$search_data') GROUP BY prediction;");
+            $traffic_data = DB::select("SELECT DAY(date) AS day, COUNT(*) AS count FROM data WHERE MONTH(date) = MONTH('$search_data') AND YEAR(date) = YEAR('$search_data') GROUP BY DAY(date) ORDER BY day ASC;");
+            
 
-            return view('home-page',['PageName' => 'Home Page', "YearMonth" => $month_picker_display , 'TrafficData' => $traffic_data, "GenderData" => $gender_data, "AgeCategoryData" => $age_group_data, "EmotionData" => $emotion_data, "MaskData" => $mask_data, "RaceData" => $race_data, 'SentimentData' => $sentiment_data]); 
+            return view('home-page',['PageName' => 'Home Page', "YearMonth" => $month_picker_display , 'TrafficData' => $traffic_data]); 
    
 
             
             
+        }else if($login_access_session == '[DEVICE_ADMIN]'){
+
+
         }else{
 
             return redirect()->route('IndexPageLink');

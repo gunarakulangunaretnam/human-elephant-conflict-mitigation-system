@@ -19,12 +19,13 @@ class AuthenticationController extends Controller
 
         $user_entered_username =  $request->username;
         $user_entered_password =  $request->password;
+        $account_type = $request->account_type;
 
         $username_from_db = "";
         $password_from_db = "";
 
        
-        $user = DB::select('SELECT username, password FROM user');
+        $user = DB::select("SELECT username, password FROM user_account WHERE account_type = '$account_type'");
 
         foreach($user as $u){
 
@@ -36,15 +37,20 @@ class AuthenticationController extends Controller
          
         if($user_entered_username == $username_from_db && $user_entered_password == $password_from_db){
 
-            Session::put('LoginAccess', '[TRUE]');
+            if($account_type == "super_admin"){
 
-            $login_access_session = Session::get('LoginAccess');
+                Session::put('LoginAccess', "[SUPER_ADMIN]");
 
-            # If password & username correct, redirect to home-page.blade.php
-            if($login_access_session == '[TRUE]'){
+            }else if($account_type == "device_admin"){
+                
+                Session::put('LoginAccess', '[DEVICE_ADMIN]');
 
-                return redirect()->route('HomePageViewLink', ['search_by_month' => '[FALSE]']);
+            }else{
+                
+                return Redirect::to("/")->withErrors(['Someting went wrong! #ERROR 01']);
             }
+
+            return redirect()->route('HomePageViewLink', ['search_by_month' => '[FALSE]']);
 
 
         }else{

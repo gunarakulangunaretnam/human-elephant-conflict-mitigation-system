@@ -32,7 +32,16 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-text mx-3">HECMS</div>
+                <div class="sidebar-brand-text mx-3">HECMS <br> <span>
+                
+                    @if(Session::get('LoginAccess') == "[SUPER_ADMIN]")
+                        Super Admin
+                    @elseif(Session::get('LoginAccess') == "[DEVICE ADMIN]")
+                        Device Admin
+                    @endif
+                                    
+                </span></div>
+
             </a>
 
             <!-- Divider -->
@@ -60,7 +69,15 @@
             <li class="nav-item {{ $PageName == 'Audio Data' ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="{{ route('AudioDataViewLink', ['search_by_date' => '[FALSE]']) }}" >
                     <i class="fas fa-fw fa-microchip"></i>
-                    <span>Device Management</span>
+                    <span>
+                        
+                        @if(Session::get('LoginAccess') == "[SUPER_ADMIN]")
+                            Device Management
+                        @elseif(Session::get('LoginAccess') == "[DEVICE ADMIN]")
+                            Device Preferences
+                        @endif
+                        
+                    </span>
                 </a>
             </li>
 
