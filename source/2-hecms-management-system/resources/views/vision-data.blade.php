@@ -28,44 +28,46 @@
     </div>
     
     <div class="row">
+      <table style="background-color: white; border: 5px solid rgb(197, 189, 189);" class="table table-hover table-light">
+          <thead style="color:balck; background-color: #e3e5e8;">
+            <tr>
+              <th scope="col">No</th>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+              <th scope="col">Image</th>
+              <th scope="col">Mask</th>
+              <th scope="col">Age</th>
+              <th scope="col">Age Category</th>
+              <th scope="col">Gender</th>
+              <th scope="col">Emotion</th>
+              <th scope="col">Race</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($vision_data as $data)
+            <tr>
+                <td>{{ $data->auto_id }}</td>
+                <td>{{ $data->date }}</td>
+                <td>{{ $data->time }}</td>
+                <td style="text-align: center;"><a target="_blank" href="{{ asset('dashboard-template-assets/predictions/' . $data->image_url) }}"><img src="{{ asset('dashboard-template-assets/predictions/' . $data->image_url) }}" style="width:60%; border-radius:5%;"></a></td>
+                <td>{{ $data->mask }}</td>
+                <td>{{ $data->age }}</td>
+                <td>{{ $data->age_category}}</td>
+                <td>{{ $data->gender}}</td>
+                <td>{{ $data->emotion}}</td>
+                <td>{{ $data->race}}</td>
+            </tr>
+            @endforeach      
+          </tbody>
+        </table>  
+  </div>
 
-        <table style="background-color: white; border: 5px solid rgb(197, 189, 189);" class="table table-hover table-light">
-            <thead style="color:balck; background-color: #e3e5e8;">
-              <tr>
-                <th scope="col">No</th>
-                <th scope="col">Date</th>
-                <th scope="col">Time</th>
-                <th scope="col">Image</th>
-                <th scope="col">Mask</th>
-                <th scope="col">Age</th>
-                <th scope="col">Age Category</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Emotion</th>
-                <th scope="col">Race</th>
-              </tr>
-            </thead>
-            <tbody>
+  
+  <div class="d-flex justify-content-center">
+    {{ $vision_data->links() }}
+  </div> 
 
-              @foreach($vision_data as $data)
-              <tr>
-                  <td>{{ $data->auto_id }}</td>
-                  <td>{{ $data->date }}</td>
-                  <td>{{ $data->time }}</td>
-                  <td style="text-align: center;"><a target="_blank" href="{{ asset('dashboard-template-assets/predictions/' . $data->image_url) }}"><img src="{{ asset('dashboard-template-assets/predictions/' . $data->image_url) }}" style="width:60%; border-radius:5%;"></a></td>
-                  <td>{{ $data->mask }}</td>
-                  <td>{{ $data->age }}</td>
-                  <td>{{ $data->age_category}}</td>
-                  <td>{{ $data->gender}}</td>
-                  <td>{{ $data->emotion}}</td>
-                  <td>{{ $data->race}}</td>
-              </tr>
-              @endforeach      
-            </tbody>
-          </table>
 
-    </div>
-        
-</div>
 
 <script>
 

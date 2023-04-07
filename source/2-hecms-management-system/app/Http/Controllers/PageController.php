@@ -60,56 +60,56 @@ class PageController extends Controller
 
 
     public function ViewVisionDataFunction(string $search_by_date){
-        
+
         $login_access_session = Session::get('LoginAccess');
-
+    
         if($login_access_session == '[TRUE]'){
-
+    
             if($search_by_date == '[FALSE]'){
-
-                $whole_vision_data = DB::select('SELECT * FROM vision_data');
-                return view('vision-data',['PageName' => 'Vision Data',"type_of_search" => "[WHOLE_SEARCH]", "vision_data"=>$whole_vision_data]); 
-
-            }else{
-
-                $date_wise_vision_data = DB::select("SELECT * FROM vision_data where date = '$search_by_date'");
-                return view('vision-data',['PageName' => 'Vision Data',"type_of_search" => "[DATE_WISE_SEARCH]", "vision_data"=>$date_wise_vision_data]); 
-                
-            }
-            
-        }else{
-
-            return redirect()->route('IndexPageLink');
-            
-        }
         
+                $vision_data = DB::table('vision_data')->paginate(15);
+                return view('vision-data',['PageName' => 'Vision Data', "type_of_search" => "[WHOLE_SEARCH]", "vision_data"=>$vision_data]); 
+        
+            }else{
+        
+                $date_wise_vision_data = DB::table('vision_data')->where('date', '=', $search_by_date)->paginate(15);
+        
+                return view('vision-data',['PageName' => 'Vision Data', "type_of_search" => "[DATE_WISE_SEARCH]", "vision_data"=>$date_wise_vision_data]); 
+            }
+
+        }else{
+            
+            return redirect()->route('IndexPageLink');
+       
+        }
     }
 
     public function ViewAudioDataFunction(string $search_by_date){
-        
+    
         $login_access_session = Session::get('LoginAccess');
-
+    
         if($login_access_session == '[TRUE]'){
-
+    
             if($search_by_date == '[FALSE]'){
-
-                $whole_vision_data = DB::select('SELECT * FROM audio_data');
-                return view('audio-data',['PageName' => 'Audio Data',"type_of_search" => "[WHOLE_SEARCH]", "audio_data"=>$whole_vision_data]); 
-
+    
+                $whole_audio_data = DB::table('audio_data')->paginate(25);
+                return view('audio-data',['PageName' => 'Audio Data',"type_of_search" => "[WHOLE_SEARCH]", "audio_data"=>$whole_audio_data]); 
+    
             }else{
-
-                $date_wise_vision_data = DB::select("SELECT * FROM audio_data where date = '$search_by_date'");
-                return view('audio-data',['PageName' => 'Audio Data',"type_of_search" => "[DATE_WISE_SEARCH]", "audio_data"=>$date_wise_vision_data]); 
+    
+                $date_wise_audio_data = DB::table('audio_data')->where('date', $search_by_date)->paginate(25);
+                return view('audio-data',['PageName' => 'Audio Data',"type_of_search" => "[DATE_WISE_SEARCH]", "audio_data"=>$date_wise_audio_data]); 
                 
             }
             
         }else{
-
+    
             return redirect()->route('IndexPageLink');
             
         }
         
     }
+    
 
     public function ViewSettingsFunction(){
         
