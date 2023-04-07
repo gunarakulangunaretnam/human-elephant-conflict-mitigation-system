@@ -52,15 +52,15 @@
 
             <li class="nav-item {{ $PageName == 'Vision Data' ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="{{route('VisionDataViewLink', ['search_by_date' => '[FALSE]']) }}">
-                    <i class="fas fa-fw fa-video"></i>
-                    <span>Vision Data</span>
+                    <i class="fas fa-fw fa-database"></i>
+                    <span>Data Management</span>
                 </a>
             </li>
 
             <li class="nav-item {{ $PageName == 'Audio Data' ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="{{ route('AudioDataViewLink', ['search_by_date' => '[FALSE]']) }}" >
-                    <i class="fas fa-fw fa-music"></i>
-                    <span>Audio Data</span>
+                    <i class="fas fa-fw fa-microchip"></i>
+                    <span>Device Management</span>
                 </a>
             </li>
 
