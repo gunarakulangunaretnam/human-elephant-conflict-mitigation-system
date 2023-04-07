@@ -49,8 +49,8 @@
               <td style="width: 4%;">{{ $data->time }}</td>
               <td style="width: 4%;">{{ $data->number_of_elephant }}</td>
               <td style="width: 12%; vertical-align: middle;">
-                <a href="data:image/jpeg;base64,{{ base64_encode($data->elephant_image) }}" target="_blank">
-                    <img style="width:100%; border-radius:5%;" src="data:image/jpeg;base64,{{ base64_encode($data->elephant_image) }}" alt="Elephant Image">
+                <a href="{{ route('ShowImageFunctionInNewPageViewLink', ['id' => $data->auto_id]) }}" target="_blank">
+                  <img style="width:100%; border-radius:5%;" src="data:image/jpeg;base64,{{ base64_encode($data->elephant_image) }}" alt="Elephant Image">
                 </a>
               </td>
             </tr>

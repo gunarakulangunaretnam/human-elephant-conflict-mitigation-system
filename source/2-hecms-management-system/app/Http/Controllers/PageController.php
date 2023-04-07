@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
-
 class PageController extends Controller
 {
     public function ViewIndexPageFunction(){
@@ -83,6 +82,21 @@ class PageController extends Controller
             return redirect()->route('IndexPageLink');
        
         }
+    }
+
+    public function ShowImageFunctionInNewPage($id){
+
+        $login_access_session = Session::get('LoginAccess');
+        
+        if($login_access_session == '[SUPER_ADMIN]' || $login_access_session == '[DEVICE_ADMIN]'){
+
+            $image_data_db = DB::select("SELECT elephant_image from data WHERE auto_id = '$id'");
+            $imageData = base64_encode($image_data_db[0]->elephant_image);
+            $imageData = base64_decode($imageData);
+            return response($imageData)->header('Content-Type', 'image/jpeg');
+            
+        }
+        
     }
 
     public function ViewAudioDataFunction(string $search_by_date){
