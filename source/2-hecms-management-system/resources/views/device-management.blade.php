@@ -41,7 +41,7 @@
                            <td class="text-center">0740001141</td> 
                            <td class="text-center" style="width: 20%;">
                             
-                            <i title="View on Map" class="fa fa-external-link fa-2x" style="color: darkblue;"
+                            <i title="View on Map" class="fa fa-globe fa-2x" style="color: darkblue;"
                                 onmouseover="this.style.color='blue';" onmouseout="this.style.color='darkblue';"></i> &nbsp 
                             <a data-toggle="modal" data-target="#editDeviceModal"><i title="Edit" class="fa fa-pencil-square-o fa-2x" style="color: darkgreen;"
                                 onmouseover="this.style.color='green';" onmouseout="this.style.color='darkgreen';"></i></a> &nbsp
