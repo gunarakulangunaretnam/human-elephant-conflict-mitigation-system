@@ -728,15 +728,11 @@ class App:
 
     def update_database(self, device_id, number_of_elephants, frame):
 
-        # Convert the frame to a binary blob
-        success, encoded_image = cv2.imencode('.jpg', frame)
-        image_bytes = encoded_image.tobytes()
+        # Encode the frame as an image in memory
+        retval, buffer = cv2.imencode('.jpg', frame)
 
-        # Encode the binary blob as a base64-encoded string
-        img_base64 = base64.b64encode(image_bytes)
-
-        with open('data.txt', 'w') as f:
-            f.write(str(img_base64))
+        # Convert the encoded image to a binary format
+        img_blob = buffer.tobytes()
 
         data_date_and_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         _date = data_date_and_time.split(' ')[0].strip()
@@ -747,7 +743,7 @@ class App:
             'date': _date,
             'time': _time,
             'number_of_elephant': number_of_elephants,
-            'elephant_image': img_base64,
+            'elephant_image': img_blob,
         }
 
         insert_query = ("INSERT INTO data (device_id, date, time, number_of_elephant, elephant_image)"

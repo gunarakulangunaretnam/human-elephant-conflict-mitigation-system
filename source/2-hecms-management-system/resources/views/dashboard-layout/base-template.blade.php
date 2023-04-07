@@ -60,7 +60,7 @@
             </li>
 
             <li class="nav-item {{ $PageName == 'Vision Data' ? 'active' : '' }}">
-                <a class="nav-link collapsed" href="{{route('VisionDataViewLink', ['search_by_date' => '[FALSE]']) }}">
+                <a class="nav-link collapsed" href="{{route('DataManagementViewLink', ['search_by_date' => '[FALSE]']) }}">
                     <i class="fas fa-fw fa-database"></i>
                     <span>Data Management</span>
                 </a>

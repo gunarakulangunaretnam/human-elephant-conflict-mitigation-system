@@ -13,7 +13,7 @@
 
                   <div style="text-align: center; margin-left:7%;">
 
-                    <input type="radio" id="show_all_data" name="search-type" onclick="window.location.href='{{route('VisionDataViewLink', ['search_by_date' => '[FALSE]'])}}'"> Show all data |
+                    <input type="radio" id="show_all_data" name="search-type" onclick="window.location.href='{{route('DataManagementViewLink', ['search_by_date' => '[FALSE]'])}}'"> Show all data |
                     <input type="radio" id="search_by_date" name="search-type"> <label>Search by date</label>
 
                   </div>
@@ -28,34 +28,33 @@
     </div>
     
     <div class="row">
-      <table style="background-color: white; border: 5px solid rgb(197, 189, 189);" class="table table-hover table-light">
+      <table style="background-color: white; border: 5px solid rgb(197, 189, 189); width: 100%;" class="table table-hover table-light">
           <thead style="color:balck; background-color: #e3e5e8;">
             <tr>
               <th scope="col">No</th>
+              <th scope="col">Device ID</th>
               <th scope="col">Date</th>
               <th scope="col">Time</th>
+              <th scope="col">Number of Elephants</th>
               <th scope="col">Image</th>
-              <th scope="col">Mask</th>
-              <th scope="col">Age</th>
-              <th scope="col">Age Category</th>
-              <th scope="col">Gender</th>
-              <th scope="col">Emotion</th>
-              <th scope="col">Race</th>
+            
             </tr>
           </thead>
           <tbody>
-            @foreach($vision_data as $data)
+            @foreach($DataManagementData as $data)
             <tr>
-                <td>{{ $data->auto_id }}</td>
-                <td>{{ $data->date }}</td>
-                <td>{{ $data->time }}</td>
-                <td style="text-align: center;"><a target="_blank" href="{{ asset('dashboard-template-assets/predictions/' . $data->image_url) }}"><img src="{{ asset('dashboard-template-assets/predictions/' . $data->image_url) }}" style="width:60%; border-radius:5%;"></a></td>
-                <td>{{ $data->mask }}</td>
-                <td>{{ $data->age }}</td>
-                <td>{{ $data->age_category}}</td>
-                <td>{{ $data->gender}}</td>
-                <td>{{ $data->emotion}}</td>
-                <td>{{ $data->race}}</td>
+              <td style="width: 4%;">{{ $data->auto_id }}</td>
+              <td style="width: 8%;">{{ $data->device_id }}</td>
+              <td style="width: 4%;">{{ $data->date }}</td>
+              <td style="width: 4%;">{{ $data->time }}</td>
+              <td style="width: 4%;">{{ $data->number_of_elephant }}</td>
+              <td style="width: 12%; vertical-align: middle;">
+                <a href="data:image/jpeg;base64,{{ base64_encode($data->elephant_image) }}" target="_blank">
+                    <img style="width:100%; border-radius:5%;" src="data:image/jpeg;base64,{{ base64_encode($data->elephant_image) }}" alt="Elephant Image">
+                </a>
+              </td>
+            </tr>
+                
             </tr>
             @endforeach      
           </tbody>
@@ -64,7 +63,7 @@
 
   
   <div class="d-flex justify-content-center">
-    {{ $vision_data->links() }}
+    {{ $DataManagementData->links() }}
   </div> 
 
 
@@ -93,7 +92,7 @@
 
     document.getElementById('date_picker').addEventListener('change', function() {
       var selectedDate = this.value; // Get the selected date value
-      var url = "{{ route('VisionDataViewLink', ['search_by_date' => ':date']) }}"; // Define the URL with a placeholder for the date parameter
+      var url = "{{ route('DataManagementViewLink', ['search_by_date' => ':date']) }}"; // Define the URL with a placeholder for the date parameter
       url = url.replace(':date', selectedDate); // Replace the placeholder with the selected date
       window.location.href = url; // Redirect to the updated URL
     });

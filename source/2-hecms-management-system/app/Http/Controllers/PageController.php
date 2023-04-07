@@ -56,23 +56,27 @@ class PageController extends Controller
     }
 
 
-    public function ViewVisionDataFunction(string $search_by_date){
+    public function ViewDataManagementFunction(string $search_by_date){
 
         $login_access_session = Session::get('LoginAccess');
     
-        if($login_access_session == '[TRUE]'){
+        if($login_access_session == '[SUPER_ADMIN]'){
     
             if($search_by_date == '[FALSE]'){
         
-                $vision_data = DB::table('vision_data')->paginate(15);
-                return view('vision-data',['PageName' => 'Vision Data', "type_of_search" => "[WHOLE_SEARCH]", "vision_data"=>$vision_data]); 
+                $whole_data_management_data = DB::table('data')->paginate(15);
+                return view('data-management',['PageName' => 'Data Management', "type_of_search" => "[WHOLE_SEARCH]", "DataManagementData"=>$whole_data_management_data]); 
         
             }else{
         
-                $date_wise_vision_data = DB::table('vision_data')->where('date', '=', $search_by_date)->paginate(15);
+                $date_wise_data_management_data = DB::table('data')->where('date', '=', $search_by_date)->paginate(15);
         
-                return view('vision-data',['PageName' => 'Vision Data', "type_of_search" => "[DATE_WISE_SEARCH]", "vision_data"=>$date_wise_vision_data]); 
+                return view('data-management',['PageName' => 'Data Management', "type_of_search" => "[DATE_WISE_SEARCH]", "DataManagementData"=>$date_wise_vision_data]); 
             }
+
+        }else if($login_access_session == '[DEVICE_ADMIN]'){
+
+            // Device Admin Logic Come Here
 
         }else{
             

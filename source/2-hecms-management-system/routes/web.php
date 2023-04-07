@@ -23,7 +23,7 @@ Route::get('/logout-function', [AuthenticationController::class, 'LogoutFunction
 
 Route::get('/home-page-view/{search_by_month}', [PageController::class, 'ViewHomePageFunction'])->name("HomePageViewLink");
 
-Route::get('/vision-data-view/{search_by_date}', [PageController::class, 'ViewVisionDataFunction'])->name("VisionDataViewLink");
+Route::get('/vision-data-view/{search_by_date}', [PageController::class, 'ViewDataManagementFunction'])->name("DataManagementViewLink");
 
 Route::get('/audio-data-view/{search_by_date}', [PageController::class, 'ViewAudioDataFunction'])->name("AudioDataViewLink");
 
