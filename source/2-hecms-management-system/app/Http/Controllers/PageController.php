@@ -35,18 +35,17 @@ class PageController extends Controller
                 $search_data = $search_by_month."-"."02";
                
             }
-
+            $traffic_data = DB::select("SELECT DAY(date) AS day, COUNT(*) AS count FROM data WHERE MONTH(date) = MONTH('$search_data') AND YEAR(date) = YEAR('$search_data') GROUP BY DAY(date) ORDER BY day ASC;");            
+            $total_devices = DB::select("SELECT COUNT(*) as total_count FROM device");
+            $total_incidents = DB::select("SELECT COUNT(*) as total_count FROM data");
+            $total_elephants_detected = DB::select("SELECT SUM(number_of_elephant) as total_count FROM data");
             
-            $traffic_data = DB::select("SELECT DAY(date) AS day, COUNT(*) AS count FROM data WHERE MONTH(date) = MONTH('$search_data') AND YEAR(date) = YEAR('$search_data') GROUP BY DAY(date) ORDER BY day ASC;");
-            
+            return view('home-page',['PageName' => 'Home Page', "YearMonth" => $month_picker_display , 'TrafficData' => $traffic_data, 'TotalDevices' => $total_devices, 'TotalIncidents' => $total_incidents, 'TotalElephantsDetected' => $total_elephants_detected]); 
 
-            return view('home-page',['PageName' => 'Home Page', "YearMonth" => $month_picker_display , 'TrafficData' => $traffic_data]); 
-   
-
-            
             
         }else if($login_access_session == '[DEVICE_ADMIN]'){
 
+            // Device Admin Logic Come Here
 
         }else{
 
