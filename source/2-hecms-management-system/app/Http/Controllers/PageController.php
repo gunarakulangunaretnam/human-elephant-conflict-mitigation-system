@@ -70,7 +70,7 @@ class PageController extends Controller
         
                 $date_wise_data_management_data = DB::table('data')->where('date', '=', $search_by_date)->paginate(15);
         
-                return view('data-management',['PageName' => 'Data Management', "type_of_search" => "[DATE_WISE_SEARCH]", "DataManagementData"=>$date_wise_vision_data]); 
+                return view('data-management',['PageName' => 'Data Management', "type_of_search" => "[DATE_WISE_SEARCH]", "DataManagementData"=>$date_wise_data_management_data]); 
             }
 
         }else if($login_access_session == '[DEVICE_ADMIN]'){
