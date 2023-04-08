@@ -857,10 +857,10 @@ class App:
             session.sendmail(email_sender, email_receiver, text)
             session.quit()
 
-            print('Early warning email sent successfully!')
+            print('Email sent successfully!')
 
         except Exception as e:
-            print('ERROR: Early warning did not send, something went wrong with SMTP server.')
+            print(f'ERROR: Email failed to send; Reason: {e}')
         
     def send_sms(self,recipient_phone_no, device_id, device_name, location, number_of_elephants):
 
@@ -892,9 +892,9 @@ class App:
 
         # Check the status code
         if response.status_code == 200:
-            print("Early warning SMS sent successfully!")
+            print("SMS sent successfully!")
         else:
-            print(f"Error: SMS sending failed: {response.status_code} {response.content}")
+            print(f"Error: SMS failed failed to send; Reason: {response.status_code} {response.content}")
 
     def browse_file(self):
         # Ask user to select a video file
