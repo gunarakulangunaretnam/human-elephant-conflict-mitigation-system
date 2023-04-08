@@ -76,7 +76,6 @@
                                                 <td class="text-center">{{ $device->password }}</td>
                                                 <td class="text-center" style="width: 20%;">
 
-
                                                     <a href="https://www.google.com/maps/search/?api=1&query={{ $device->latitude }},{{ $device->longitude }}"
                                                         target="_blank">
                                                         <i title="View on Map" class="fa fa-globe fa-2x"
@@ -94,7 +93,7 @@
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-link p-0 m-0 align-baseline"
-                                                            onclick="confirmDelete(event)">
+                                                            onclick="return confirm('Are you sure you want to delete this device?')">
                                                             <i title="Remove" class="fas fa-trash fa-2x"
                                                                 style="color: darkred;"
                                                                 onmouseover="this.style.color='red';"
@@ -106,45 +105,6 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-
-                                        <!-- Device Deletion Confirmation -->
-                                        <div class="modal fade" id="deleteDeviceModal" tabindex="-1" role="dialog"
-                                            aria-labelledby="deleteDeviceModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteDeviceModalLabel">Delete Device
-                                                        </h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Are you sure you want to delete this device?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">No</button>
-                                                        <button type="button" class="btn btn-danger"
-                                                            onclick="deleteDevice()">Yes</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <script>
-                                            function confirmDelete(event) {
-                                                event.preventDefault();
-                                                $('#deleteDeviceModal').modal('show');
-                                            }
-
-                                            function deleteDevice() {
-                                                document.getElementById('delete-device-form').submit();
-                                            }
-                                        </script>
-
-
                                     </tbody>
                                 </table>
                             </div>
@@ -154,8 +114,8 @@
                 <div class="d-flex justify-content-center">
                 </div>
                 <!-- Device Modal -->
-                <div class="modal fade" id="deviceModal" tabindex="-1" role="dialog"
-                    aria-labelledby="deviceModalLabel" aria-hidden="true">
+                <div class="modal fade" id="deviceModal" tabindex="-1" role="dialog" aria-labelledby="deviceModalLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">

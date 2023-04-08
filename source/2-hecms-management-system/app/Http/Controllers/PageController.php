@@ -174,6 +174,13 @@ class PageController extends Controller
 
             return view('settings', ['PageName' => 'Settings']);
             
+        }else if($login_access_session == '[DEVICE_ADMIN]'){
+
+            $login_device_value_session = Session::get('DeviceValue');
+            $device_info = DB::select("SELECT * from device WHERE device_id = '$login_device_value_session'");
+           
+            return view('settings', ['PageName' => 'Settings', "LoginDeviceValue" => $login_device_value_session, "DeviceInfo" => $device_info]);
+
         }else{
 
             return redirect()->route('IndexPageLink');

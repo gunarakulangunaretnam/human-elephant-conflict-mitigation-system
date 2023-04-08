@@ -173,6 +173,7 @@ class CurdController extends Controller
 
     public function RemoveDeviceFunction($deviceId)
     {
+        
         $login_access_session = Session::get('LoginAccess');
 
         if ($login_access_session == '[SUPER_ADMIN]') {
@@ -205,7 +206,7 @@ class CurdController extends Controller
             $user_entered_new_password = $request->new_password;
             $user_entered_confirm_password = $request->confirm_password;
 
-            $current_server_password = DB::table('user_account')->value('password');
+            $current_server_password = DB::table('user_account')->where('account_type', 'super_admin')->value('password');
 
 
             if($user_entered_current_password == $current_server_password){
@@ -227,7 +228,38 @@ class CurdController extends Controller
 
         }else if($login_access_session == '[DEVICE_ADMIN]'){
 
-            // Device Admin Logic Come Here
+            $this->validate($request, [
+                'current_password' => 'required',
+                'new_password' => 'required',
+                'confirm_password' => 'required',
+            ]);
+
+
+            $user_entered_current_password = $request->current_password;
+            $user_entered_new_password = $request->new_password;
+            $user_entered_confirm_password = $request->confirm_password;
+
+            $login_device_value_session = Session::get('DeviceValue');
+
+            $current_server_password = DB::table('user_account')->where('account_type', 'device_admin')->where('username', $login_device_value_session)->value('password');
+
+            if($user_entered_current_password == $current_server_password){
+
+                if($user_entered_new_password == $user_entered_confirm_password){
+
+                    DB::table('user_account')->where('account_type', 'device_admin')->where('username', $login_device_value_session)->update(['password' => $user_entered_new_password]);
+                    return redirect()->back()->with('success', 'Password updated successfully.');
+                    
+                }else{
+
+                    return redirect()->back()->with('error', 'The confirm password does not match.');
+                }
+                
+            }{
+
+                return redirect()->back()->with('error', 'The current password is wrong.');
+            }
+
 
         } else {
             return abort(404);
