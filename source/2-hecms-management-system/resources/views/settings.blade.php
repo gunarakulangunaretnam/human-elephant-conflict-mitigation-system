@@ -18,9 +18,9 @@
                 </button>
             </div>
             <script>
-                window.onload = function() {
-                    $("#error-box").delay(3000).fadeOut();
-                }
+                setTimeout(function() {
+                    $("#error-box").fadeOut();
+                }, 5000);
             </script>
         @endif
 
@@ -34,9 +34,9 @@
             </div>
 
             <script>
-                window.onload = function() {
-                    $("#success-box").delay(3000).fadeOut();
-                }
+                setTimeout(function() {
+                    $("#success-box").fadeOut();
+                }, 5000);
             </script>
         @endif
 
@@ -50,40 +50,11 @@
             </div>
 
             <script>
-                window.onload = function() {
-                    $("#error-box").delay(3000).fadeOut();
-                }
+                setTimeout(function() {
+                    $("#error-box").fadeOut();
+                }, 5000);
             </script>
         @endif
-
-        <!-- Page Heading -->
-        <div class="jumbotron">
-            <div class="row">
-                <div class="col-md-3 col-lg-3">
-                    <h4>Voice Settings</h4>
-                    <hr>
-                    <form class="user" method="POST" action="{{ route('SettingsChangeVoiceFunctionLink') }}">
-                        @csrf
-                        <!-- Add the CSRF token field -->
-                        <div class="input-group input-group-sm mb-3">
-                            <div class="input-group-prepend">
-                                <span style="font-weight: bold;" class="input-group-text" id="inputGroup-sizing-sm">Select
-                                    Language:</span>
-                            </div>
-                            <select class="form-select form-control" name="language" aria-label="Small"
-                                aria-describedby="inputGroup-sizing-sm">
-                                <option value="tamil" {{ $CurrentLanguage == 'Tamil' ? 'selected' : '' }}>Tamil</option>
-                                <option value="sinhala" {{ $CurrentLanguage == 'Sinhala' ? 'selected' : '' }}>Sinhala
-                                </option>
-                                <option value="english" {{ $CurrentLanguage == 'English' ? 'selected' : '' }}>English
-                                </option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-sm">Change</button>
-                    </form>
-                </div>
-            </div>
-        </div>
 
         <!-- Page Heading -->
         <div class="jumbotron">

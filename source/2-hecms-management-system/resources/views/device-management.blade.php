@@ -17,7 +17,7 @@
             </div>
             <script>
                 setTimeout(function() {
-                    $("#success-box").fadeOut();
+                    $("#error-box").fadeOut();
                 }, 5000);
             </script>
         @endif

@@ -158,7 +158,7 @@ class CurdController extends Controller
     {
         $login_access_session = Session::get('LoginAccess');
     
-        if ($login_access_session == '[TRUE]') {
+        if ($login_access_session == '[SUPER_ADMIN]') {
             $this->validate($request, [
                 'current_password' => 'required',
                 'new_password' => 'required',
@@ -170,14 +170,14 @@ class CurdController extends Controller
             $user_entered_new_password = $request->new_password;
             $user_entered_confirm_password = $request->confirm_password;
 
-            $current_server_password = DB::table('user')->value('password');
+            $current_server_password = DB::table('user_account')->value('password');
 
 
             if($user_entered_current_password == $current_server_password){
 
                 if($user_entered_new_password == $user_entered_confirm_password){
 
-                    DB::table('user')->update(['password' => $user_entered_new_password]);
+                    DB::table('user_account')->where('account_type', 'super_admin')->update(['password' => $user_entered_new_password]);
                     return redirect()->back()->with('success', 'Password updated successfully.');
                     
                 }else{
@@ -190,8 +190,10 @@ class CurdController extends Controller
                 return redirect()->back()->with('error', 'The current password is wrong.');
             }
 
-            
-            // Redirect back to the previous page with a success message  
+        }else if($login_access_session == '[DEVICE_ADMIN]'){
+
+            // Device Admin Logic Come Here
+
         } else {
             return abort(404);
         }

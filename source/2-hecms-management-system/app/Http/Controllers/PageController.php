@@ -133,9 +133,7 @@ class PageController extends Controller
 
         if($login_access_session == '[SUPER_ADMIN]'){
 
-           
-
-            return view('settings', ['PageName' => 'Settings','CurrentLanguage' => $current_language]);
+            return view('settings', ['PageName' => 'Settings']);
             
         }else{
 
