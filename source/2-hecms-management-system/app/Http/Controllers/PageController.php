@@ -87,12 +87,12 @@ class PageController extends Controller
     
             if($search_by_date == '[FALSE]'){
         
-                $whole_data_management_data = DB::table('data')->paginate(15);
+                $whole_data_management_data = DB::table('data')->orderBy('date', 'desc')->paginate(15);
                 return view('data-management',['PageName' => 'Data Management', "type_of_search" => "[WHOLE_SEARCH]", "DataManagementData"=>$whole_data_management_data]); 
         
             }else{
         
-                $date_wise_data_management_data = DB::table('data')->where('date', '=', $search_by_date)->paginate(15);
+                $date_wise_data_management_data = DB::table('data')->where('date', '=', $search_by_date)->orderBy('time', 'asc')->paginate(15);
         
                 return view('data-management',['PageName' => 'Data Management', "type_of_search" => "[DATE_WISE_SEARCH]", "DataManagementData"=>$date_wise_data_management_data]); 
             }
@@ -104,12 +104,12 @@ class PageController extends Controller
             
             if($search_by_date == '[FALSE]'){
         
-                $whole_data_management_data =  DB::table('data')->where('device_id', '=', $login_device_value_session)->paginate(15);
+                $whole_data_management_data =  DB::table('data')->where('device_id', '=', $login_device_value_session)->orderBy('date', 'desc')->paginate(15);
                 return view('data-management',['PageName' => 'Data Management', "type_of_search" => "[WHOLE_SEARCH]", "DataManagementData"=>$whole_data_management_data, "LoginDeviceValue" => $login_device_value_session, "DeviceInfo" => $device_info]); 
         
             }else{
         
-                $date_wise_data_management_data = DB::table('data')->where('date', '=', $search_by_date)->where('device_id', '=', $login_device_value_session)->paginate(15);
+                $date_wise_data_management_data = DB::table('data')->where('date', '=', $search_by_date)->where('device_id', '=', $login_device_value_session)->orderBy('time', 'asc')->paginate(15);
                 return view('data-management',['PageName' => 'Data Management', "type_of_search" => "[DATE_WISE_SEARCH]", "DataManagementData"=>$date_wise_data_management_data, "LoginDeviceValue" => $login_device_value_session, "DeviceInfo" => $device_info]); 
             }
 

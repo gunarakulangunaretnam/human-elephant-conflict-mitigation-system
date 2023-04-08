@@ -64,6 +64,13 @@ is_processing = False
 is_sound_effect_changed = False
 is_audio_playing = False
 
+global_device_id = ""
+global_device_name = ""
+global_latitude = ""
+global_longitude = ""
+global_authority_email = ""
+global_authority_phone = ""
+
 pygame.mixer.init()
 
 global_variable_snapshot_frame = ""
@@ -579,7 +586,7 @@ class App:
 
     def update(self):
 
-        global number_of_time_detected, alaram_threshold, is_audio_playing, global_variable_snapshot_frame
+        global number_of_time_detected, alaram_threshold, is_audio_playing, global_variable_snapshot_frame, global_device_id, global_device_name, global_latitude, global_longitude, global_authority_email, global_authority_phone
 
         if hasattr(self, 'vid'):
             # Get a frame from the video source
@@ -662,25 +669,24 @@ class App:
                                 cv2.imwrite(f"predictions/{current_time_str}.jpg", image_np_with_detections)
 
                                 location = {
-                                    "latitude": 7.8075040425217646,
-                                    "longitude": 81.57280014098717
+                                    "latitude": global_latitude,
+                                    "longitude": global_longitude
                                 }
 
 
-                                update_database_thread = threading.Thread(target=self.update_database, args=(("device_id", number_of_elephants, image_np_with_detections)))
+                                update_database_thread = threading.Thread(target=self.update_database, args=((global_device_id, number_of_elephants, image_np_with_detections)))
                                 update_database_thread.start()
                                                                 
-                                email_thread = threading.Thread(target=self.send_email, args=(("gunarakulan@gmail.com", "1234", "Batticaloa, Kallady Device 01", location, number_of_elephants)))
+                                email_thread = threading.Thread(target=self.send_email, args=((global_authority_email, global_device_id, global_device_name, location, number_of_elephants)))
                                 email_thread.start()
                                 
-                                sms_thread = threading.Thread(target=self.send_sms, args=(("94740001141", "1234", "Batticaloa, Kallady Device 01", location, number_of_elephants)))
+                                sms_thread = threading.Thread(target=self.send_sms, args=((global_authority_phone, global_device_id, global_device_name, location, number_of_elephants)))
                                 sms_thread.start()
 
                             number_of_time_detected = 0
 
                 global_variable_snapshot_frame = image_np_with_detections
                             
-
                 final_frame = cv2.cvtColor(image_np_with_detections, cv2.COLOR_BGR2RGB)
                 final_frame = cv2.resize(final_frame, (self.width, self.height))
 
@@ -910,6 +916,14 @@ class App:
         if hasattr(self, 'vid') and self.vid.isOpened():
             self.vid.release()
 
-    
-# Create the application window
-App(tk.Tk(), "HECMS - Monitoring System")
+def run_main_app(device_id, device_name, latitude, longitude, authority_email, authority_phone):
+    global global_device_id, global_device_name, global_latitude, global_longitude, global_authority_email, global_authority_phone
+
+    global_device_id = device_id
+    global_device_name = device_name
+    global_latitude = latitude
+    global_longitude = longitude
+    global_authority_email = authority_email
+    global_authority_phone = authority_phone
+   
+    App(tk.Tk(), f'HECMS - {device_name} : ({device_id})')
