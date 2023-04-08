@@ -106,13 +106,15 @@ class PageController extends Controller
     
         if($login_access_session == '[SUPER_ADMIN]'){
 
-
+            
+            $device_management_data = DB::table('device')
+            ->join('user_account', 'device.device_id', '=', 'user_account.username')
+            ->select('device.*', 'user_account.*')
+            ->paginate(15);
 
             $unique_id = substr(uniqid(), 0, 10);
 
-
-
-            return view('device-management',['PageName' => 'Device Management', 'UniqueID' => $unique_id]); 
+            return view('device-management',['PageName' => 'Device Management', 'UniqueID' => $unique_id, "DeviceManagementData" => $device_management_data]); 
             
         }else if($login_access_session == '[DEVICE_ADMIN]'){
 

@@ -61,30 +61,33 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="text-center">O1</td>
-                                    <td class="text-center">er232</td>
-                                    <td class="text-center">Batticaloa Kallady Device 1</td>
-                                    <td class="text-center">32132432432432</td>
-                                    <td class="text-center">432432432432432432</td>
-                                    <td class="text-center">gunarakulan@gmail.com</td>
-                                    <td class="text-center">0740001141</td>
-                                    <td class="text-center">gunarakulan@gmail.com</td>
-                                    <td class="text-center">0740001141</td>
-                                    <td class="text-center" style="width: 20%;">
-                                        <i title="View on Map" class="fa fa-globe fa-2x" style="color: darkblue;"
-                                            onmouseover="this.style.color='blue';"
-                                            onmouseout="this.style.color='darkblue';"></i> &nbsp
-                                        <a data-toggle="modal" data-target="#editDeviceModal">
-                                            <i title="Edit" class="fa fa-pencil-square-o fa-2x edit-icon"
-                                                style="color: darkgreen;" onmouseover="this.style.color='green';"
-                                                onmouseout="this.style.color='darkgreen';"></i></a>
-                                        &nbsp
-                                        <i title="Remove" class="fas fa-trash fa-2x" style="color: darkred;"
-                                            onmouseover="this.style.color='red';"
-                                            onmouseout="this.style.color='darkred';"></i>
-                                    </td>
-                                </tr>
+                                @foreach ($DeviceManagementData as $device)
+                                    <tr>
+                                        <td class="text-center">{{ $device->auto_id }}</td>
+                                        <td class="text-center">{{ $device->device_id }}</td>
+                                        <td class="text-center">{{ $device->device_name }}</td>
+                                        <td class="text-center">{{ $device->latitude }}</td>
+                                        <td class="text-center">{{ $device->longitude }}</td>
+                                        <td class="text-center">{{ $device->authority_email }}</td>
+                                        <td class="text-center">{{ $device->authority_phone }}</td>
+                                        <td class="text-center">{{ $device->username }}</td>
+                                        <td class="text-center">{{ $device->password }}</td>
+                                        <td class="text-center" style="width: 20%;">
+                                            <i title="View on Map" class="fa fa-globe fa-2x" style="color: darkblue;"
+                                                onmouseover="this.style.color='blue';"
+                                                onmouseout="this.style.color='darkblue';"></i> &nbsp
+                                            <a data-toggle="modal" data-target="#editDeviceModal">
+                                                <i title="Edit" class="fa fa-pencil-square-o fa-2x edit-icon"
+                                                    style="color: darkgreen;" onmouseover="this.style.color='green';"
+                                                    onmouseout="this.style.color='darkgreen';"></i></a>
+                                            &nbsp
+                                            <i title="Remove" class="fas fa-trash fa-2x" style="color: darkred;"
+                                                onmouseover="this.style.color='red';"
+                                                onmouseout="this.style.color='darkred';"></i>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
                             </tbody>
                         </table>
                     </div>
