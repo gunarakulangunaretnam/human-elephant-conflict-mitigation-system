@@ -31,7 +31,7 @@ Route::get('/device-management-view', [PageController::class, 'ViewDeviceManagem
 
 Route::post('/add-new-device', [PageController::class, 'AddNewDeviceFunction'])->name("AddNewDeviceLink");
 
-
+Route::delete('/remove-device/{deviceId}', [PageController::class, 'RemoveDeviceFunction'])->name("removeDeviceLink");
 
 Route::get('/settings-view', [PageController::class, 'ViewSettingsFunction'])->name("SettingsViewLink");
 

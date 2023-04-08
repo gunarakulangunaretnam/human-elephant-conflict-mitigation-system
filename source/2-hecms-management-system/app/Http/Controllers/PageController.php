@@ -193,6 +193,24 @@ class PageController extends Controller
         }
     }
 
+    public function RemoveDeviceFunction($deviceId)
+    {
+        $login_access_session = Session::get('LoginAccess');
+
+        if ($login_access_session == '[SUPER_ADMIN]') {
+
+            DB::table('device')->where('device_id', $deviceId)->delete();
+            DB::table('user_account')->where('username', $deviceId)->delete();
+
+            return redirect()->back()->with('success', 'The device has been removed successfully.');
+
+        }else{
+
+            return redirect()->route('IndexPageLink');
+            
+        }
+    }
+
     
 
     public function ViewSettingsFunction(){

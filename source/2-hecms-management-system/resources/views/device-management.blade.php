@@ -81,12 +81,60 @@
                                                     style="color: darkgreen;" onmouseover="this.style.color='green';"
                                                     onmouseout="this.style.color='darkgreen';"></i></a>
                                             &nbsp
-                                            <i title="Remove" class="fas fa-trash fa-2x" style="color: darkred;"
-                                                onmouseover="this.style.color='red';"
-                                                onmouseout="this.style.color='darkred';"></i>
+                                            <form method="POST"
+                                                action="{{ route('removeDeviceLink', ['deviceId' => $device->device_id]) }}"
+                                                class="d-inline" id="delete-device-form">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-link p-0 m-0 align-baseline"
+                                                    onclick="confirmDelete(event)">
+                                                    <i title="Remove" class="fas fa-trash fa-2x" style="color: darkred;"
+                                                        onmouseover="this.style.color='red';"
+                                                        onmouseout="this.style.color='darkred';">
+                                                    </i>
+                                                </button>
+                                            </form>
+
                                         </td>
                                     </tr>
                                 @endforeach
+
+                                <!-- Device Deletion Confirmation -->
+                                <div class="modal fade" id="deleteDeviceModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="deleteDeviceModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="deleteDeviceModalLabel">Delete Device</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete this device?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">No</button>
+                                                <button type="button" class="btn btn-danger"
+                                                    onclick="deleteDevice()">Yes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    function confirmDelete(event) {
+                                        event.preventDefault();
+                                        $('#deleteDeviceModal').modal('show');
+                                    }
+
+                                    function deleteDevice() {
+                                        document.getElementById('delete-device-form').submit();
+                                    }
+                                </script>
+
 
                             </tbody>
                         </table>
@@ -203,7 +251,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="password" class="col-form-label">Password:</label>
-                                <input type="text" class="form-control" id="password" minlength="6"
+                                <input type="text" class="form-control" id="editPassword" minlength="6"
                                     name="password" required>
                             </div>
                         </form>
@@ -250,6 +298,8 @@
                 console.log(username);
                 console.log(password);
             });
+
+
         };
     </script>
 @endsection
