@@ -12,6 +12,7 @@
     <title>HECMS</title>
 
     <!-- Custom fonts for this template-->
+    <script src="{{ asset('dashboard-template-assets/vendor/jquery/jquery.min.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
@@ -191,7 +192,6 @@
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('dashboard-template-assets/vendor/jquery/jquery.min.js') }}"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="{{ asset('dashboard-template-assets/vendor/bootstrap/js/bootstrap.bundle.min.js"') }}"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('dashboard-template-assets/vendor/jquery-easing/jquery.easing.min.js') }}"></script>

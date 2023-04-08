@@ -16,9 +16,9 @@
                 </button>
             </div>
             <script>
-                window.onload = function() {
-                    $("#error-box").delay(3000).fadeOut();
-                }
+                setTimeout(function() {
+                    $("#success-box").fadeOut();
+                }, 5000);
             </script>
         @endif
 
@@ -32,9 +32,9 @@
             </div>
 
             <script>
-                window.onload = function() {
-                    $("#success-box").delay(3000).fadeOut();
-                }
+                setTimeout(function() {
+                    $("#success-box").fadeOut();
+                }, 5000);
             </script>
         @endif
 
@@ -73,9 +73,13 @@
                                         <td class="text-center">{{ $device->username }}</td>
                                         <td class="text-center">{{ $device->password }}</td>
                                         <td class="text-center" style="width: 20%;">
-                                            <i title="View on Map" class="fa fa-globe fa-2x" style="color: darkblue;"
-                                                onmouseover="this.style.color='blue';"
-                                                onmouseout="this.style.color='darkblue';"></i> &nbsp
+
+
+                                            <a href="https://www.google.com/maps/search/?api=1&query={{ $device->latitude }},{{ $device->longitude }}"
+                                                target="_blank">
+                                                <i title="View on Map" class="fa fa-globe fa-2x" style="color: darkblue;"
+                                                    onmouseover="this.style.color='blue';"
+                                                    onmouseout="this.style.color='darkblue';"></i></a> &nbsp
                                             <a data-toggle="modal" data-target="#editDeviceModal">
                                                 <i title="Edit" class="fa fa-pencil-square-o fa-2x edit-icon"
                                                     style="color: darkgreen;" onmouseover="this.style.color='green';"
@@ -271,6 +275,11 @@
             </div>
         </div>
     </div>
+
+    <div class="d-flex justify-content-center">
+        {{ $DeviceManagementData->links() }}
+    </div>
+
 
     <script>
         window.onload = function() {

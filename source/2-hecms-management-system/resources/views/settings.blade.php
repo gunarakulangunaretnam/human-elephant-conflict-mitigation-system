@@ -4,6 +4,7 @@
 
     <div class="container-fluid">
 
+
         @if ($errors->any())
             <div id="error-box" style="text-align:center;margin-top:20px;"
                 class="alert alert-danger col-md-12 alert-dismissible fade show" role="alert">
@@ -22,8 +23,6 @@
                 }
             </script>
         @endif
-
-
 
         @if (session('success'))
             <div id="success-box" style="text-align:center;margin-top:20px;"

@@ -138,8 +138,8 @@ class PageController extends Controller
             $rules = [
                 'deviceId' => 'required|unique:device,device_id',
                 'deviceName' => 'required',
-                'latitude' => 'required|numeric',
-                'longitude' => 'required|numeric',
+                'latitude' => 'required',
+                'longitude' => 'required',
                 'authorityEmail' => 'required|email',
                 'authorityPhone' => 'required',
                 'username' => 'required|unique:user_account,username',
@@ -201,8 +201,8 @@ class PageController extends Controller
             $rules = [
                 'editDeviceId' => 'required',
                 'editDeviceName' => 'required',
-                'editLatitude' => 'required|numeric',
-                'editLongitude' => 'required|numeric',
+                'editLatitude' => 'required',
+                'editLongitude' => 'required',
                 'editAuthorityEmail' => 'required|email',
                 'editAuthorityPhone' => 'required',
                 'editUsername' => 'required',
