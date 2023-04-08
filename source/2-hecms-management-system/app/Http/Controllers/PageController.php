@@ -34,6 +34,7 @@ class PageController extends Controller
                 $search_data = $search_by_month."-"."02";
                
             }
+            
             $traffic_data = DB::select("SELECT DAY(date) AS day, COUNT(*) AS count FROM data WHERE MONTH(date) = MONTH('$search_data') AND YEAR(date) = YEAR('$search_data') GROUP BY DAY(date) ORDER BY day ASC;");            
             $total_devices = DB::select("SELECT COUNT(*) as total_count FROM device");
             $total_incidents = DB::select("SELECT COUNT(*) as total_count FROM data");
@@ -44,7 +45,30 @@ class PageController extends Controller
             
         }else if($login_access_session == '[DEVICE_ADMIN]'){
 
-            // Device Admin Logic Come Here
+            $month_picker_display = "";
+
+            if($search_by_month == '[FALSE]'){
+
+                $search_data = $current_year = date('Y')."-".$current_month = date('m')."-".$current_month = date('d');
+                $month_picker_display = date('Y')."-".date('m');
+                
+            }else{
+
+                $month_picker_display = $search_by_month;
+                $search_data = $search_by_month."-"."02";
+               
+            }
+
+            $login_device_value_session = Session::get('DeviceValue');
+
+            $traffic_data = DB::select("SELECT DAY(date) AS day, COUNT(*) AS count FROM data WHERE MONTH(date) = MONTH('$search_data') AND YEAR(date) = YEAR('$search_data') AND device_id = '$login_device_value_session' GROUP BY DAY(date) ORDER BY day ASC;");            
+            $total_devices = DB::select("SELECT COUNT(*) as total_count FROM device WHERE device_id = '$login_device_value_session'");
+            $total_incidents = DB::select("SELECT COUNT(*) as total_count FROM data WHERE device_id = '$login_device_value_session'");
+            $total_elephants_detected = DB::select("SELECT SUM(number_of_elephant) as total_count FROM data WHERE device_id = '$login_device_value_session'");
+            
+            $device_info = DB::select("SELECT device_name, latitude, longitude from device WHERE device_id = '$login_device_value_session'");
+            
+            return view('home-page',['PageName' => 'Home Page', "YearMonth" => $month_picker_display , 'TrafficData' => $traffic_data, 'TotalDevices' => $total_devices, 'TotalIncidents' => $total_incidents, 'TotalElephantsDetected' => $total_elephants_detected, "LoginDeviceValue" => $login_device_value_session, "DeviceInfo" => $device_info]); 
 
         }else{
 

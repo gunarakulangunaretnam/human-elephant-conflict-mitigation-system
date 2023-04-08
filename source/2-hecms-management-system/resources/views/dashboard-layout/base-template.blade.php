@@ -38,12 +38,12 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-text mx-3">HECMS <br> <span>
 
                         @if (Session::get('LoginAccess') == '[SUPER_ADMIN]')
                             Super Admin
-                        @elseif(Session::get('LoginAccess') == '[DEVICE ADMIN]')
+                        @elseif(Session::get('LoginAccess') == '[DEVICE_ADMIN]')
                             Device Admin
                         @endif
 
@@ -82,7 +82,7 @@
 
                         @if (Session::get('LoginAccess') == '[SUPER_ADMIN]')
                             Device Management
-                        @elseif(Session::get('LoginAccess') == '[DEVICE ADMIN]')
+                        @elseif(Session::get('LoginAccess') == '[DEVICE_ADMIN]')
                             Device Preferences
                         @endif
 
@@ -108,10 +108,31 @@
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
+
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
+
+            @if (Session::get('LoginAccess') == '[DEVICE_ADMIN]')
+                <hr class="sidebar-divider d-none d-md-block">
+                <!-- Sidebar - Brand -->
+
+                <br>
+                <br>
+
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                    <div class="sidebar-brand-text mx-3"><span style="text-decoration: underline;">Device Info:</span>
+                        <br>
+
+
+                        ID: {{ $LoginDeviceValue }} <br> Name: {{ reset($DeviceInfo)->device_name }}
+
+
+                    </div>
+
+                </a>
+            @endif
 
         </ul>
         <!-- End of Sidebar -->

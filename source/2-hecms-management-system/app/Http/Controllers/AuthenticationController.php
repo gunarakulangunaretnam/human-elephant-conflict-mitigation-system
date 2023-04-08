@@ -25,7 +25,7 @@ class AuthenticationController extends Controller
         $password_from_db = "";
 
        
-        $user = DB::select("SELECT username, password FROM user_account WHERE account_type = '$account_type'");
+        $user = DB::select("SELECT username, password FROM user_account WHERE account_type = '$account_type' AND username = '$user_entered_username'");
 
         foreach($user as $u){
 
@@ -40,18 +40,19 @@ class AuthenticationController extends Controller
             if($account_type == "super_admin"){
 
                 Session::put('LoginAccess', "[SUPER_ADMIN]");
+                return redirect()->route('HomePageViewLink', ['search_by_month' => '[FALSE]']);
 
             }else if($account_type == "device_admin"){
                 
                 Session::put('LoginAccess', '[DEVICE_ADMIN]');
+                Session::put('DeviceValue', $username_from_db);
+                
+                return redirect()->route('HomePageViewLink', ['search_by_month' => '[FALSE]']);
 
             }else{
                 
                 return Redirect::to("/")->withErrors(['Someting went wrong! #ERROR 01']);
             }
-
-            return redirect()->route('HomePageViewLink', ['search_by_month' => '[FALSE]']);
-
 
         }else{
 

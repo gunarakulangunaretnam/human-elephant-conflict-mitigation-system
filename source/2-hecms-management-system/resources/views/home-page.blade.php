@@ -35,24 +35,52 @@
                 </div>
             </div>
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-4 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-lg font-weight-bold text-primary text-uppercase mb-1"
-                                    style="text-align: center;">Total Devices</div>
-                                <div class="text-md h5 mb-0 font-weight-bold text-gray-800" style="text-align: center;">
-                                    {{ reset($TotalDevices)->total_count }}</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-microchip fa-2x text-gray-300"></i>
+
+
+            @if (Session::get('LoginAccess') == '[SUPER_ADMIN]')
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-lg font-weight-bold text-primary text-uppercase mb-1"
+                                        style="text-align: center;">Total Devices</div>
+                                    <div class="text-md h5 mb-0 font-weight-bold text-gray-800" style="text-align: center;">
+                                        {{ reset($TotalDevices)->total_count }}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-microchip fa-2x text-gray-300"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @elseif(Session::get('LoginAccess') == '[DEVICE_ADMIN]')
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center justify-content-center">
+                                <div class="col mr-2">
+                                    <div class="text-lg font-weight-bold text-primary text-uppercase mb-1"
+                                        style="text-align: center;">
+                                        Device Location
+                                    </div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query={{ reset($DeviceInfo)->latitude }},{{ reset($DeviceInfo)->longitude }}"
+                                        target="_blank" class="btn btn-dark d-block mx-auto"
+                                        style="margin-top: 3.5%; width:50%;">View on Map</a>
+
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-microchip fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-4 col-md-6 mb-4">
@@ -92,10 +120,7 @@
                 </div>
             </div>
 
-
         </div>
-
-
 
         <script>
             var traffic_data = {!! json_encode($TrafficData) !!};
@@ -105,7 +130,7 @@
                 document.getElementById('month_picker').addEventListener('change', function() {
                     var selectedDate = this.value; // Get the selected date value
                     var url =
-                    "{{ route('HomePageViewLink', ['search_by_month' => ':date']) }}"; // Define the URL with a placeholder for the date parameter
+                        "{{ route('HomePageViewLink', ['search_by_month' => ':date']) }}"; // Define the URL with a placeholder for the date parameter
                     url = url.replace(':date', selectedDate); // Replace the placeholder with the selected date
                     window.location.href = url; // Redirect to the updated URL
 
