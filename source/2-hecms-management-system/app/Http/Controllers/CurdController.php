@@ -128,8 +128,43 @@ class CurdController extends Controller
             }
         }else if($login_access_session == '[DEVICE_ADMIN]'){
 
-            // Device Admin Logic Come Here
+                // Define validation rules
+                $rules = [
+                'editDeviceId' => 'required',
+                'editDeviceName' => 'required',
+                'editLatitude' => 'required',
+                'editLongitude' => 'required',
+                'editAuthorityEmail' => 'required|email',
+                'editAuthorityPhone' => 'required',
+            ];
 
+            // Run validation
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                // Redirect back with errors
+                return redirect()->back()->withErrors($validator)->withInput();
+            } else {
+                // Retrieve the form data
+                $device_id = $request->input('editDeviceId');
+                $device_name = $request->input('editDeviceName');
+                $latitude = $request->input('editLatitude');
+                $longitude = $request->input('editLongitude');
+                $authority_email = $request->input('editAuthorityEmail');
+                $authority_phone = $request->input('editAuthorityPhone');
+
+                // Update the device data in the database
+                DB::table('device')->where('device_id', $device_id)->update([
+                    'device_name' => $device_name,
+                    'latitude' => $latitude,
+                    'longitude' => $longitude,
+                    'authority_email' => $authority_email,
+                    'authority_phone' => $authority_phone
+                ]);
+
+                // Redirect back to the device management view
+                return redirect()->route('DeviceManagementViewLink')->with('success', 'The device has been updated successfully.');
+            }
         } else {
             return redirect()->route('IndexPageLink');
         }

@@ -153,7 +153,10 @@ class PageController extends Controller
             
         }else if($login_access_session == '[DEVICE_ADMIN]'){
 
-            // Device Admin Logic Come Here
+            $login_device_value_session = Session::get('DeviceValue');
+            $device_info = DB::select("SELECT * from device WHERE device_id = '$login_device_value_session'");
+           
+            return view('device-management',['PageName' => 'Device Preferences',  "LoginDeviceValue" => $login_device_value_session, "DeviceInfo" => $device_info]); 
 
         }else{
     

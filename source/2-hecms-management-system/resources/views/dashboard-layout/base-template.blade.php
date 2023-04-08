@@ -74,7 +74,8 @@
                 </a>
             </li>
 
-            <li class="nav-item {{ $PageName == 'Device Management' ? 'active' : '' }}">
+            <li
+                class="nav-item {{ $PageName == 'Device Management' || $PageName == 'Device Preferences' ? 'active' : '' }}">
                 <a class="nav-link collapsed"
                     href="{{ route('DeviceManagementViewLink', ['search_by_date' => '[FALSE]']) }}">
                     <i class="fas fa-fw fa-microchip"></i>
@@ -124,10 +125,7 @@
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                     <div class="sidebar-brand-text mx-3"><span style="text-decoration: underline;">Device Info:</span>
                         <br>
-
-
                         ID: {{ $LoginDeviceValue }} <br> Name: {{ reset($DeviceInfo)->device_name }}
-
 
                     </div>
 
