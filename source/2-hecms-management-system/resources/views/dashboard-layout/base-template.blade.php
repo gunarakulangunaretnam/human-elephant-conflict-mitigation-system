@@ -199,12 +199,12 @@
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('dashboard-template-assets/js/sb-admin-2.min.js') }}"></script>
 
-    <!-- Page level plugins -->
-    <script src="{{ asset('dashboard-template-assets/vendor/chart.js/Chart.min.js') }}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{ asset('dashboard-template-assets/js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('dashboard-template-assets/js/demo/chart-pie-demo.js') }}"></script>
+    @if ($PageName == 'Home Page')
+        <!-- If it is Home Page add these-->
+        <!-- Page level plugins -->
+        <script src="{{ asset('dashboard-template-assets/vendor/chart.js/Chart.min.js') }}"></script>
+        <script src="{{ asset('dashboard-template-assets/js/demo/chart-area-demo.js') }}"></script>
+    @endif
 
 </body>
 

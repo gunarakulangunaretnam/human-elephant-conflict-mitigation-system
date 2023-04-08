@@ -39,10 +39,11 @@
                                         <i title="View on Map" class="fa fa-globe fa-2x" style="color: darkblue;"
                                             onmouseover="this.style.color='blue';"
                                             onmouseout="this.style.color='darkblue';"></i> &nbsp
-                                        <a data-toggle="modal" data-target="#editDeviceModal"><i title="Edit"
-                                                class="fa fa-pencil-square-o fa-2x" style="color: darkgreen;"
-                                                onmouseover="this.style.color='green';"
-                                                onmouseout="this.style.color='darkgreen';"></i></a> &nbsp
+                                        <a data-toggle="modal" data-target="#editDeviceModal">
+                                            <i title="Edit" class="fa fa-pencil-square-o fa-2x edit-icon"
+                                                style="color: darkgreen;" onmouseover="this.style.color='green';"
+                                                onmouseout="this.style.color='darkgreen';"></i></a>
+                                        &nbsp
                                         <i title="Remove" class="fas fa-trash fa-2x" style="color: darkred;"
                                             onmouseover="this.style.color='red';"
                                             onmouseout="this.style.color='darkred';"></i>
@@ -165,4 +166,40 @@
             </div>
         </div>
     </div>
+
+    <script>
+        window.onload = function() {
+            $('i.fa-pencil-square-o').on('click', function() {
+                // Get the data from the row
+                var deviceID = $(this).closest('tr').find('td:eq(1)').text();
+                var deviceName = $(this).closest('tr').find('td:eq(2)').text();
+                var latitude = $(this).closest('tr').find('td:eq(3)').text();
+                var longitude = $(this).closest('tr').find('td:eq(4)').text();
+                var authorityEmail = $(this).closest('tr').find('td:eq(5)').text();
+                var authorityPhone = $(this).closest('tr').find('td:eq(6)').text();
+                var username = $(this).closest('tr').find('td:eq(7)').text();
+                var password = $(this).closest('tr').find('td:eq(8)').text();
+
+                // Populate the form fields in the modal
+                $('#editDeviceId').val(deviceID);
+                $('#editDeviceName').val(deviceName);
+                $('#editLatitude').val(latitude);
+                $('#editLongitude').val(longitude);
+                $('#editAuthorityEmail').val(authorityEmail);
+                $('#editAuthorityPhone').val(authorityPhone);
+                $('#editUsername').val(username);
+                $('#editPassword').val(password);
+
+                // Log the data to console in order
+                console.log(deviceID);
+                console.log(deviceName);
+                console.log(latitude);
+                console.log(longitude);
+                console.log(authorityEmail);
+                console.log(authorityPhone);
+                console.log(username);
+                console.log(password);
+            });
+        };
+    </script>
 @endsection
