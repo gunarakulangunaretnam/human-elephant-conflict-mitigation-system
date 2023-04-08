@@ -29,14 +29,12 @@ Route::get('/data-management-view/{search_by_date}', [PageController::class, 'Vi
 
 Route::get('/device-management-view', [PageController::class, 'ViewDeviceManagementFunction'])->name("DeviceManagementViewLink");
 
-Route::post('/add-new-device', [PageController::class, 'AddNewDeviceFunction'])->name("AddNewDeviceLink");
+Route::post('/add-new-device', [CurdController::class, 'AddNewDeviceFunction'])->name("AddNewDeviceLink");
 
-Route::post('/update-device', [PageController::class, 'UpdateDeviceFunction'])->name("UpdateDeviceLink");
+Route::post('/update-device', [CurdController::class, 'UpdateDeviceFunction'])->name("UpdateDeviceLink");
 
-Route::delete('/remove-device/{deviceId}', [PageController::class, 'RemoveDeviceFunction'])->name("removeDeviceLink");
+Route::delete('/remove-device/{deviceId}', [CurdController::class, 'RemoveDeviceFunction'])->name("removeDeviceLink");
 
 Route::get('/settings-view', [PageController::class, 'ViewSettingsFunction'])->name("SettingsViewLink");
-
-Route::post('/settings-change-voice', [CurdController::class, 'SettingsChangeVoiceFunction'])->name("SettingsChangeVoiceFunctionLink");
 
 Route::post('/settings-change-password', [CurdController::class, 'SettingsChangePasswordFunction'])->name("SettingsChangePasswordFunctionLink");

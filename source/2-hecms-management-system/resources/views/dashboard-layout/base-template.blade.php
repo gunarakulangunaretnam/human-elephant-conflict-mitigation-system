@@ -66,7 +66,7 @@
                 </a>
             </li>
 
-            <li class="nav-item {{ $PageName == 'Vision Data' ? 'active' : '' }}">
+            <li class="nav-item {{ $PageName == 'Data Management' ? 'active' : '' }}">
                 <a class="nav-link collapsed"
                     href="{{ route('DataManagementViewLink', ['search_by_date' => '[FALSE]']) }}">
                     <i class="fas fa-fw fa-database"></i>
@@ -74,7 +74,7 @@
                 </a>
             </li>
 
-            <li class="nav-item {{ $PageName == 'Audio Data' ? 'active' : '' }}">
+            <li class="nav-item {{ $PageName == 'Device Management' ? 'active' : '' }}">
                 <a class="nav-link collapsed"
                     href="{{ route('DeviceManagementViewLink', ['search_by_date' => '[FALSE]']) }}">
                     <i class="fas fa-fw fa-microchip"></i>
