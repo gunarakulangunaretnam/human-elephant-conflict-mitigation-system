@@ -99,7 +99,19 @@ class PageController extends Controller
 
         }else if($login_access_session == '[DEVICE_ADMIN]'){
 
-            // Device Admin Logic Come Here
+            $login_device_value_session = Session::get('DeviceValue');
+            $device_info = DB::select("SELECT device_name, latitude, longitude from device WHERE device_id = '$login_device_value_session'");
+            
+            if($search_by_date == '[FALSE]'){
+        
+                $whole_data_management_data =  DB::table('data')->where('device_id', '=', $login_device_value_session)->paginate(15);
+                return view('data-management',['PageName' => 'Data Management', "type_of_search" => "[WHOLE_SEARCH]", "DataManagementData"=>$whole_data_management_data, "LoginDeviceValue" => $login_device_value_session, "DeviceInfo" => $device_info]); 
+        
+            }else{
+        
+                $date_wise_data_management_data = DB::table('data')->where('date', '=', $search_by_date)->where('device_id', '=', $login_device_value_session)->paginate(15);
+                return view('data-management',['PageName' => 'Data Management', "type_of_search" => "[DATE_WISE_SEARCH]", "DataManagementData"=>$date_wise_data_management_data, "LoginDeviceValue" => $login_device_value_session, "DeviceInfo" => $device_info]); 
+            }
 
         }else{
             

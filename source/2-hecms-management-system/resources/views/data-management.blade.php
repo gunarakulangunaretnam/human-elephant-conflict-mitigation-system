@@ -36,7 +36,9 @@
                 <thead style="color:balck; background-color: #e3e5e8;">
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Device ID</th>
+                        @if (Session::get('LoginAccess') == '[SUPER_ADMIN]')
+                            <th scope="col">Device ID</th>
+                        @endif
                         <th scope="col">Date</th>
                         <th scope="col">Time</th>
                         <th scope="col">Number of Elephants</th>
@@ -48,7 +50,9 @@
                     @foreach ($DataManagementData as $data)
                         <tr>
                             <td style="width: 4%;">{{ $data->auto_id }}</td>
-                            <td style="width: 8%;">{{ $data->device_id }}</td>
+                            @if (Session::get('LoginAccess') == '[SUPER_ADMIN]')
+                                <td style="width: 8%;">{{ $data->device_id }}</td>
+                            @endif
                             <td style="width: 4%;">{{ $data->date }}</td>
                             <td style="width: 4%;">{{ $data->time }}</td>
                             <td style="width: 4%;">{{ $data->number_of_elephant }}</td>
