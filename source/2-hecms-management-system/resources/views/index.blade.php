@@ -11,13 +11,14 @@
     <title>HECMS</title>
 
     <!-- Custom fonts for this template-->
-    <link href="{{ asset('dashboard-template-assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('dashboard-template-assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet"
+        type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{asset('dashboard-template-assets/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('dashboard-template-assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
 </head>
 
@@ -25,17 +26,18 @@
 
     <div class="container" style="margin-top: 2.5%;">
 
-        @if($errors->any())				
+        @if ($errors->any())
             @foreach ($errors->all() as $error)
-                <div id="error-box" style="text-align:center;margin-top:20px;" class="alert alert-danger col-md-12 alert-dismissible fade show" role="alert">
-                    <strong>{!!$error!!}</strong> 
+                <div id="error-box" style="text-align:center;margin-top:20px;"
+                    class="alert alert-danger col-md-12 alert-dismissible fade show" role="alert">
+                    <strong>{!! $error !!}</strong>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
                 <script>
-                    window.onload=function(){
+                    window.onload = function() {
 
                         $(window).on('load', function() {
                             $("#error-box").delay(3000).fadeOut();
@@ -43,7 +45,6 @@
 
                     }
                 </script>
-
             @endforeach
         @endif
 
@@ -65,23 +66,27 @@
                                     <form class="user" method="POST" action="{{ route('LoginFunctionLink') }}">
                                         @csrf
                                         <div class="form-group" style="padding-bottom: 5%;">
-                                            <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp"
-                                                   name="username" placeholder="Username" required>
+                                            <input type="text" class="form-control form-control-user"
+                                                id="exampleInputEmail" aria-describedby="emailHelp" name="username"
+                                                placeholder="Username" required>
                                         </div>
                                         <div class="form-group" style="padding-bottom: 5%;">
-                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword"
-                                                   name="password" placeholder="Password" required>
+                                            <input type="password" class="form-control form-control-user"
+                                                id="exampleInputPassword" name="password" placeholder="Password"
+                                                required>
                                         </div>
                                         <div class="form-group" style="padding-bottom: 5%; width:99%; margin-left:2px;">
-                                            <select class="form-control rounded-pill" style="padding: 5px; font-family: sans-serif;" name="account_type" required>
+                                            <select class="form-control rounded-pill"
+                                                style="padding: 5px; font-family: sans-serif;" name="account_type"
+                                                required>
                                                 <option value="" selected disabled>Select Account Type</option>
                                                 <option value="super_admin">Super Admin</option>
                                                 <option value="device_admin">Device Admin</option>
                                             </select>
                                         </div>
-                                        
+
                                         <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
-                                    </form>                                                                    
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -92,14 +97,14 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('dashboard-template-assets/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{ asset('dashboard-template-assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('dashboard-template-assets/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('dashboard-template-assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{{ asset('dashboard-template-assets/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    <script src="{{ asset('dashboard-template-assets/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{{ asset('dashboard-template-assets/js/sb-admin-2.min.js')}}"></script>
+    <script src="{{ asset('dashboard-template-assets/js/sb-admin-2.min.js') }}"></script>
 
 </body>
 

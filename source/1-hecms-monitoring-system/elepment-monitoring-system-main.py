@@ -670,11 +670,11 @@ class App:
                                 update_database_thread = threading.Thread(target=self.update_database, args=(("device_id", number_of_elephants, image_np_with_detections)))
                                 update_database_thread.start()
                                                                 
-                                #email_thread = threading.Thread(target=self.send_email, args=(("gunarakulan@gmail.com", "1234", "Batticaloa, Kallady Device 01", location, number_of_elephants)))
-                                #email_thread.start()
+                                email_thread = threading.Thread(target=self.send_email, args=(("gunarakulan@gmail.com", "1234", "Batticaloa, Kallady Device 01", location, number_of_elephants)))
+                                email_thread.start()
                                 
-                                #sms_thread = threading.Thread(target=self.send_sms, args=(("94740001141", "1234", "Batticaloa, Kallady Device 01", location, number_of_elephants)))
-                                #sms_thread.start()
+                                sms_thread = threading.Thread(target=self.send_sms, args=(("94740001141", "1234", "Batticaloa, Kallady Device 01", location, number_of_elephants)))
+                                sms_thread.start()
 
                             number_of_time_detected = 0
 

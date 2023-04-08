@@ -13,14 +13,17 @@
 
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="{{ asset('dashboard-template-assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="{{ asset('dashboard-template-assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet"
+        type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{ asset('dashboard-template-assets/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('dashboard-template-assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
 
 </head>
@@ -36,14 +39,14 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-text mx-3">HECMS <br> <span>
-                
-                    @if(Session::get('LoginAccess') == "[SUPER_ADMIN]")
-                        Super Admin
-                    @elseif(Session::get('LoginAccess') == "[DEVICE ADMIN]")
-                        Device Admin
-                    @endif
-                                    
-                </span></div>
+
+                        @if (Session::get('LoginAccess') == '[SUPER_ADMIN]')
+                            Super Admin
+                        @elseif(Session::get('LoginAccess') == '[DEVICE ADMIN]')
+                            Device Admin
+                        @endif
+
+                    </span></div>
 
             </a>
 
@@ -63,23 +66,25 @@
             </li>
 
             <li class="nav-item {{ $PageName == 'Vision Data' ? 'active' : '' }}">
-                <a class="nav-link collapsed" href="{{route('DataManagementViewLink', ['search_by_date' => '[FALSE]']) }}">
+                <a class="nav-link collapsed"
+                    href="{{ route('DataManagementViewLink', ['search_by_date' => '[FALSE]']) }}">
                     <i class="fas fa-fw fa-database"></i>
                     <span>Data Management</span>
                 </a>
             </li>
 
             <li class="nav-item {{ $PageName == 'Audio Data' ? 'active' : '' }}">
-                <a class="nav-link collapsed" href="{{ route('DeviceManagementViewLink', ['search_by_date' => '[FALSE]']) }}" >
+                <a class="nav-link collapsed"
+                    href="{{ route('DeviceManagementViewLink', ['search_by_date' => '[FALSE]']) }}">
                     <i class="fas fa-fw fa-microchip"></i>
                     <span>
-                        
-                        @if(Session::get('LoginAccess') == "[SUPER_ADMIN]")
+
+                        @if (Session::get('LoginAccess') == '[SUPER_ADMIN]')
                             Device Management
-                        @elseif(Session::get('LoginAccess') == "[DEVICE ADMIN]")
+                        @elseif(Session::get('LoginAccess') == '[DEVICE ADMIN]')
                             Device Preferences
                         @endif
-                        
+
                     </span>
                 </a>
             </li>
@@ -93,7 +98,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('LogoutFunctionLink') }}" >
+                <a class="nav-link collapsed" href="{{ route('LogoutFunctionLink') }}">
                     <i class="fas fa-fw fa-power-off"></i>
                     <span>Logout</span>
                 </a>
@@ -117,14 +122,15 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand text-center navbar-light bg-white topbar mb-4 static-top text-center shadow">
+                <nav
+                    class="navbar navbar-expand text-center navbar-light bg-white topbar mb-4 static-top text-center shadow">
 
                     <div style="width: 100%;">
 
                         <h1 style="text-align: center !important;">{{ $PageName }}</h1>
 
                     </div>
-      
+
 
                 </nav>
                 <!-- End of Topbar -->
@@ -132,18 +138,20 @@
                 <!-- Begin Page Content -->
 
                 <div id="main-content">
-                  
+
                     @yield('content')
 
-                </div>            
+                </div>
 
             </div>
-                <!-- /.container-fluid -->
+            <!-- /.container-fluid -->
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>© 2023 HECMS | All rights reserved | Created by <a href="https://www.linkedin.com/in/gunarakulangunaretnam/" target="_blank">Gunarakulan Gunaretnam</a></span>
+                        <span>© 2023 HECMS | All rights reserved | Created by <a
+                                href="https://www.linkedin.com/in/gunarakulangunaretnam/" target="_blank">Gunarakulan
+                                Gunaretnam</a></span>
                     </div>
                 </div>
             </footer>
@@ -181,22 +189,22 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('dashboard-template-assets/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{ asset('dashboard-template-assets/vendor/jquery/jquery.min.js') }}"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src= "{{asset('dashboard-template-assets/vendor/bootstrap/js/bootstrap.bundle.min.js"')}}"></script>
+    <script src="{{ asset('dashboard-template-assets/vendor/bootstrap/js/bootstrap.bundle.min.js"') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{{asset('dashboard-template-assets/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    <script src="{{ asset('dashboard-template-assets/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{{asset('dashboard-template-assets/js/sb-admin-2.min.js')}}"></script>
+    <script src="{{ asset('dashboard-template-assets/js/sb-admin-2.min.js') }}"></script>
 
     <!-- Page level plugins -->
-    <script src="{{asset('dashboard-template-assets/vendor/chart.js/Chart.min.js')}}"></script>
+    <script src="{{ asset('dashboard-template-assets/vendor/chart.js/Chart.min.js') }}"></script>
 
     <!-- Page level custom scripts -->
-    <script src="{{asset('dashboard-template-assets/js/demo/chart-area-demo.js')}}"></script>
-    <script src="{{asset('dashboard-template-assets/js/demo/chart-pie-demo.js')}}"></script>
+    <script src="{{ asset('dashboard-template-assets/js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('dashboard-template-assets/js/demo/chart-pie-demo.js') }}"></script>
 
 </body>
 
