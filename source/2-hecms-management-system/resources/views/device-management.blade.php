@@ -2,6 +2,42 @@
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">
+
+        @if ($errors->any())
+            <div id="error-box" style="text-align:center;margin-top:20px;"
+                class="alert alert-danger col-md-12 alert-dismissible fade show" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{!! $error !!}</li>
+                    @endforeach
+                </ul>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <script>
+                window.onload = function() {
+                    $("#error-box").delay(3000).fadeOut();
+                }
+            </script>
+        @endif
+
+        @if (session('success'))
+            <div id="success-box" style="text-align:center;margin-top:20px;"
+                class="alert alert-success col-md-12 alert-dismissible fade show" role="alert">
+                <strong>{{ session('success') }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <script>
+                window.onload = function() {
+                    $("#success-box").delay(3000).fadeOut();
+                }
+            </script>
+        @endif
+
         <!-- Page Heading -->
         <div class="row">
             <div class="card" style="width: 100%;">
@@ -69,45 +105,55 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="{{ route('AddNewDeviceLink') }}" method="POST">
+                            @csrf
                             <div class="form-group">
                                 <label for="deviceId" class="col-form-label">Device ID:</label>
-                                <input type="text" class="form-control" id="deviceId">
+                                <input type="text" class="form-control" id="deviceId" readonly
+                                    value="{{ $UniqueID }}" name="deviceId" required>
                             </div>
                             <div class="form-group">
                                 <label for="deviceName" class="col-form-label">Device Name:</label>
-                                <input type="text" class="form-control" id="deviceName">
+                                <input type="text" class="form-control" id="deviceName" name="deviceName" required>
                             </div>
                             <div class="form-group">
                                 <label for="latitude" class="col-form-label">Latitude:</label>
-                                <input type="text" class="form-control" id="latitude">
+                                <input type="text" class="form-control" id="latitude" name="latitude" required>
                             </div>
                             <div class="form-group">
                                 <label for="longitude" class="col-form-label">Longitude:</label>
-                                <input type="text" class="form-control" id="longitude">
+                                <input type="text" class="form-control" id="longitude" name="longitude" required>
                             </div>
                             <div class="form-group">
                                 <label for="authorityEmail" class="col-form-label">Authority Email:</label>
-                                <input type="email" class="form-control" id="authorityEmail">
+                                <input type="email" class="form-control" id="authorityEmail" name="authorityEmail"
+                                    required>
                             </div>
                             <div class="form-group">
                                 <label for="authorityPhone" class="col-form-label">Authority Phone:</label>
-                                <input type="tel" class="form-control" id="authorityPhone">
+                                <input type="tel" class="form-control" id="authorityPhone" name="authorityPhone"
+                                    required>
                             </div>
                             <div class="form-group">
                                 <label for="username" class="col-form-label">Username:</label>
-                                <input type="text" class="form-control" id="username">
+                                <input type="text" class="form-control" readonly value="{{ $UniqueID }}"
+                                    id="username" name="username" required>
                             </div>
+
                             <div class="form-group">
                                 <label for="password" class="col-form-label">Password:</label>
-                                <input type="text" class="form-control" id="password">
+                                <input type="text" class="form-control" id="password" minlength="6"
+                                    name="password" required>
                             </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Add Device</button>
+                            </div>
+
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Add Device</button>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -154,7 +200,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="password" class="col-form-label">Password:</label>
-                                <input type="text" class="form-control" id="editPassword">
+                                <input type="text" class="form-control" id="password" minlength="6"
+                                    name="password" required>
                             </div>
                         </form>
                     </div>

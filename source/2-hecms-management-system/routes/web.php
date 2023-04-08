@@ -27,7 +27,11 @@ Route::get('/show-image/{id}', [PageController::class, 'ShowImageFunctionInNewPa
 
 Route::get('/data-management-view/{search_by_date}', [PageController::class, 'ViewDataManagementFunction'])->name("DataManagementViewLink");
 
-Route::get('/device-management-view/{search_by_date}', [PageController::class, 'ViewDeviceManagementFunction'])->name("DeviceManagementViewLink");
+Route::get('/device-management-view', [PageController::class, 'ViewDeviceManagementFunction'])->name("DeviceManagementViewLink");
+
+Route::post('/add-new-device', [PageController::class, 'AddNewDeviceFunction'])->name("AddNewDeviceLink");
+
+
 
 Route::get('/settings-view', [PageController::class, 'ViewSettingsFunction'])->name("SettingsViewLink");
 

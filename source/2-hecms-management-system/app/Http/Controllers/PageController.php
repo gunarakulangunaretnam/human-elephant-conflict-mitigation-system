@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class PageController extends Controller
 {
@@ -99,13 +100,19 @@ class PageController extends Controller
         
     }
 
-    public function ViewDeviceManagementFunction(string $search_by_date){
+    public function ViewDeviceManagementFunction(){
     
         $login_access_session = Session::get('LoginAccess');
     
         if($login_access_session == '[SUPER_ADMIN]'){
 
-            return view('device-management',['PageName' => 'Device Management']); 
+
+
+            $unique_id = substr(uniqid(), 0, 10);
+
+
+
+            return view('device-management',['PageName' => 'Device Management', 'UniqueID' => $unique_id]); 
             
         }else if($login_access_session == '[DEVICE_ADMIN]'){
 
@@ -118,6 +125,72 @@ class PageController extends Controller
         }
         
     }
+
+    public function AddNewDeviceFunction(Request $request){
+
+        $login_access_session = Session::get('LoginAccess');
+
+        if ($login_access_session == '[SUPER_ADMIN]') {
+
+            // Define validation rules
+            $rules = [
+                'deviceId' => 'required|unique:device,device_id',
+                'deviceName' => 'required',
+                'latitude' => 'required|numeric',
+                'longitude' => 'required|numeric',
+                'authorityEmail' => 'required|email',
+                'authorityPhone' => 'required',
+                'username' => 'required|unique:user_account,username',
+                'password' => 'required|min:6',
+            ];            
+
+            // Run validation
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                // Redirect back with errors
+                return redirect()->back()->withErrors($validator)->withInput();
+            }else{
+
+                 // Retrieve the form data
+                $device_id = $request->input('deviceId');
+                $device_name = $request->input('deviceName');
+                $latitude = $request->input('latitude');
+                $longitude = $request->input('longitude');
+                $authority_email = $request->input('authorityEmail');
+                $authority_phone = $request->input('authorityPhone');
+                $username = $request->input('username');
+                $password = $request->input('password');
+
+                // Insert the data into the database
+                DB::table('device')->insert([
+                    'device_id' => $device_id,
+                    'device_name' => $device_name,
+                    'latitude' => $latitude,
+                    'longitude' => $longitude,
+                    'authority_email' => $authority_email,
+                    'authority_phone' => $authority_phone
+                ]);
+
+                DB::table('user_account')->insert([
+                    'username' => $username,
+                    'password' => $password,
+                    "account_type" => 'device_admin'
+                ]);
+
+                // Redirect back to the device management view
+                return redirect()->route('DeviceManagementViewLink')->with('success', 'The device has been added successfully.');
+                
+            }
+
+           
+        } else {
+
+            return redirect()->route('IndexPageLink');
+
+        }
+    }
+
     
 
     public function ViewSettingsFunction(){
