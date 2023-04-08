@@ -220,45 +220,52 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+
+                        <form action="{{ route('UpdateDeviceLink') }}" method="post">
+                            @csrf
                             <div class="form-group">
                                 <label for="editDeviceId" class="col-form-label">Device ID:</label>
-                                <input type="text" class="form-control" id="editDeviceId">
+                                <input type="text" class="form-control" id="editDeviceId" name="editDeviceId"
+                                    readonly>
                             </div>
                             <div class="form-group">
                                 <label for="editDeviceName" class="col-form-label">Device Name:</label>
-                                <input type="text" class="form-control" id="editDeviceName">
+                                <input type="text" class="form-control" id="editDeviceName" name="editDeviceName">
                             </div>
                             <div class="form-group">
                                 <label for="editLatitude" class="col-form-label">Latitude:</label>
-                                <input type="text" class="form-control" id="editLatitude">
+                                <input type="text" class="form-control" id="editLatitude" name="editLatitude">
                             </div>
                             <div class="form-group">
                                 <label for="editLongitude" class="col-form-label">Longitude:</label>
-                                <input type="text" class="form-control" id="editLongitude">
+                                <input type="text" class="form-control" id="editLongitude" name="editLongitude">
                             </div>
                             <div class="form-group">
                                 <label for="editAuthorityEmail" class="col-form-label">Authority Email:</label>
-                                <input type="email" class="form-control" id="editAuthorityEmail">
+                                <input type="email" class="form-control" id="editAuthorityEmail"
+                                    name="editAuthorityEmail">
                             </div>
                             <div class="form-group">
                                 <label for="editAuthorityPhone" class="col-form-label">Authority Phone:</label>
-                                <input type="tel" class="form-control" id="editAuthorityPhone">
+                                <input type="tel" class="form-control" id="editAuthorityPhone"
+                                    name="editAuthorityPhone">
                             </div>
                             <div class="form-group">
-                                <label for="username" class="col-form-label">Username:</label>
-                                <input type="text" class="form-control" id="editUsername">
+                                <label for="editUsername" class="col-form-label">Username:</label>
+                                <input type="text" class="form-control" id="editUsername" name="editUsername"
+                                    readonly>
                             </div>
                             <div class="form-group">
-                                <label for="password" class="col-form-label">Password:</label>
+                                <label for="editPassword" class="col-form-label">Password:</label>
                                 <input type="text" class="form-control" id="editPassword" minlength="6"
-                                    name="password" required>
+                                    name="editPassword" required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save Changes</button>
+
                     </div>
                 </div>
             </div>
