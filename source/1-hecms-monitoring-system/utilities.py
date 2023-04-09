@@ -916,7 +916,7 @@ class App:
         if hasattr(self, 'vid') and self.vid.isOpened():
             self.vid.release()
 
-def run_main_app(device_id, device_name, latitude, longitude, authority_email, authority_phone):
+def run_app(device_id, device_name, latitude, longitude, authority_email, authority_phone):
     global global_device_id, global_device_name, global_latitude, global_longitude, global_authority_email, global_authority_phone
 
     global_device_id = device_id
