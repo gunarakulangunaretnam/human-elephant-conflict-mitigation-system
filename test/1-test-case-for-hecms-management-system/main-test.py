@@ -1,11 +1,9 @@
-import os
 import utilities
 from html import escape
 from datetime import datetime
 
-test_folder = f"results/{datetime.now().strftime('%Y-%m-%d')}-{datetime.now().strftime('%H-%M-%S')}-results"
+test_folder = f'results/{datetime.now().strftime('%Y-%m-%d')}-{datetime.now().strftime('%H-%M-%S')}'
 os.mkdir(test_folder) 
-os.mkdir(f"{test_folder}/screenshots") 
 
 utilities.test_folder = test_folder # Passing the test folder name
 
@@ -82,5 +80,5 @@ final_html = html_template.format(
 )
 
 # Write the HTML to a file
-with open(f'{test_folder}/test-results.html', 'w') as f:
+with open(f'results/{end_date}-{end_time.replace(":", "-")}-test-results.html', 'w') as f:
     f.write(final_html)
