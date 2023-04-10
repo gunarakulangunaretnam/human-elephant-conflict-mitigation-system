@@ -51,13 +51,13 @@ def test_login_succeed(): # Test Login Failed
     pyautogui.press('tab')
 
     # Type the username
-    pyautogui.typewrite("64315b0a75")
+    pyautogui.typewrite("test_account")
 
     # Press TAB to focus on the password textbox
     pyautogui.press('tab')
 
     # Type the password
-    pyautogui.typewrite("device2")
+    pyautogui.typewrite("test123")
 
     # Press TAB to focus on the login button
     pyautogui.press('tab')
