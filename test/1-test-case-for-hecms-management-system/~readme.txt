@@ -1,15 +1,14 @@
+IMPORTANT
+---------
+
+- Chrome Driver is on the "assets" folder; change it to match your Chrome version, otherwise it won't work.
+
+
 Steps to run
 ------------
+	
+	
+Step 01: Run the localhost|
 
-Step 01: Run the monitoring app
-	source/1-hecms-monitoring-system/main.py
-
-Step 02: Run the testing script
-	test/0-test-case-for-hecms-monitoring-system/main-test.py
-
-Outputs
--------
-
-- Testing reulsts can be found under the "results" folder.
-- Testing screenshot can be found under the "temp" folder.
+Step 02: Run the "main-test.py" test script.
 
