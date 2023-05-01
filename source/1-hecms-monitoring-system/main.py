@@ -3,7 +3,6 @@ import tkinter as tk
 import mysql.connector 
 import utilities
 
-
 def main_app():
 
     ### START DATABASE CONNECTION ###
