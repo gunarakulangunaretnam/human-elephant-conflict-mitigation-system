@@ -125,7 +125,7 @@ Check Here:- [https://www.tensorflow.org/install/source#gpu](https://www.tensorf
 
 ![TensorFlow Versions](docs/github-readme-content/tensorflow-version.jpg)
 
-To successfully install TensorFlow (version 2.7.0), it is necessary to first install CUDA (version 8.1), followed by CUDDN (version 11.2), as indicated in the accompanying chart.
+The system uses TensorFlow version 2.7.0. To successfully install TensorFlow (version 2.7.0), it is necessary first to install CUDA (version 8.1), followed by CUDDN (version 11.2), as indicated in the accompanying chart.Other versions of TensorFlow might be supported. However, version 2.7.0 is highly recommended; it was tested and developed with this version.
 
 It is important to note that the the above chart provides clear instructions on the appropriate versions of CUDA and CUDDN to install for compatibility with the selected version of TensorFlow.
 
@@ -190,67 +190,7 @@ After successfully installing CUDA and CUDDN, it is important to add their respe
 
   ![TensorFlow Versions](docs/github-readme-content/check-cuda-install.jpg)
 
-If it shows like above, that means you have successfully installed CUDA in your computer.
-
-### 02. Installing TensorFlow
-
-Now, It's time to install TensorFlow. It is simple now. Just open CMD and type following command, that will install TensorFlow for both environments including GPU.
-
-Note: If your computer does not have a GPU, You can still install it. It will only install the CPU version, if it does not find CUDA & CUDDN.
-
-- Installing TensorFlow
-
-  ```
-    pip install tensorflow==2.7.0
-  ```
-
-To check whether this installed TensorFlow utilize the GPU. Open python interpreter and write following code. It will show the GPU memory.
-
-- Check TensorFlow uses GPU
-  ```
-  import tensorflow as tf
-  print(tf.test.gpu_device_name())
-  ```
-
-Note: If your computer does not have a GPU, you need to check it. You can simply skip everything, including CUDA & CUDDN installation and only install "pip install tensorflow" and go ahead with the next step.
-
-### 03. Installing Object Detection Framework
-
-In order to install the object detection framework, clone the following repository. This repo contains Google Research of TensorFlow and Object Detection essential Contents.
-
-Clone this Google models repository:- [https://github.com/tensorflow/models](https://github.com/tensorflow/models)
-
-This repo is large. it contains almost all files of the TensorFlow and Google Object Detection Framework researches, we should install it manually to utilize the object detection framework.
-
-- Clone models repo
-
-  ```
-    git clone https://github.com/tensorflow/models.git
-  ```
-
-Now, we have to download Protobuf to convert the serialize structured data.
-
-Download Protobuf:- [https://github.com/protocolbuffers/protobuf/releases](https://github.com/protocolbuffers/protobuf/releases)
-
-01.Extract it.
-
-02.Copy the protoc.exe and paste it under the cloned repo (models/research) folder.
-
-- From models/research folder, Execute the following code in CMD
-
-  ```
-    protoc object_detection/protos/*.proto --python_out=.
-  ```
-
-  03.To install the object detection manually, copy the setup.py that is under (models/research/object_detection/packages/tf2/setup.py) and paste in the (models/research) folder.
-
-- Install object detection manually from (models/research).
-
-  ```
-    pip install -e .
-  ```
-
-  04.After the installation, we don't need the cloned models repo anymore.
+If it shows like above, that means CUDA has been installed successfully.
 
 ### 04. Installing Other Frameworks
 
