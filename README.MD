@@ -60,6 +60,14 @@ Both systems have a shared database in the middle, and their main functionalitie
 
 This flowchart explains how the elephant model detection functions. First, it gets the video stream as the input source; then, it will be transmitted to the next layer to break the video into frames. A frame will be sent to the preprocessing unit to clean up, and then inverts the frame into a numerical vector. The frame will be thrown to the neural network for processing, and then it outputs the confidence value; if the confidence value is greater than or equal to the threshold value, it is considered a positive prediction, and then the system will play artificial sound, send SMS, email, and update database; otherwise, the system processes each frame one by one in a looping manner.
 
+### 3.4 ER Diagram
+
+![ER Diagram](docs/github-readme-content/er-diagram.png)
+
+The ER (Entity-Relationship) diagram explains the structure of the database system in a graphical way; it is the visual representation of the database functions, attributes, and relationships between tables.
+
+The above diagram clearly defines three main tables: Device, Data, and User Accounts. The Data table contains detection data, the Device table includes the monitoring system’s device data, and the User Account table contains the user account details. This is the shared database utilized by both systems Monitoring and Management systems.
+
 ## Configuration & Setup
 
 This project supports CPU and GPU environments to run. If your computer has a GPU (Graphics Processing Unit) with CUDA-Enabled, You can setup a GPU-TensorFlow version to run this application much faster.
