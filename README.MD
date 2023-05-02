@@ -51,8 +51,8 @@ The system aims to lead Sri Lankan communities in technology to be more powerful
 ├── test                                        # Contains testing scripts.
 │   ├── 0-test-case-for-hecms-monitoring-system   # Contains test caes for monitoring system.
 │   └── 1-test-case-for-hecms-management-system   # Contains test caes for management system.
-├── LICENCE                               # Licence File.
-└── README.MD                             # Readme file.
+├── LICENCE                                     # Licence File.
+└── README.MD                                   # Readme file.
 ```
 
 ## 04 System Architecture
