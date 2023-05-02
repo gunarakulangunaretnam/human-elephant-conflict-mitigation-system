@@ -101,13 +101,17 @@ The Use Case Diagram is a Unified Modeling Language (UML) behavioral diagram tha
 
 ## 05 Setup
 
+This section covers how to set up the human-elephant conflicts mitigation system; this system consists of two main sub-systems: the monitoring system and the management system. The monitoring system is the video processor component that could be installed on a computing device in the jungle to identify elephants; the management system is an analytics system used by the conflicts management team to analyze the incident data. This section shows how to install the necessary dependencies to set it up successfully.
+
+### 5.1 Setup Monitoring System
+
 This project has been designed to operate on both CPU and GPU environments. Utilizing a Graphics Processing Unit (GPU) with CUDA-Enabled technology will enhance the application's performance, allowing faster processing times.
 
 If a GPU is unavailable on the target computer, the application can still be installed and run on the CPU. However, it is essential to note that processing times may be significantly slower when using a CPU than a GPU.
 
 Even though the target computer has a GPU, it is necessary to install CUDA and CUDDN to enable GPU support for TensorFlow. Otherwise, the GPU cannot be utilized but can be run on the CPU.
 
-### 5.1 Installing CUDA & CUDDN (Optional)
+#### 5.1.1 Installing CUDA & CUDDN (Optional)
 
 It is highly recommended to skip the CUDA & CUDDN installation if the target computer does not have a GPU, as the system can still operate on the CPU. However, it is essential to note that this may result in slower processing times.
 
