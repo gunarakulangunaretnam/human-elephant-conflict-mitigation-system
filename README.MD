@@ -137,7 +137,7 @@ Download CUDA From Here:- [https://developer.nvidia.com/cuda-toolkit-archive](ht
 
 ![TensorFlow Versions](docs/github-readme-content/cuda-version.jpg)
 
-Download & Install the appropriate CUDA version from the official website of NVIDIA.The installation process is simple, we can install it with the GUI installer.
+Download & Install the appropriate CUDA version from the official website of NVIDIA.The installation process is simple, can be installed it with the GUI.
 
 ![TensorFlow Versions](github-readme-content/cuda-install.png)
 
@@ -147,36 +147,36 @@ Download CUDDN From Here:- [https://developer.nvidia.com/rdp/cudnn-archive](http
 
 ![TensorFlow Versions](docs/github-readme-content/cuddn-install.jpg)
 
-Download & Install the appropriate CUDDN version from the official website of NVIDIA.This time, the installation process is bit tricky.
+Download & Install the appropriate CUDDN version from the official website of NVIDIA. This time, the installation process is bit tricky.
 
 01.Download and Extract CUDDN zip.
 
 02.There are 3 following folders in it.
 
+```
 - bin
 - include
 - lib
+```
 
-  03.Open the CUDA Installation directory (WHERE is the CUDA installed) Ex: (C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2)
+03.Open the CUDA Installation directory (WHERE is the CUDA installed) Ex: (C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2)
 
 ![TensorFlow Versions](docs/github-readme-content/cuda-install2.png)
 
-04.Copy all content from bin, include, lib folder from the extracted CUDDN zip to the installed CUDA directory's bin, include, lib. An example is shown above.
+04.Copy all content from "bin", "include", "lib" folders from the extracted CUDDN zip to the installed CUDA directory's bin, include, lib. An example is shown above.
 
 ##### Step 04: Add CUDA & CUDDN Path to the environment variable.
 
-After that installation of CUDA & CUDDN, we need to add the path to the environment variable. Go to PC settings and add them. If you don't know how to add them, just google it.
+After successfully installing CUDA and CUDDN, it is important to add their respective paths to the environment variable on your PC. This will ensure that the system is able to locate and use these dependencies when running TensorFlow applications.
 
-01.We need to add the following path.
+01.Add the following path to the environment variable.
 
 - Bin Path
 - Libnvp Path
 
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\bin
+`C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\bin`
 
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\libnvvp\
-
-Note: Make sure to add the correct path.
+`C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\libnvvp\`
 
 ![TensorFlow Versions](docs/github-readme-content/env-path.jpg)
 
