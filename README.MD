@@ -107,7 +107,7 @@ This section covers how to set up the human-elephant conflicts mitigation system
 
 This project has been designed to operate on both CPU and GPU environments. Utilizing a Graphics Processing Unit (GPU) with CUDA-Enabled technology will enhance the application's performance, allowing faster processing times.
 
-If a GPU is unavailable on the target computer, the application can still be installed and run on the CPU. However, it is essential to note that processing times may be significantly slower when using a CPU than a GPU.
+If a GPU is unavailable on the target computer, the system can still be installed and run on the CPU. However, it is essential to note that processing times may be significantly slower when using a CPU than a GPU.
 
 Even though the target computer has a GPU, it is necessary to install CUDA and CUDDN to enable GPU support for TensorFlow. Otherwise, the GPU cannot be utilized but can be run on the CPU.
 
@@ -117,7 +117,7 @@ It is highly recommended to skip the CUDA & CUDDN installation if the target com
 
 Suppose the target computer has a GPU. But if it is chosen not to install CUDA & CUDDN, it is still possible to skip the installation. However, the system can only utilize the CPU power, even though a hardware-based GPU is available. Therefore, CUDA & CUDDN is similar to drivers that enable GPU support.
 
-It is highly recommended to install CUDA & CUDDN if the target computer has a GPU to enable faster processing.
+It is highly recommended to install CUDA & CUDDN if the target computer has a GPU to enable faster processing. The installation steps of CUDA & CUDDN are provided below.
 
 ##### Step 01: Checking suitable CUDA & CUDDN verions for TensorFlow.
 
@@ -125,11 +125,11 @@ Check Here:- [https://www.tensorflow.org/install/source#gpu](https://www.tensorf
 
 ![TensorFlow Versions](docs/github-readme-content/tensorflow-version.jpg)
 
-We are going to install TensorFlow (V 2.7.0), Therefore, we need to install CUDA (V 8.1) and CUDDN (V 11.2) according to the chart above.
+To successfully install TensorFlow (version 2.7.0), it is necessary to first install CUDA (version 8.1), followed by CUDDN (version 11.2), as indicated in the accompanying chart.
 
-First, we need to install CUDA (V 8.1) then, we should install CUDDN (V 11.2) for the TensorFlow (V 2.7.0).
+It is important to note that the the above chart provides clear instructions on the appropriate versions of CUDA and CUDDN to install for compatibility with the selected version of TensorFlow.
 
-The above chart clearly explains which CUDA & CUDDN versions that we should install for the selected TensorFlow.
+Accordingly, the installation process should commence with the installation of CUDA, followed by the installation of CUDDN, to ensure that the TensorFlow installation is successful and fully compatible with the selected versions of these dependencies.
 
 ##### Step 02: Installing CUDA
 
@@ -220,7 +220,7 @@ In order to install the object detection framework, clone the following reposito
 
 Clone this Google models repository:- [https://github.com/tensorflow/models](https://github.com/tensorflow/models)
 
-This repo is large (700MB). it contains almost all files of the TensorFlow and Google Object Detection Framework researches, we should install it manually to utilize the object detection framework.
+This repo is large. it contains almost all files of the TensorFlow and Google Object Detection Framework researches, we should install it manually to utilize the object detection framework.
 
 - Clone models repo
 
