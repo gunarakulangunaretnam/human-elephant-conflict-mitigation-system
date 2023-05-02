@@ -34,11 +34,32 @@ The system aims to lead Sri Lankan communities in technology to be more powerful
 | **Pygame**          | Ver: 2.3.0    |
 | **PyShorteners**    | Ver: 1.0.1    |
 
-## 03 System Architecture
+## 03 Repo Structure
+
+```text
+.
+├── docs                                        # Documents Folder.
+│   ├── github-readme-content                     # Contains GitHub Readme Content.
+│   └── project-documentations                    # Contains Project-related Documents.
+├── research                                    # Contains Research files
+│   ├── 0-project-prototypes                      # Contains project prototypes; Ex: Detection scripts | TFLITE models.
+│   └── 1-supporting-scripts                      # Contains frame extractor & night image vision converter scripts.
+├── source                                      # Contains Source Code (Main Project Folder)
+│   ├── 0-resources                               # Contains resources: database, requirements.yml.
+│   ├── 1-hecms-monitoring-system                 # Contains Monitoring System Project.
+│   └── 1-hecms-management-system                 # Contains Management System Project.
+├── test                                        # Contains testing scripts.
+│   ├── 0-test-case-for-hecms-monitoring-system   # Contains test caes for monitoring system.
+│   └── 1-test-case-for-hecms-management-system   # Contains test caes for management system.
+├── LICENCE                               # Licence File.
+└── README.MD                             # Readme file.
+```
+
+## 04 System Architecture
 
 This section presents an overview of the system architecture for the Artificial Intelligence-based Human Elephant Conflict Mitigation System. The system architecture comprises various elements, including diagrams, flowcharts, components, UML use-case and class diagrams, ER-Diagrams, etc.
 
-### 3.1 Architecture Diagram
+### 4.1 Architecture Diagram
 
 ![Architecture Diagram](docs/github-readme-content/architecture-diagram.png)
 
@@ -46,7 +67,7 @@ There is a “Head Office” on the right side of the diagram, which means they 
 
 On the left side, there are two zones presented as examples, “Habarana Zone” and “Anuradhapura Zone” (Popular elephant conflict places in Sri Lanka), and each zone has a device admin. That device admin has basic access to the Management System through the Device Admin account. Each zone has a Monitoring System installed on a computing device that processes video frames to check elephant presence. If elephants are detected, it will send an SMS to the corresponding villager and an email to “Head Office,” The incident data will be transmitted to Management System. Those can be accessed by “Head Office” and that device admin.In the middle, the database is shared between Management and Monitoring systems to proceed with the granted operations.
 
-### 3.2 Structure Diagram
+### 4.2 Structure Diagram
 
 ![Structure Diagram](docs/github-readme-content/structure-diagram.jpg)
 
@@ -54,13 +75,13 @@ The above structured-based architecture diagram clearly explains how the Human E
 
 Both systems have a shared database in the middle, and their main functionalities are also clearly mentioned; the monitoring system’s primary functions are Elephant detection, SMS sending, Email Sending, artificial sound playing, and database updating, and the management system’s functions are analyzed data, manage data, and create new devices, etc.
 
-### 3.3 Elephant Detection Process Flowchart
+### 4.3 Elephant Detection Process Flowchart
 
 ![Elephant Detection Process Flowchart](docs/github-readme-content/flowchart-elephant-detection.png)
 
 This flowchart explains how the elephant model detection functions. First, it gets the video stream as the input source; then, it will be transmitted to the next layer to break the video into frames. A frame will be sent to the preprocessing unit to clean up, and then inverts the frame into a numerical vector. The frame will be thrown to the neural network for processing, and then it outputs the confidence value; if the confidence value is greater than or equal to the threshold value, it is considered a positive prediction, and then the system will play artificial sound, send SMS, email, and update database; otherwise, the system processes each frame one by one in a looping manner.
 
-### 3.4 ER Diagram
+### 4.4 ER Diagram
 
 ![ER Diagram](docs/github-readme-content/er-diagram.png)
 
@@ -68,13 +89,13 @@ The ER (Entity-Relationship) diagram explains the structure of the database syst
 
 The above diagram clearly defines three main tables: Device, Data, and User Accounts. The Data table contains detection data, the Device table includes the monitoring system’s device data, and the User Account table contains the user account details. This is the shared database utilized by both systems Monitoring and Management systems.
 
-### 3.5 Use Case Diagram
+### 4.5 Use Case Diagram
 
 ![Use Case Diagram](docs/github-readme-content/use-case-diagram.png)
 
 The Use Case Diagram is a Unified Modeling Language (UML) behavioral diagram that represents the Elephant Conflict Mitigation System's interactions between users (Super Admin and Device Admin). The Use Case Diagram can illustrate the system's different use cases or functionalities and the users who interact with the system.
 
-### 3.6 Workflow Diagram
+### 4.6 Workflow Diagram
 
 ![Use Case Diagram](docs/github-readme-content/workflow.png)
 
