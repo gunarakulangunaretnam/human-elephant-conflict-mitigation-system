@@ -46,6 +46,14 @@ There is a “Head Office” on the right side of the diagram, which means they 
 
 On the left side, there are two zones presented as examples, “Habarana Zone” and “Anuradhapura Zone” (Popular elephant conflict places in Sri Lanka), and each zone has a device admin. That device admin has basic access to the Management System through the Device Admin account. Each zone has a Monitoring System installed on a computing device that processes video frames to check elephant presence. If elephants are detected, it will send an SMS to the corresponding villager and an email to “Head Office,” The incident data will be transmitted to Management System. Those can be accessed by “Head Office” and that device admin.In the middle, the database is shared between Management and Monitoring systems to proceed with the granted operations.
 
+### 3.2 Structure Diagram
+
+![Architecture Diagram](docs/github-readme-content/structure-diagram.jpg)
+
+The above structured-based architecture diagram clearly explains how the Human Element Conflict Mitigation System (HECMS) functions structurally. HECMS is divided into two main sub-systems: the Monitoring System and the Management System.
+
+Both systems have a shared database in the middle, and their main functionalities are also clearly mentioned; the monitoring system’s primary functions are Elephant detection, SMS sending, Email Sending, artificial sound playing, and database updating, and the management system’s functions are analyzed data, manage data, and create new devices, etc.
+
 ## Configuration & Setup
 
 This project supports CPU and GPU environments to run. If your computer has a GPU (Graphics Processing Unit) with CUDA-Enabled, You can setup a GPU-TensorFlow version to run this application much faster.
