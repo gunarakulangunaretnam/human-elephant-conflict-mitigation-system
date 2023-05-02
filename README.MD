@@ -48,11 +48,17 @@ On the left side, there are two zones presented as examples, “Habarana Zone”
 
 ### 3.2 Structure Diagram
 
-![Architecture Diagram](docs/github-readme-content/structure-diagram.jpg)
+![Structure Diagram](docs/github-readme-content/structure-diagram.jpg)
 
 The above structured-based architecture diagram clearly explains how the Human Element Conflict Mitigation System (HECMS) functions structurally. HECMS is divided into two main sub-systems: the Monitoring System and the Management System.
 
 Both systems have a shared database in the middle, and their main functionalities are also clearly mentioned; the monitoring system’s primary functions are Elephant detection, SMS sending, Email Sending, artificial sound playing, and database updating, and the management system’s functions are analyzed data, manage data, and create new devices, etc.
+
+### 3.3 Elephant Detection Process Flowchart
+
+![Elephant Detection Process Flowchart](docs/github-readme-content/flowchart-elephant-detection.png)
+
+This flowchart explains how the elephant model detection functions. First, it gets the video stream as the input source; then, it will be transmitted to the next layer to break the video into frames. A frame will be sent to the preprocessing unit to clean up, and then inverts the frame into a numerical vector. The frame will be thrown to the neural network for processing, and then it outputs the confidence value; if the confidence value is greater than or equal to the threshold value, it is considered a positive prediction, and then the system will play artificial sound, send SMS, email, and update database; otherwise, the system processes each frame one by one in a looping manner.
 
 ## Configuration & Setup
 
