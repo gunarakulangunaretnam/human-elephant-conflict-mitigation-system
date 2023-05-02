@@ -190,9 +190,9 @@ After successfully installing CUDA and CUDDN, it is important to add their respe
 
   ![TensorFlow Versions](docs/github-readme-content/check-cuda-install.jpg)
 
-If it shows like above, that means CUDA has been installed successfully.
+If it shows like above, that means CUDA & CUDDN have been installed successfully.
 
-### 04. Installing Other Frameworks
+### 04.Installing Other Frameworks
 
 - Installing TF-Slim
 
