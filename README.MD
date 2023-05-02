@@ -1,6 +1,6 @@
 # Human Elephant Conflict Mitigation System
 
-## Introduction
+## 01 Introduction
 
 The human-elephant conflict is a persistent issue in Sri Lanka, where elephants are integral to the country's natural beauty and tourism industry. Due to this conflict, several lives and properties have been lost in rural areas of the country. The Sri Lankan government has been using electric fences to prevent elephants from entering villages, but it is unreliable.
 
@@ -10,11 +10,11 @@ The system is designed to provide efficient results during the day and nighttime
 
 The system aims to lead Sri Lankan communities in technology to be more powerful and productive to have beautiful lives for everyone. The ultimate goal of this project is to mitigate human-elephant conflicts and promote a sustainable solution for the issue.
 
-![Demo1](docs/github-readme-content/banner.png)
+![Introduction Image](docs/github-readme-content/banner.png)
 
-## Technology Stack
+## 02 Technology Stack
 
-### Primary Programming Tools
+### 2.1 Primary Programming Tools
 
 | Programming Tools | Version     | Description                     |
 | ----------------- | ----------- | ------------------------------- |
@@ -22,7 +22,7 @@ The system aims to lead Sri Lankan communities in technology to be more powerful
 | **MySQL**         | Ver: 15.1   | Used as central database.       |
 | **Laravel**       | Ver: 10.3.3 | Use to build management system. |
 
-### Python Dependencies (Monitoring System)
+### 2.2 Python Dependencies (Monitoring System)
 
 | Programming Tools   | Version       |
 | ------------------- | ------------- |
@@ -34,7 +34,17 @@ The system aims to lead Sri Lankan communities in technology to be more powerful
 | **Pygame**          | Ver: 2.3.0    |
 | **PyShorteners**    | Ver: 1.0.1    |
 
-## System Architecture
+## 03 System Architecture
+
+This section presents an overview of the system architecture for the Artificial Intelligence-based Human Elephant Conflict Mitigation System. The system architecture comprises various elements, including diagrams, flowcharts, components, UML use-case and class diagrams, ER-Diagrams, etc.
+
+### 3.1 Architecture Diagram
+
+![Architecture Diagram](docs/github-readme-content/architecture-diagram.png)
+
+There is a “Head Office” on the right side of the diagram, which means they will use the Management System, and all the conflict incidents data will be transferred to it and can be analyzed and accessed by the Head Office.
+
+On the left side, there are two zones presented as examples, “Habarana Zone” and “Anuradhapura Zone” (Popular elephant conflict places in Sri Lanka), and each zone has a device admin. That device admin has basic access to the Management System through the Device Admin account. Each zone has a Monitoring System installed on a computing device that processes video frames to check elephant presence. If elephants are detected, it will send an SMS to the corresponding villager and an email to “Head Office,” The incident data will be transmitted to Management System. Those can be accessed by “Head Office” and that device admin.In the middle, the database is shared between Management and Monitoring systems to proceed with the granted operations.
 
 ## Configuration & Setup
 
