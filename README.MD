@@ -125,13 +125,13 @@ Check Here:- [https://www.tensorflow.org/install/source#gpu](https://www.tensorf
 
 ![TensorFlow Versions](docs/github-readme-content/tensorflow-version.jpg)
 
-The system uses TensorFlow version 2.7.0. To successfully install TensorFlow (version 2.7.0), it is necessary first to install CUDA (version 8.1), followed by CUDDN (version 11.2), as indicated in the accompanying chart.Other versions of TensorFlow might be supported. However, version 2.7.0 is highly recommended; it was tested and developed with this version.
+The system uses TensorFlow version 2.7.0. To successfully install TensorFlow (version 2.7.0), it is necessary first to install CUDA (version 8.1), followed by CUDDN (version 11.2), as indicated in the accompanying chart. Other versions of TensorFlow might be supported. However, version 2.7.0 is highly recommended; it was tested and developed with this version.
 
 It is important to note that the the above chart provides clear instructions on the appropriate versions of CUDA and CUDDN to install for compatibility with the selected version of TensorFlow.
 
 Accordingly, the installation process should commence with the installation of CUDA, followed by the installation of CUDDN, to ensure that the TensorFlow installation is successful and fully compatible with the selected versions of these dependencies.
 
-##### Step 02: Installing CUDA
+##### Step 02: Installing CUDA (Ver: 8.1)
 
 Download CUDA From Here:- [https://developer.nvidia.com/cuda-toolkit-archive](https://developer.nvidia.com/cuda-toolkit-archive)
 
@@ -141,13 +141,13 @@ Download & Install the appropriate CUDA version from the official website of NVI
 
 ![TensorFlow Versions](github-readme-content/cuda-install.png)
 
-##### Step 03: Installing CUDDN
+##### Step 03: Installing CUDDN (Ver: 11.2)
 
 Download CUDDN From Here:- [https://developer.nvidia.com/rdp/cudnn-archive](https://developer.nvidia.com/rdp/cudnn-archive)
 
 ![TensorFlow Versions](docs/github-readme-content/cuddn-install.jpg)
 
-Download & Install the appropriate CUDDN version from the official website of NVIDIA. This time, the installation process is bit tricky.
+Download and install the appropriate CUDDN version from the official website of NVIDIA. This time, the installation process could be more challenging.
 
 01.Download and Extract CUDDN zip.
 
