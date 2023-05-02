@@ -72,7 +72,7 @@ The above diagram clearly defines three main tables: Device, Data, and User Acco
 
 ![Use Case Diagram](docs/github-readme-content/use-case-diagram.png)
 
-The above Use Case Diagram is a Unified Modeling Language (UML) behavioral diagram that represents the Elephant Conflict Mitigation System's interactions between users (Super Admin and Device Admin). The Use Case Diagram can illustrate the system's different use cases or functionalities and the users who interact with the system.
+The Use Case Diagram is a Unified Modeling Language (UML) behavioral diagram that represents the Elephant Conflict Mitigation System's interactions between users (Super Admin and Device Admin). The Use Case Diagram can illustrate the system's different use cases or functionalities and the users who interact with the system.
 
 ## Configuration & Setup
 
