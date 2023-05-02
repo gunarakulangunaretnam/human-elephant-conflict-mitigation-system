@@ -2,29 +2,39 @@
 
 ## Introduction
 
-This Elephant Detection System prevents human-elephant conflict and tracking of elephants using deep learning. The major aim of the study is to minimize the human-elephant conflict in the rural areas of Sri Lanka to protect human lives from elephant attacks.
+The human-elephant conflict is a persistent issue in Sri Lanka, where elephants are integral to the country's natural beauty and tourism industry. Due to this conflict, several lives and properties have been lost in rural areas of the country. The Sri Lankan government has been using electric fences to prevent elephants from entering villages, but it is unreliable.
 
-Sri Lanka is very famous for wild animals and their nature of beauty. Elephants are a key component of Sri Lankan tourism and the nature of beauty. However, human-wild elephant conflicts are the most frequently reported issue from various rural parts of our country. There have been many incidents in the past where conflict between humans and elephants has caused serious damage and resulted in the loss of lives as well as property.
+An Artificial Intelligence-based Human Elephant Conflict Mitigation System has been developed to address the persistent issue of human-elephant conflict in Sri Lanka. The system employs CCTV cameras and wildlife camera traps to detect elephants in video frames and subsequently sends early warning messages to the corresponding village authorities to take appropriate actions. Furthermore, the system implements external methods, such as artificial sounds of buzzing bees and firecrackers, to discourage elephants from entering village areas.
 
-Therefore, this research tries to innovate a prototype to prevent elephant attacks using deep learning and machine learning approaches. In this research, computer vision plays the major role. Computer vision is an interdisciplinary scientific field that deals with how computers can gain high-level understanding from digital images or videos.
+The system is designed to provide efficient results during the day and nighttime, and it includes features like elephant detection, early warning SMS/email, and a management system dashboard. The system also updates the conflict information in the database to be analyzed by the conflicts management team.
 
-Basically, this research is trying to build a prototype (An Elephant Detection System) that identifies an elephant in the video frame. For an example, the video source might be coming from CCTV or other cameras, then the video will be analyzed frame by frame to identify elephants in it. A warning message is sent as soon as the position of the elephant overlaps with the area of conflict. Afterwards, the warning alarm will be turned on.
+The system aims to lead Sri Lankan communities in technology to be more powerful and productive to have beautiful lives for everyone. The ultimate goal of this project is to mitigate human-elephant conflicts and promote a sustainable solution for the issue.
 
-![Demo1](github-readme-content/diagram.jpg)
+![Demo1](docs/github-readme-content/banner.png)
 
-### Programming Languages & Frameworks
+## Technology Stack
 
-- Python
-- SMTPLIB
-- Playsound
-- TensorFlow
-- Protobuf
-- TensorFlow Object Detection Framework
+### Primary Programming Tools
 
-### Technical Requirements
+| Programming Tools | Version     | Description                     |
+| ----------------- | ----------- | ------------------------------- |
+| **Python**        | Ver: 3.8    | Use to build monitoring system. |
+| **MySQL**         | Ver: 15.1   | Used as central database.       |
+| **Laravel**       | Ver: 10.3.3 | Use to build management system. |
 
-- Python 3.8
-- TensorFlow 2.7.0
+### Python Dependencies (Monitoring System)
+
+| Programming Tools   | Version       |
+| ------------------- | ------------- |
+| **TensorFlow**      | Ver: 2.7.0    |
+| **Keras**           | Ver: 2.7.0    |
+| **OpenCV**          | Ver: 4.6.0.66 |
+| **MySQL Connector** | Ver: 2.2.9    |
+| **Pillow**          | Ver: 8.4.0    |
+| **Pygame**          | Ver: 2.3.0    |
+| **PyShorteners**    | Ver: 1.0.1    |
+
+## System Architecture
 
 ## Configuration & Setup
 
