@@ -103,7 +103,7 @@ The Use Case Diagram is a Unified Modeling Language (UML) behavioral diagram tha
 
 This section covers how to set up the human-elephant conflicts mitigation system; this system consists of two main sub-systems: the monitoring system and the management system. The monitoring system is the video processor component that could be installed on a computing device in the jungle to identify elephants; the management system is an analytics system used by the conflicts management team to analyze the incident data. This section shows how to install the necessary dependencies to set it up successfully.
 
-## 5.1 Setup Monitoring System
+### 5.1 Setup Monitoring System
 
 This project has been designed to operate on both CPU and GPU environments. Utilizing a Graphics Processing Unit (GPU) with CUDA-Enabled technology will enhance the application's performance, allowing faster processing times.
 
@@ -111,7 +111,7 @@ If a GPU is unavailable on the target computer, the application can still be ins
 
 Even though the target computer has a GPU, it is necessary to install CUDA and CUDDN to enable GPU support for TensorFlow. Otherwise, the GPU cannot be utilized but can be run on the CPU.
 
-### 5.1.1 Installing CUDA & CUDDN (Optional)
+#### 5.1.1 Installing CUDA & CUDDN (Optional)
 
 It is highly recommended to skip the CUDA & CUDDN installation if the target computer does not have a GPU, as the system can still operate on the CPU. However, it is essential to note that this may result in slower processing times.
 
@@ -119,11 +119,11 @@ Suppose the target computer has a GPU. But if it is chosen not to install CUDA &
 
 It is highly recommended to install CUDA & CUDDN if the target computer has a GPU to enable faster processing.
 
-#### Checking suitable CUDA & CUDDN verions for TensorFlow.
+##### Step 01: Checking suitable CUDA & CUDDN verions for TensorFlow.
 
 Check Here:- [https://www.tensorflow.org/install/source#gpu](https://www.tensorflow.org/install/source#gpu)
 
-![TensorFlow Versions](github-readme-content/tensorflow-version.jpg)
+![TensorFlow Versions](docs/github-readme-content/tensorflow-version.jpg)
 
 We are going to install TensorFlow (V 2.7.0), Therefore, we need to install CUDA (V 8.1) and CUDDN (V 11.2) according to the chart above.
 
@@ -131,21 +131,21 @@ First, we need to install CUDA (V 8.1) then, we should install CUDDN (V 11.2) fo
 
 The above chart clearly explains which CUDA & CUDDN versions that we should install for the selected TensorFlow.
 
-#### Installing CUDA
+##### Step 02: Installing CUDA
 
 Download CUDA From Here:- [https://developer.nvidia.com/cuda-toolkit-archive](https://developer.nvidia.com/cuda-toolkit-archive)
 
-![TensorFlow Versions](github-readme-content/cuda-version.jpg)
+![TensorFlow Versions](docs/github-readme-content/cuda-version.jpg)
 
 Download & Install the appropriate CUDA version from the official website of NVIDIA.The installation process is simple, we can install it with the GUI installer.
 
 ![TensorFlow Versions](github-readme-content/cuda-install.png)
 
-#### Installing CUDDN
+##### Step 03: Installing CUDDN
 
 Download CUDDN From Here:- [https://developer.nvidia.com/rdp/cudnn-archive](https://developer.nvidia.com/rdp/cudnn-archive)
 
-![TensorFlow Versions](github-readme-content/cuddn-install.jpg)
+![TensorFlow Versions](docs/github-readme-content/cuddn-install.jpg)
 
 Download & Install the appropriate CUDDN version from the official website of NVIDIA.This time, the installation process is bit tricky.
 
@@ -159,11 +159,11 @@ Download & Install the appropriate CUDDN version from the official website of NV
 
   03.Open the CUDA Installation directory (WHERE is the CUDA installed) Ex: (C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2)
 
-![TensorFlow Versions](github-readme-content/cuda-install2.png)
+![TensorFlow Versions](docs/github-readme-content/cuda-install2.png)
 
 04.Copy all content from bin, include, lib folder from the extracted CUDDN zip to the installed CUDA directory's bin, include, lib. An example is shown above.
 
-#### Add CUDA & CUDDN Path to the environment variable.
+##### Step 04: Add CUDA & CUDDN Path to the environment variable.
 
 After that installation of CUDA & CUDDN, we need to add the path to the environment variable. Go to PC settings and add them. If you don't know how to add them, just google it.
 
@@ -178,9 +178,9 @@ C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\libnvvp\
 
 Note: Make sure to add the correct path.
 
-![TensorFlow Versions](github-readme-content/env-path.jpg)
+![TensorFlow Versions](docs/github-readme-content/env-path.jpg)
 
-#### Check CUDA & CUDDN installed successfully.
+##### Step 05: Check CUDA & CUDDN installed successfully.
 
 - Open CMD and Type
 
@@ -188,7 +188,7 @@ Note: Make sure to add the correct path.
     nvidia-smi
   ```
 
-  ![TensorFlow Versions](github-readme-content/check-cuda-install.jpg)
+  ![TensorFlow Versions](docs/github-readme-content/check-cuda-install.jpg)
 
 If it shows like above, that means you have successfully installed CUDA in your computer.
 
