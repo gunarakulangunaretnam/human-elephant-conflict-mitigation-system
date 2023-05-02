@@ -137,7 +137,7 @@ Download CUDA From Here:- [https://developer.nvidia.com/cuda-toolkit-archive](ht
 
 ![TensorFlow Versions](docs/github-readme-content/cuda-version.jpg)
 
-Download & Install the appropriate CUDA version from the official website of NVIDIA.The installation process is simple, can be installed it with the GUI.
+Download and install the appropriate CUDA version from the official website of NVIDIA. The installation process is simple and can be installed with the GUI.
 
 ![TensorFlow Versions](github-readme-content/cuda-install.png)
 
