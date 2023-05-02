@@ -99,19 +99,21 @@ The Use Case Diagram is a Unified Modeling Language (UML) behavioral diagram tha
 
 ![Use Case Diagram](docs/github-readme-content/workflow.png)
 
-## Configuration & Setup
+## 05 Setup
 
-This project supports CPU and GPU environments to run. If your computer has a GPU (Graphics Processing Unit) with CUDA-Enabled, You can setup a GPU-TensorFlow version to run this application much faster.
+This project has been designed to operate on both CPU and GPU environments. Utilizing a Graphics Processing Unit (GPU) with CUDA-Enabled technology will enhance the application's performance, allowing faster processing times.
 
-If you don't have a GPU, you can still install this application with CPU-TensorFlow version. However, the processing speed with CPU is much slower than the processing on GPU.
+If a GPU is unavailable on the target computer, the application can still be installed and run on the CPU. However, it is essential to note that processing times may be significantly slower when using a CPU than a GPU.
 
-If your computer has a GPU, you need to install CUDA & CUDDN to enable the GPU support for TensorFlow. Installation process of CUDA & CUDDN is a bit tricker than the normal TensorFlow installation.
+Even though the target computer has a GPU, it is necessary to install CUDA and CUDDN to enable GPU support for TensorFlow. Otherwise, the GPU cannot be utilized but can be run on the CPU.
 
-### 01. Installing CUDA & CUDDN
+### 5.1 Installing CUDA & CUDDN (Optional)
 
-If your computer has no GPU, You should skip this installation, you can run this application with CPU. However, It will be much slower. If your computer has a GPU but, you don't like to install CUDA & CUDDN, you can still skip this process. But, this application will only use CPU for tensor processing even though you have a hardware-based GPU. Therefore, CUDA & CUDDN installation process is very essential to enable the GPU support for computer that a GPU.
+It is highly recommended to skip the CUDA & CUDDN installation if the target computer does not have a GPU, as the system can still operate on the CPU. However, it is essential to note that this may result in slower processing times.
 
-Note: If your computer has no GPU, You shouldn't install CUDA & CUDDN. You can skip this installation and go ahead with next step.
+Suppose the target computer has a GPU. But if it is chosen not to install CUDA & CUDDN, it is still possible to skip the installation. However, the system can only utilize the CPU power, even though a hardware-based GPU is available. Therefore, CUDA & CUDDN is similar to drivers that enable GPU support.
+
+It is highly recommended to install CUDA & CUDDN if the target computer has a GPU to enable faster processing.
 
 #### Checking suitable CUDA & CUDDN verions for TensorFlow.
 
