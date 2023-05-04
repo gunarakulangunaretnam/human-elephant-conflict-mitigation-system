@@ -262,6 +262,36 @@ There is some additional information below to learn more about the Anaconda envi
   conda create -n ENV_NAME python=3.9
 ```
 
+#### 4.1.3 Setting up Database
+
+The Monitoring and Management systems use the same database to communicate with each other. Therefore, setting up the database first is essential to make both systems work successfully.
+
+To set the database locally, it is recommended to use the XAMPP control panel; there is a MySQL database engine and PHPMyAdmin with it. The database can be found on the following directory.
+
+```
+human-elephant-conflict-mitigation-system/source/0-resources/hecms.sql
+```
+
+**IMPORTANT:** Give the database name as **hecms**.
+
+![MySQL Database](docs/github-readme-content/setup-database.jpg)
+
+##### Configuring Database
+
+This step configures the database with the monitoring system; suppose the database is hosted remotely. Letting the monitoring system know the credentials and the host is essential. Open the JSON file in the following directory to provide the database credentials and host information.
+
+```
+human-elephant-conflict-mitigation-system/source/1-hecms-monitoring-system/assets/credentials/database-credentials.json
+```
+
+![MySQL Database Credentials](docs/github-readme-content/database-configure.jpg)
+
+**IMPORTANT:** If the system hosted locally with XAMPP, leave the credentials as same. During the running time of the HECMS Monitoring System, it sends incident information to this database; if the database is hosted somewhere other than localhost, it is important to edit this file.
+
+#### 4.1.3 Setting up Email Sever
+
+**Note:** The HECMS Monitoring System sends emails to the authorities regarding the incidents, to make this function work properly, it is crucial to set up a Google SMTP Email server. Below, the step-by-step guides on setting up the Google SMTP server are provided.
+
 ### 05 Errors & Issues
 
 **Note:** After installation, if any errors occur similar to **"ModuleNotFoundError: No module named 'tensorflow.python.keras.preprocessing'"**, do the following steps to fix it.
