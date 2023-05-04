@@ -314,7 +314,7 @@ Step 04: Enter the app password and the sender email address in the following JS
 human-elephant-conflict-mitigation-system/source/1-hecms-monitoring-system/assets/credentials/api-credentials.json
 ```
 
-- <img src="docs/github-readme-content/setup-email-smtp-credentials.jpg" data-canonical-src="github-readme-content/create-app-password.jpg"/>
+<img src="docs/github-readme-content/setup-email-smtp-credentials.jpg" data-canonical-src="github-readme-content/create-app-password.jpg"/>
 
 **Note:** Update the email and password under the "google_smtp_server" node.
 
