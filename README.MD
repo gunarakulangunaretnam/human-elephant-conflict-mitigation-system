@@ -288,7 +288,7 @@ human-elephant-conflict-mitigation-system/source/1-hecms-monitoring-system/asset
 
 **IMPORTANT:** If the system hosted locally with XAMPP, leave the credentials as same. During the running time of the HECMS Monitoring System, it sends incident information to this database; if the database is hosted somewhere other than localhost, it is important to edit this file.
 
-#### 4.1.3 Setting up Email Sever
+#### 4.1.4 Setting up Email Sever
 
 **Note:** The HECMS Monitoring System sends emails to the authorities regarding the incidents, to make this function work properly, it is crucial to set up a Google SMTP Email server. Below, the step-by-step guides on setting up the Google SMTP server are provided.
 
