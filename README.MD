@@ -234,6 +234,34 @@ activate ai_customer_analyzer
 
 **Note:** After the activation, the project can be run on top of that environment.
 
+##### Additional Information
+
+There is some additional information below to learn more about the Anaconda environment.
+
+- To Install Anaconda Environment
+
+```
+  conda env create -f environment.yml
+```
+
+- To Export Anaconda Environment
+
+```
+  conda env export > environment.yml
+```
+
+- To Delete Anaconda Environment
+
+```
+  conda env remove -n ENV_NAME
+```
+
+- To Create an Anaconda Environment
+
+```
+  conda create -n ENV_NAME python=3.9
+```
+
 ### 05 Errors & Issues
 
 **Note:** After installation, if any errors occur similar to **"ModuleNotFoundError: No module named 'tensorflow.python.keras.preprocessing'"**, do the following steps to fix it.
