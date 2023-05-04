@@ -190,47 +190,49 @@ After successfully installing CUDA and CUDDN, it is important to add their respe
 
   ![TensorFlow Versions](docs/github-readme-content/check-cuda-install.jpg)
 
-If it shows like above, that means CUDA & CUDDN have been installed successfully.
+**Note:** If it shows like above, that means CUDA & CUDDN have been installed successfully.
 
-### 04.Installing Other Frameworks
+#### 5.1.2 Installing Dependencies
 
-- Installing TF-Slim
+This section shows how to install the dependencies easily using the **Anaconda environment** from the requirements.yml. It makes it easy to manage dependencies and create reproducible environments for the projects.
 
-  ```
-    pip install tf-slim==1.1.0
-  ```
+#### **Step 01: Install Anaconda**
 
-- Installing tf-models-official
+The first step is to install Anaconda on the deployed computer: Anaconda is a free and open-source distribution of the Python programming language and a collection of pre-built packages and tools for data science and machine learning. It includes a package manager called "conda" that simplifies the installation and management of packages and dependencies.
 
-  ```
-    pip install tf-models-official==2.7.0
-  ```
+- Official Website: https://www.anaconda.com/
 
-- Installing Mediapipe
+#### **Step 02: Navigate to the requirements.yml file directory**
 
-  ```
-    pip install mediapipe==0.8.9
-  ```
+The requirements.yml file is found under this project folder; it could be in the following directory named "hecms-monitoring-system-requirements.yml". Navigate to that directory in CMD.
 
-- Installing Opencv
+```
+human-elephant-conflict-mitigation-system/source/0-resources/1-requirements/hecms-monitoring-system-requirements.yml
+```
 
-  ```
-    pip install opencv-python
-  ```
+- **The requirements file link:** **[hecms-monitoring-system-requirements.yml](source/0-resources/1-requirements/hecms-monitoring-system-requirements.yml)**
 
-- Installing Playsound
+#### **Step 03: Install the requirements**
 
-  ```
-    pip install playsound
-  ```
+**To Install:** After the navigation to the above directory in CMD then issue the following command to install it; An example screenshot is shown below.
 
-- Installing pyttsx3
+```
+ conda env create -f hecms-monitoring-system-requirements.yml
+```
 
-  ```
-    pip install pyttsx3
-  ```
+- Example screenshot:
 
-Note: If you encounter any module missing issue, just try with "pip install MODULENAME", if it does not work try search on Google for answers.
+- <img src="docs/github-readme-content/install-anaconda-dependencies.jpg" alt="Install using Anaconda Environment" style="border: 1px solid black;">
+
+**IMPORTANT:** It will take some time to install all the dependencies automatically; after the installation, an environment will be created with the name "ai_customer_analyzer" that environment contains all the required libraries; when running the AI Customer Analyzer project, **always make sure to activate that environment** which has necessary libraries.
+
+**To activate:** Use the following command.
+
+```
+activate ai_customer_analyzer
+```
+
+**Note:** After the activation, the project can be run on top of that environment.
 
 ### 05 Errors & Issues
 
