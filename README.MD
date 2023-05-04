@@ -196,13 +196,13 @@ After successfully installing CUDA and CUDDN, it is important to add their respe
 
 This section shows how to install the dependencies easily using the **Anaconda environment** from the requirements.yml. It makes it easy to manage dependencies and create reproducible environments for the projects.
 
-#### **Step 01: Install Anaconda**
+##### **Step 01: Install Anaconda**
 
 The first step is to install Anaconda on the deployed computer: Anaconda is a free and open-source distribution of the Python programming language and a collection of pre-built packages and tools for data science and machine learning. It includes a package manager called "conda" that simplifies the installation and management of packages and dependencies.
 
 - Official Website: https://www.anaconda.com/
 
-#### **Step 02: Navigate to the requirements.yml file directory**
+##### **Step 02: Navigate to the requirements.yml file directory**
 
 The requirements.yml file is found under this project folder; it could be in the following directory named "hecms-monitoring-system-requirements.yml". Navigate to that directory in CMD.
 
@@ -212,7 +212,7 @@ human-elephant-conflict-mitigation-system/source/0-resources/1-requirements/hecm
 
 - **The requirements file link:** **[hecms-monitoring-system-requirements.yml](source/0-resources/1-requirements/hecms-monitoring-system-requirements.yml)**
 
-#### **Step 03: Install the requirements**
+##### **Step 03: Install the requirements**
 
 **To Install:** After the navigation to the above directory in CMD then issue the following command to install it; An example screenshot is shown below.
 
