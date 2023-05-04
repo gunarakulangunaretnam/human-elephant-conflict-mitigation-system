@@ -308,6 +308,16 @@ human-elephant-conflict-mitigation-system/source/1-hecms-monitoring-system/asset
 
 - <img src="docs/github-readme-content/app-password.jpg" data-canonical-src="github-readme-content/app-password.jpg"/>
 
+Step 04: Enter the app password and the sender email address in the following JSON file:
+
+```
+human-elephant-conflict-mitigation-system/source/1-hecms-monitoring-system/assets/credentials/api-credentials.json
+```
+
+- <img src="docs/github-readme-content/setup-email-smtp-credentials.jpg" data-canonical-src="github-readme-content/create-app-password.jpg"/>
+
+**Note:** Update the email and password under the "google_smtp_server" node.
+
 ### 05 Errors & Issues
 
 **Note:** After installation, if any errors occur similar to **"ModuleNotFoundError: No module named 'tensorflow.python.keras.preprocessing'"**, do the following steps to fix it.
