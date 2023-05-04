@@ -224,7 +224,7 @@ human-elephant-conflict-mitigation-system/source/0-resources/1-requirements/hecm
 
 - <img src="docs/github-readme-content/install-anaconda-dependencies.jpg" alt="Install using Anaconda Environment" style="border: 1px solid black;">
 
-**IMPORTANT:** It will take some time to install all the dependencies automatically; after the installation, an environment will be created with the name "ai_customer_analyzer" that environment contains all the required libraries; when running the AI Customer Analyzer project, **always make sure to activate that environment** which has necessary libraries.
+**IMPORTANT:** It will take some time to install all the dependencies automatically; after the installation, an environment will be created with the name "tensorflow_gpu" that environment contains all the required libraries; when running the AI Customer Analyzer project, **always make sure to activate that environment** which has necessary libraries.
 
 **To activate:** Use the following command.
 
