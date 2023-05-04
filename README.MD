@@ -229,7 +229,7 @@ human-elephant-conflict-mitigation-system/source/0-resources/1-requirements/hecm
 **To activate:** Use the following command.
 
 ```
-activate ai_customer_analyzer
+activate tensorflow_gpu
 ```
 
 **Note:** After the activation, the project can be run on top of that environment.
