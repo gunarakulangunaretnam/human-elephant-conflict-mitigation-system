@@ -292,6 +292,22 @@ human-elephant-conflict-mitigation-system/source/1-hecms-monitoring-system/asset
 
 **Note:** The HECMS Monitoring System sends emails to the authorities regarding the incidents, to make this function work properly, it is crucial to set up a Google SMTP Email server. Below, the step-by-step guides on setting up the Google SMTP server are provided.
 
+**Step 01:** Choose or create an Google Email to use as a sender: (Ex: hecms_alert@gmail.com)
+
+**Step 02:** Turn on the 2-Step Verification method to allow the email to send mails programmatically.
+
+- <img src="docs/github-readme-content/turn-on-two-factor.jpg" data-canonical-src="github-readme-content/turn-on-two-factor.jpg"/>
+
+**Note 1:** There are some basic process to turn on the two factor authentication, after turning on, follow the step 3.
+
+**Step 03:** Craete an app password | after creating app password, SMTP server can be setup.
+
+- <img src="docs/github-readme-content/set-app-password.jpg" data-canonical-src="github-readme-content/app-password.jpg"/>
+
+- <img src="docs/github-readme-content/create-app-password.jpg" data-canonical-src="github-readme-content/create-app-password.jpg"/>
+
+- <img src="docs/github-readme-content/app-password.jpg" data-canonical-src="github-readme-content/app-password.jpg"/>
+
 ### 05 Errors & Issues
 
 **Note:** After installation, if any errors occur similar to **"ModuleNotFoundError: No module named 'tensorflow.python.keras.preprocessing'"**, do the following steps to fix it.
