@@ -314,9 +314,37 @@ Step 04: Enter the app password and the sender email address in the following JS
 human-elephant-conflict-mitigation-system/source/1-hecms-monitoring-system/assets/credentials/api-credentials.json
 ```
 
-<img src="docs/github-readme-content/setup-email-smtp-credentials.jpg" data-canonical-src="github-readme-content/create-app-password.jpg"/>
+<img src="docs/github-readme-content/setup-email-smtp-credentials.jpg" />
 
 **Note:** Update the email and password under the "google_smtp_server" node.
+
+#### 4.1.5 Setting up SMS Gateway
+
+**Note:** The HECMS Monitoring System sends SMS alert to the villagers regarding the incidents, to make this function work properly, it is crucial to set up a SMS gateway. There are many SMS gateways out there. However, this system uses notify.lk (https://www.notify.lk/) gateway, which is cheap and affordable to use in Sri Lanka.
+
+**IMPORTANT:** Update the gateway credentials in the following JSON file.
+
+```
+human-elephant-conflict-mitigation-system/source/1-hecms-monitoring-system/assets/credentials/api-credentials.json
+```
+
+<img src="docs/github-readme-content/setup-sms-gateway-credentials.jpg" />
+
+**NOTE:** The notify.lk uses direct endpoints: type GET or POST, a sample format is shown bellow.
+
+```
+https://app.notify.lk/api/v1/send?user_id=[USER_ID]&api_key=[API_KEY]&sender_id=NotifyDEMO&to=[TO]&message=Test
+```
+
+**Note:** If you choose to use a different SMS gateway, it is your responsibility to write code according to that; different SMS gateway has different sort of code/library. You must find the documentation for the gateway you are using and follow the instructions.
+
+Below are the codes for sending SMS; you can change them according to your selected gateway; if you choose any gateway similar to a direct endpoint instead of a library-based one, you can simply add the key and secret. Otherwise, it is your responsibility to write code.
+
+```
+human-elephant-conflict-mitigation-system/source/1-hecms-monitoring-system/utilities.py
+```
+
+<img src="docs/github-readme-content/sms-gateway.png" />
 
 ### 05 Errors & Issues
 
