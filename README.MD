@@ -488,6 +488,64 @@ conda activate tensorflow_gpu
 python main.py
 ```
 
+### 06 Test Cases
+
+This section contains the source code of test cases for HECMS Monitoring and Management systems, and these test cases scripts can be used to test the system automatically.
+
+The test case scripts can be found under the following directory.
+
+```
+human-elephant-conflict-mitigation-system/test
+```
+
+```text
+.
+├── 0-test-case-for-hecms-monitoring-system     # Test case of HECMS Monitoring System written in Python & PyAutoGUI.
+└── 1-test-case-for-hecms-management-system     # Test case of HECMS Management System written in Python & Selenium.
+```
+
+#### 6.1 Test Case for HECMS Monitoring System
+
+#### 6.1.1 Execution
+
+##### Step 01: Navigate to the following directory
+
+```
+human-elephant-conflict-mitigation-system/test/0-test-case-for-hecms-monitoring-system
+```
+
+##### Step 02: Activate environment
+
+```
+conda activate tensorflow_gpu
+```
+
+##### Step 03: Run the HECMS Monitoring System before running test cases.
+
+- HECMS Monitoring System Path
+
+```
+human-elephant-conflict-mitigation-system/source/1-hecms-monitoring-system
+```
+
+- Run the HECMS Monitoring System
+
+```
+python main.py
+```
+
+##### Step 04: Run the test cases.
+
+```
+python main-test.py
+```
+
+**Note:** The test case script will wait 5 seconds before it ends; click the HECMS Monitoring System window to be selected.
+
+#### 6.1.2 Test Results
+
+<img src="docs/github-readme-content/test-results-hecms-monitoring-system.jpg" />
+
 ### 07 Additional Information
 
 This section contains additional information about the project; these steps are unnecessary but essential to know. It has bugs, errors and solutions, and other information.
