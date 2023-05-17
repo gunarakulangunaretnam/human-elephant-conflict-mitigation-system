@@ -432,7 +432,61 @@ human-elephant-conflict-mitigation-system/research/0-project-prototypes
 └── 3-elephant-detection-custom-trained-model          # This prototype has elephant detection with custom trained model with 2k images.
 ```
 
-##### 5.3.1
+##### 5.3.1 Execution of 0-elephant-detection-only
+
+- **Step 01:** Activate the environment
+
+```
+conda activate tensorflow_gpu
+```
+
+- **Step 02:** Execute main.py script
+
+```
+python main.py
+```
+
+##### 5.3.2 Execution of 1-elephant-detection-with-alarm-and-email-alert
+
+- **Step 01:** Activate the environment
+
+```
+conda activate tensorflow_gpu
+```
+
+- **Step 02:** Execute main.py script
+
+```
+python main.py
+```
+
+##### 5.3.3 Execution of 2-elephant-detection-with-tensorflow-lite
+
+- **Step 01:** Activate the environment
+
+```
+conda activate tensorflow_gpu
+```
+
+- **Step 02:** Execute main.py script
+
+```
+python main.py
+```
+
+##### 5.3.4 Execution of 3-elephant-detection-custom-trained-model
+
+- **Step 01:** Activate the environment
+
+```
+conda activate tensorflow_gpu
+```
+
+- **Step 02:** Execute main.py script
+
+```
+python main.py
+```
 
 ### 05 Errors & Issues
 
