@@ -368,7 +368,7 @@ human-elephant-conflict-mitigation-system/source/2-hecms-management-system
 
 #### 4.2.2 Configuring Database
 
-**IMPORTANT 1:** The HECMS Monitoring and the HECMS Management systems use a central database (hecms.sql). The database setting up process is already shown in the above section. If you plan to host the system remotely, hosting the database in MySQL remote engine is essential, you also have to configure the database credentials according to that in the HECMS Monitoring System as shown in the Configuring Database section of "4.2 Setup HECMS Management System".
+**IMPORTANT 1:** The HECMS Monitoring and the HECMS Management systems use a central database (hecms.sql). The database setting up process is already shown in the above section. If you plan to host the system remotely, hosting the database in MySQL remote engine is essential, you also have to configure the database credentials according to that in the HECMS Monitoring System as shown in the "4.1.3.2 Configure Database" section of "4.2 Setup HECMS Management System".
 
 **IMPORTANT 1:** If you want to configure the HECMS Management System database credentials, edit the following env file.
 
