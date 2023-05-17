@@ -488,11 +488,11 @@ conda activate tensorflow_gpu
 python main.py
 ```
 
-### 06 Additional Information
+### 07 Additional Information
 
 This section contains additional information about the project; these steps are unnecessary but essential to know. It has bugs, errors and solutions, and other information.
 
-#### 6.1 Errors & Bugs
+#### 7.1 Errors & Bugs
 
 ##### Error 1
 
@@ -512,7 +512,7 @@ This section contains additional information about the project; these steps are 
 
 ```
 
-#### 6.2. Instal Object Detection Framework
+#### 7.2. Instal Object Detection Framework
 
 **Note:** Installing an object detection framework to run the HECMS project is optional, but it would be helpful in training and building different object detection projects from scratch.
 
