@@ -378,6 +378,42 @@ human-elephant-conflict-mitigation-system/source/2-hecms-management-system/.env
 
 <img src="docs/github-readme-content/setup-database-management-system.jpg" />
 
+### 05 Execution
+
+After setting up the HECMS Monitoring & Management Systems and installing all required dependencies and libraries, the next step is to run the system; this section explains how to run the HECMS Monitoring & Management Systems and also describes how to run the project prototypes that are in the "research" folder.
+
+#### 5.1 Execution of HECMS Monitoring System
+
+The HECMS Monitoring System can be found on the following directory, "1-hecms-monitoring-system", the folder can copied to any place that it wants to be deployed.
+
+```
+human-elephant-conflict-mitigation-system/source/1-hecms-monitoring-system
+```
+
+- **Step 01:** Activate the environment
+
+```
+conda activate tensorflow_gpu
+```
+
+- **Step 02:** Execute main.py script
+
+```
+python main.py
+```
+
+#### 5.2 Execution of HECMS Management System
+
+The HECMS Management System can be opened using a web browser; it is based on where it is deployed; if it is deployed on localhost, it can be accessed by http://localhost/ and navigate to the public folder.
+
+#### 5.2.1 HECMS Management System Super Admin Credentials
+
+**Username:** admin
+**Password:** admin
+**Account Type:** Super Admin
+
+**IMPORTANT:** Device admin can be created using the super admin account.
+
 ### 05 Errors & Issues
 
 **Note:** After installation, if any errors occur similar to **"ModuleNotFoundError: No module named 'tensorflow.python.keras.preprocessing'"**, do the following steps to fix it.
