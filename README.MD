@@ -12,11 +12,11 @@
 │   └── 1-supporting-scripts                      # Contains frame extractor & night image vision converter scripts.
 ├── source                                      # Contains Source Code (Main Project Folder)
 │   ├── 0-resources                               # Contains resources: database, requirements.yml.
-│   ├── 1-hecms-monitoring-system                 # Contains Monitoring System Project.
-│   └── 1-hecms-management-system                 # Contains Management System Project.
+│   ├── 1-hecms-monitoring-system                 # Contains HECMS Monitoring System Project.
+│   └── 1-hecms-management-system                 # Contains HECMS Management System Project.
 ├── test                                        # Contains testing scripts.
-│   ├── 0-test-case-for-hecms-monitoring-system   # Contains test caes for monitoring system.
-│   └── 1-test-case-for-hecms-management-system   # Contains test caes for management system.
+│   ├── 0-test-case-for-hecms-monitoring-system   # Contains test caes for HECMS Monitoring System.
+│   └── 1-test-case-for-hecms-management-system   # Contains test caes for HECMS Management System.
 ├── LICENCE                                     # Licence File.
 └── README.MD                                   # Readme file.
 ```
@@ -27,7 +27,7 @@ The human-elephant conflict is a persistent issue in Sri Lanka, where elephants 
 
 An Artificial Intelligence-based Human Elephant Conflict Mitigation System has been developed to address the persistent issue of human-elephant conflict in Sri Lanka. The system employs CCTV cameras and wildlife camera traps to detect elephants in video frames and subsequently sends early warning messages to the corresponding village authorities to take appropriate actions. Furthermore, the system implements external methods, such as artificial sounds of buzzing bees and firecrackers, to discourage elephants from entering village areas.
 
-The system is designed to provide efficient results during the day and nighttime, and it includes features like elephant detection, early warning SMS/email, and a management system dashboard. The system also updates the conflict information in the database to be analyzed by the conflicts management team.
+The system is designed to provide efficient results during the day and nighttime, and it includes features like elephant detection, early warning SMS/email, and a HECMS Management System dashboard. The system also updates the conflict information in the database to be analyzed by the conflicts management team.
 
 The system aims to lead Sri Lankan communities in technology to be more powerful and productive to have beautiful lives for everyone. The ultimate goal of this project is to mitigate human-elephant conflicts and promote a sustainable solution for the issue.
 
@@ -37,13 +37,13 @@ The system aims to lead Sri Lankan communities in technology to be more powerful
 
 ### 2.1 Primary Programming Tools
 
-| Programming Tools | Version     | Description                     |
-| ----------------- | ----------- | ------------------------------- |
-| **Python**        | Ver: 3.8    | Use to build monitoring system. |
-| **MySQL**         | Ver: 15.1   | Used as central database.       |
-| **Laravel**       | Ver: 10.3.3 | Use to build management system. |
+| Programming Tools | Version     | Description                           |
+| ----------------- | ----------- | ------------------------------------- |
+| **Python**        | Ver: 3.8    | Use to build HECMS Monitoring System. |
+| **MySQL**         | Ver: 15.1   | Used as central database.             |
+| **Laravel**       | Ver: 10.3.3 | Use to build HECMS Management System. |
 
-### 2.2 Python Dependencies (Monitoring System)
+### 2.2 Python Dependencies (HECMS Monitoring System)
 
 | Programming Tools   | Version       |
 | ------------------- | ------------- |
@@ -63,17 +63,17 @@ This section presents an overview of the system architecture for the Artificial 
 
 ![Architecture Diagram](docs/github-readme-content/architecture-diagram.png)
 
-There is a “Head Office” on the right side of the diagram, which means they will use the Management System, and all the conflict incidents data will be transferred to it and can be analyzed and accessed by the Head Office.
+There is a “Head Office” on the right side of the diagram, which means they will use the HECMS Management System, and all the conflict incidents data will be transferred to it and can be analyzed and accessed by the Head Office.
 
-On the left side, there are two zones presented as examples, “Habarana Zone” and “Anuradhapura Zone” (Popular elephant conflict places in Sri Lanka), and each zone has a device admin. That device admin has basic access to the Management System through the Device Admin account. Each zone has a Monitoring System installed on a computing device that processes video frames to check elephant presence. If elephants are detected, it will send an SMS to the corresponding villager and an email to “Head Office,” The incident data will be transmitted to Management System. Those can be accessed by “Head Office” and that device admin.In the middle, the database is shared between Management and Monitoring systems to proceed with the granted operations.
+On the left side, there are two zones presented as examples, “Habarana Zone” and “Anuradhapura Zone” (Popular elephant conflict places in Sri Lanka), and each zone has a device admin. That device admin has basic access to the HECMS Management System through the Device Admin account. Each zone has a HECMS Monitoring System installed on a computing device that processes video frames to check elephant presence. If elephants are detected, it will send an SMS to the corresponding villager and an email to “Head Office,” The incident data will be transmitted to HECMS Management System. Those can be accessed by “Head Office” and that device admin.In the middle, the database is shared between Management and HECMS Monitoring Systems to proceed with the granted operations.
 
 ### 3.2 Structure Diagram
 
 ![Structure Diagram](docs/github-readme-content/structure-diagram.jpg)
 
-The above structured-based architecture diagram clearly explains how the Human Element Conflict Mitigation System (HECMS) functions structurally. HECMS is divided into two main sub-systems: the Monitoring System and the Management System.
+The above structured-based architecture diagram clearly explains how the Human Element Conflict Mitigation System (HECMS) functions structurally. HECMS is divided into two main sub-systems: the HECMS Monitoring System and the HECMS Management System.
 
-Both systems have a shared database in the middle, and their main functionalities are also clearly mentioned; the monitoring system’s primary functions are Elephant detection, SMS sending, Email Sending, artificial sound playing, and database updating, and the management system’s functions are analyzed data, manage data, and create new devices, etc.
+Both systems have a shared database in the middle, and their main functionalities are also clearly mentioned; the HECMS Monitoring System’s primary functions are Elephant detection, SMS sending, Email Sending, artificial sound playing, and database updating, and the HECMS Management System’s functions are analyzed data, manage data, and create new devices, etc.
 
 ### 3.3 Elephant Detection Process Flowchart
 
@@ -87,7 +87,7 @@ This flowchart explains how the elephant model detection functions. First, it ge
 
 The ER (Entity-Relationship) diagram explains the structure of the database system in a graphical way; it is the visual representation of the database functions, attributes, and relationships between tables.
 
-The above diagram clearly defines three main tables: Device, Data, and User Accounts. The Data table contains detection data, the Device table includes the monitoring system’s device data, and the User Account table contains the user account details. This is the shared database utilized by both systems Monitoring and Management systems.
+The above diagram clearly defines three main tables: Device, Data, and User Accounts. The Data table contains detection data, the Device table includes the HECMS Monitoring System’s device data, and the User Account table contains the user account details. This is the shared database utilized by both systems Monitoring and HECMS Management Systems.
 
 ### 3.5 Use Case Diagram
 
@@ -101,7 +101,7 @@ The Use Case Diagram is a Unified Modeling Language (UML) behavioral diagram tha
 
 ## 04 Setup
 
-This section covers how to set up the human-elephant conflicts mitigation system; this system consists of two main sub-systems: the monitoring system and the management system. The monitoring system is the video processor component that could be installed on a computing device in the jungle to identify elephants; the management system is an analytics system used by the conflicts management team to analyze the incident data. This section shows how to install the necessary dependencies to set it up successfully.
+This section covers how to set up the human-elephant conflicts mitigation system; this system consists of two main sub-systems: the HECMS Monitoring System and the HECMS Management System. The HECMS Monitoring System is the video processor component that could be installed on a computing device in the jungle to identify elephants; the HECMS Management System is an analytics system used by the conflicts management team to analyze the incident data. This section shows how to install the necessary dependencies to set it up successfully.
 
 ### 4.1 Setup HECMS Monitoring System
 
@@ -266,7 +266,7 @@ There is some additional information below to learn more about the Anaconda envi
 
 ##### 4.1.3.1 Setup Database
 
-The Monitoring and Management systems use the same database to communicate with each other. Therefore, setting up the database first is essential to make both systems work successfully.
+The Monitoring and HECMS Management Systems use the same database to communicate with each other. Therefore, setting up the database first is essential to make both systems work successfully.
 
 To set the database locally, it is recommended to use the XAMPP control panel; there is a MySQL database engine and PHPMyAdmin with it. The database can be found on the following directory.
 
@@ -280,7 +280,7 @@ human-elephant-conflict-mitigation-system/source/0-resources/hecms.sql
 
 ##### 4.1.3.2 Configure Database
 
-This step configures the database with the monitoring system; suppose the database is hosted remotely. Letting the monitoring system know the credentials and the host is essential. Open the JSON file in the following directory to provide the database credentials and host information.
+This step configures the database with the HECMS Monitoring System; suppose the database is hosted remotely. Letting the HECMS Monitoring System know the credentials and the host is essential. Open the JSON file in the following directory to provide the database credentials and host information.
 
 ```
 human-elephant-conflict-mitigation-system/source/1-hecms-monitoring-system/assets/credentials/database-credentials.json
@@ -364,11 +364,11 @@ Official Website: https://www.apachefriends.org/
 human-elephant-conflict-mitigation-system/source/2-hecms-management-system
 ```
 
-**IMPORTANT 2:** Projects that are built with Laravel can be accessed by opening the public folder, in the source code of management system, there is a folder called public, if that opened, it could be accessed, otherwise it won't work, when deploying on servers, it is very important to point to that folder instead of pointing on index.php/index.html.
+**IMPORTANT 2:** Projects that are built with Laravel can be accessed by opening the public folder, in the source code of HECMS Management System, there is a folder called public, if that opened, it could be accessed, otherwise it won't work, when deploying on servers, it is very important to point to that folder instead of pointing on index.php/index.html.
 
 #### 4.2.2 Configure Database
 
-**IMPORTANT 1:** The HECMS Monitoring and the HECMS Management systems use a central database (hecms.sql). The database setting up process is already shown in the above section. If you plan to host the system remotely, hosting the database in MySQL remote engine is essential, you also have to configure the database credentials according to that in the HECMS Monitoring System as shown in the "4.1.3.2 Configure Database" section of "4.2 Setup HECMS Management System".
+**IMPORTANT 1:** The HECMS Monitoring and the HECMS Management Systems use a central database (hecms.sql). The database setting up process is already shown in the above section. If you plan to host the system remotely, hosting the database in MySQL remote engine is essential, you also have to configure the database credentials according to that in the HECMS Monitoring System as shown in the "4.1.3.2 Configure Database" section of "4.2 Setup HECMS Management System".
 
 **IMPORTANT 2:** If you want to configure the HECMS Management System database credentials, edit the following env file.
 
