@@ -366,7 +366,7 @@ human-elephant-conflict-mitigation-system/source/2-hecms-management-system
 
 **IMPORTANT 2:** Projects that are built with Laravel can be accessed by opening the public folder, in the source code of management system, there is a folder called public, if that opened, it could be accessed, otherwise it won't work, when deploying on servers, it is very important to point to that folder instead of pointing on index.php/index.html.
 
-#### 4.2.2 Configuring Database
+#### 4.2.2 Configure Database
 
 **IMPORTANT 1:** The HECMS Monitoring and the HECMS Management systems use a central database (hecms.sql). The database setting up process is already shown in the above section. If you plan to host the system remotely, hosting the database in MySQL remote engine is essential, you also have to configure the database credentials according to that in the HECMS Monitoring System as shown in the "4.1.3.2 Configure Database" section of "4.2 Setup HECMS Management System".
 
