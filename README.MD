@@ -408,9 +408,9 @@ The HECMS Management System can be opened using a web browser; it is based on wh
 
 #### 5.2.1 HECMS Management System Super Admin Credentials
 
-**Username:** admin
-**Password:** admin
-**Account Type:** Super Admin
+- **Username:** admin
+- **Password:** admin
+- **Account Type:** Super Admin
 
 **IMPORTANT:** Device admin can be created using the super admin account.
 
