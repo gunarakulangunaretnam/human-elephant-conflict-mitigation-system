@@ -406,13 +406,33 @@ python main.py
 
 The HECMS Management System can be opened using a web browser; it is based on where it is deployed; if it is deployed on localhost, it can be accessed by http://localhost/ and navigate to the public folder.
 
-#### 5.2.1 HECMS Management System Super Admin Credentials
+##### 5.2.1 HECMS Management System Super Admin Credentials
 
 - **Username:** admin
 - **Password:** admin
 - **Account Type:** Super Admin
 
 **IMPORTANT:** Device admin can be created using the super admin account.
+
+#### 5.3 Execution of HECMS Monitoring System (Project Prototypes)
+
+Some project prototypes are in the research folder; these prototypes were built as research work before making the final version of the HECMS Monitoring System. There are four different prototypes in the research folder.
+
+- Path of project prototypes folder
+
+```
+human-elephant-conflict-mitigation-system/research/0-project-prototypes
+```
+
+```text
+.
+├── 0-elephant-detection-only                          # This prototype has elephant detection feature only.
+├── 1-elephant-detection-with-alarm-and-email-alert    # This prototype can detect elephants and send email alert.
+├── 2-elephant-detection-with-tensorflow-lite          # This prototype has elephant detection only with TensorFlow Lite Model.
+└── 3-elephant-detection-custom-trained-model          # This prototype has elephant detection with custom trained model with 2k images.
+```
+
+##### 5.3.1
 
 ### 05 Errors & Issues
 
@@ -431,56 +451,6 @@ The HECMS Management System can be opened using a web browser; it is based on wh
   pip install tensorflow==2.7.0
 
 ```
-
-### 06 Install Dependencies using Anaconda Environment
-
-**What is Conda environment?:** A conda environment is a directory that contains a specific collection of conda packages that you have installed. Anaconda is a tool for simplifying python package management.
-
-**IMPORTANT NOTE:** If it is difficult to install manually one by one, we can install all the necessary dependencies using the Anaconda tool. This repo contains the environment.yml file which has all the libraries that could be installed by issuing the bellow command.
-
-**File is Here:** **[environment.yml](environment.yml)**
-
-#### Commands
-
-- To Install Anaconda Environment
-
-```
-  conda env create -f environment.yml
-
-```
-
-- To Export Anaconda Environment
-
-```
-  conda env export > environment.yml
-
-```
-
-### 07 Running the system (Execution)
-
-Now, it's time to run our app. We have installed all of the important frameworks. If you find any issues on installation, it's better to do a Google search.
-
-- Clone the repo
-
-```
-  git clone https://github.com/GunarakulanGunaretnam/elephant-detection-system-tensorflow.git
-
-```
-
-**Note** This repo contains 4 different projects related to elephant detection system.
-
-### Project Directory layout
-
-    .
-    ├── 0-elephant-detection-only                        - Project 1: Elephant Detection.
-    ├── 1-elephant-detection-with-alarm-and-email-alert  - Project 2: Alarm + Email Function.
-    ├── 2-elephant-detection-with-tensorflow-lite        - Project 3: TensorFlow Lite Model.
-    ├── 3-elephant-detection-custom-trained-model        - Project 4: Custom trained model.
-    ├── 4-research-works                                 - Contains research files.
-    ├── github-readme-content                            - Readme Content Documents.
-    ├── environment.yml                                  - Anaconda environment file.
-    ├── LICENCE                                          - LICENCE file.
-    ├── README.MD                                        - Readme file.
 
 #### 0-elephant-detection-only
 
