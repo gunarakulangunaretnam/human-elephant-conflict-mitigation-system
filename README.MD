@@ -103,7 +103,7 @@ The Use Case Diagram is a Unified Modeling Language (UML) behavioral diagram tha
 
 This section covers how to set up the human-elephant conflicts mitigation system; this system consists of two main sub-systems: the monitoring system and the management system. The monitoring system is the video processor component that could be installed on a computing device in the jungle to identify elephants; the management system is an analytics system used by the conflicts management team to analyze the incident data. This section shows how to install the necessary dependencies to set it up successfully.
 
-### 4.1 Setup Monitoring System
+### 4.1 Setup HECMS Monitoring System
 
 This project has been designed to operate on both CPU and GPU environments. Utilizing a Graphics Processing Unit (GPU) with CUDA-Enabled technology will enhance the application's performance, allowing faster processing times.
 
@@ -345,6 +345,32 @@ human-elephant-conflict-mitigation-system/source/1-hecms-monitoring-system/utili
 ```
 
 <img src="docs/github-readme-content/sms-gateway.png" />
+
+### 4.2 Setup HECMS Management System
+
+This section explains how to set up the HECMS Management System. It is built with Laravel and can be configured quickly on shared hosting or any apache-based servers that run on PHP.
+
+To host it locally on a computer, XAMPP control panel can be used for that. XAMPP is a free and open-source cross-platform web server solution stack package developed by Apache Friends; we can use it for local deployment of PHP-based projects.
+
+Official Website: https://www.apachefriends.org/
+
+**IMPORTANT 1:** The soruce code of the management system is found under the following directory
+
+```
+human-elephant-conflict-mitigation-system/source/2-hecms-management-system
+```
+
+**IMPORTANT 2:** Projects that are built with Laravel can be accessed by opening the public folder, in the source code of management system, there is a folder called public, if that opened, it could be accessed, otherwise it won't work, when deploying on servers, it is very important to point to that folder instead of pointing on index.php/index.html.
+
+**IMPORTANT 3:** The HECMS Monitoring and the HECMS Management systems use a central database (hecms.sql). The database setting up process is already shown in the above section. If you plan to host the system remotely, hosting the database in MySQL remote engine is essential, you also have to configure the database credentials according to that in the HECMS Monitoring System as shown in the Configuring Database section of "4.2 Setup HECMS Management System".
+
+**IMPORTANT 4:** If you want to configure the HECMS Management System database credentials, edit the following env file.
+
+```
+human-elephant-conflict-mitigation-system/source/2-hecms-management-system/.env
+```
+
+<img src="docs/github-readme-content/setup-database-management-system.jpg" />
 
 ### 05 Errors & Issues
 
