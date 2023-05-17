@@ -488,7 +488,13 @@ conda activate tensorflow_gpu
 python main.py
 ```
 
-### 05 Errors & Issues
+### 06 Additional Information
+
+This section contains additional information about the project; these steps are unnecessary but essential to know. It has bugs, errors and solutions, and other information.
+
+#### 6.1 Errors & Bugs
+
+##### Error 1
 
 **Note:** After installation, if any errors occur similar to **"ModuleNotFoundError: No module named 'tensorflow.python.keras.preprocessing'"**, do the following steps to fix it.
 
@@ -505,6 +511,46 @@ python main.py
   pip install tensorflow==2.7.0
 
 ```
+
+#### 6.2. Instal Object Detection Framework
+
+**Note:** Installing an object detection framework to run the HECMS project is optional, but it would be helpful in training and building different object detection projects from scratch.
+
+In order to install the object detection framework, clone the following repository. This repo contains Google Research of TensorFlow and Object Detection essential Contents.
+
+Clone this Google models repository:- [https://github.com/tensorflow/models](https://github.com/tensorflow/models)
+
+This repo is large. it contains almost all files of the TensorFlow and Google Object Detection Framework researches, we should install it manually to utilize the object detection framework.
+
+- Clone models repo
+
+  ```
+    git clone https://github.com/tensorflow/models.git
+  ```
+
+Now, we have to download Protobuf to convert the serialize structured data.
+
+Download Protobuf:- [https://github.com/protocolbuffers/protobuf/releases](https://github.com/protocolbuffers/protobuf/releases)
+
+01.Extract it.
+
+02.Copy the protoc.exe and paste it under the cloned repo (models/research) folder.
+
+- From models/research folder, Execute the following code in CMD
+
+  ```
+    protoc object_detection/protos/*.proto --python_out=.
+  ```
+
+  03.To install the object detection manually, copy the setup.py that is under (models/research/object_detection/packages/tf2/setup.py) and paste in the (models/research) folder.
+
+- Install object detection manually from (models/research).
+
+  ```
+    pip install -e .
+  ```
+
+  04.After the installation, we don't need the cloned models repo anymore.
 
 ### Output
 
