@@ -546,6 +546,43 @@ python main-test.py
 
 <img src="docs/github-readme-content/test-results-hecms-monitoring-system.jpg" />
 
+#### 6.2 Test Case for HECMS Management System
+
+#### 6.2.1 Execution
+
+##### Step 01: Navigate to the following directory
+
+```
+human-elephant-conflict-mitigation-system/test/0-test-case-for-hecms-management-system
+```
+
+##### Step 02: Activate environment
+
+```
+conda activate tensorflow_gpu
+```
+
+##### Step 03: Give the HECMS Management System Domain (URL)
+
+- Open the following file and edit the URL where you have deployed the HECMS Management System.
+
+```
+human-elephant-conflict-mitigation-system/test/0-test-case-for-hecms-management-system/utilities.py
+```
+
+<img src="docs/github-readme-content/test-case-of-management-system.jpg" />
+
+##### Step 04: Run the test case script.
+
+```
+python main-test.py
+```
+
+#### 6.2.2 Test Results
+
+<img src="docs/github-readme-content/test-result-management-system-1.jpg" />
+<img src="docs/github-readme-content/test-result-management-system-2.jpg" />
+
 ### 07 Additional Information
 
 This section contains additional information about the project; these steps are unnecessary but essential to know. It has bugs, errors and solutions, and other information.
