@@ -354,7 +354,7 @@ To host it locally on a computer, XAMPP control panel can be used for that. XAMP
 
 Official Website: https://www.apachefriends.org/
 
-**IMPORTANT 1:** The soruce code of the management system is found under the following directory
+**IMPORTANT 1:** The soruce code of the HECMS Management System is found under the following directory
 
 ```
 human-elephant-conflict-mitigation-system/source/2-hecms-management-system
