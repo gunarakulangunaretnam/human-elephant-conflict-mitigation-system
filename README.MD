@@ -264,6 +264,8 @@ There is some additional information below to learn more about the Anaconda envi
 
 #### 4.1.3 Setting up Database
 
+##### 4.1.3.1 Setup Database
+
 The Monitoring and Management systems use the same database to communicate with each other. Therefore, setting up the database first is essential to make both systems work successfully.
 
 To set the database locally, it is recommended to use the XAMPP control panel; there is a MySQL database engine and PHPMyAdmin with it. The database can be found on the following directory.
@@ -276,7 +278,7 @@ human-elephant-conflict-mitigation-system/source/0-resources/hecms.sql
 
 ![MySQL Database](docs/github-readme-content/setup-database.jpg)
 
-##### Configuring Database
+##### 4.1.3.2 Configure Database
 
 This step configures the database with the monitoring system; suppose the database is hosted remotely. Letting the monitoring system know the credentials and the host is essential. Open the JSON file in the following directory to provide the database credentials and host information.
 
