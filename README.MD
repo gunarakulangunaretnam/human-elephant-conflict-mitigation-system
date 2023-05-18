@@ -378,11 +378,11 @@ human-elephant-conflict-mitigation-system/source/2-hecms-management-system/.env
 
 <img src="docs/github-readme-content/setup-database-management-system.jpg" />
 
-### 05 Execution
+## 05 Execution
 
 After setting up the HECMS Monitoring & Management Systems and installing all required dependencies and libraries, the next step is to run the system; this section explains how to run the HECMS Monitoring & Management Systems and also describes how to run the project prototypes that are in the "research" folder.
 
-#### 5.1 Execution of HECMS Monitoring System
+### 5.1 Execution of HECMS Monitoring System
 
 The HECMS Monitoring System can be found on the following directory, "1-hecms-monitoring-system", the folder can copied to any place that it wants to be deployed.
 
@@ -402,11 +402,11 @@ conda activate tensorflow_gpu
 python main.py
 ```
 
-#### 5.2 Execution of HECMS Management System
+### 5.2 Execution of HECMS Management System
 
 The HECMS Management System can be opened using a web browser; it is based on where it is deployed; if it is deployed on localhost, it can be accessed by http://localhost/ and navigate to the public folder.
 
-##### 5.2.1 HECMS Management System Super Admin Credentials
+#### 5.2.1 HECMS Management System Super Admin Credentials
 
 - **Username:** admin
 - **Password:** admin
@@ -414,7 +414,7 @@ The HECMS Management System can be opened using a web browser; it is based on wh
 
 **IMPORTANT:** Device admin can be created using the super admin account.
 
-#### 5.3 Execution of HECMS Monitoring System (Project Prototypes)
+### 5.3 Execution of HECMS Monitoring System (Project Prototypes)
 
 Some project prototypes are in the research folder; these prototypes were built as research work before making the final version of the HECMS Monitoring System. There are four different prototypes in the research folder.
 
@@ -432,7 +432,7 @@ human-elephant-conflict-mitigation-system/research/0-project-prototypes
 └── 3-elephant-detection-custom-trained-model          # This prototype has elephant detection with custom trained model with 2k images.
 ```
 
-##### 5.3.1 Execution of 0-elephant-detection-only
+#### 5.3.1 Execution of 0-elephant-detection-only
 
 - **Step 01:** Activate the environment
 
@@ -446,7 +446,7 @@ conda activate tensorflow_gpu
 python main.py
 ```
 
-##### 5.3.2 Execution of 1-elephant-detection-with-alarm-and-email-alert
+#### 5.3.2 Execution of 1-elephant-detection-with-alarm-and-email-alert
 
 - **Step 01:** Activate the environment
 
@@ -460,7 +460,7 @@ conda activate tensorflow_gpu
 python main.py
 ```
 
-##### 5.3.3 Execution of 2-elephant-detection-with-tensorflow-lite
+#### 5.3.3 Execution of 2-elephant-detection-with-tensorflow-lite
 
 - **Step 01:** Activate the environment
 
@@ -474,7 +474,7 @@ conda activate tensorflow_gpu
 python main.py
 ```
 
-##### 5.3.4 Execution of 3-elephant-detection-custom-trained-model
+#### 5.3.4 Execution of 3-elephant-detection-custom-trained-model
 
 - **Step 01:** Activate the environment
 
@@ -488,7 +488,7 @@ conda activate tensorflow_gpu
 python main.py
 ```
 
-### 06 Test Cases
+## 06 Testing
 
 This section contains the source code of test cases for HECMS Monitoring and Management systems, and these test cases scripts can be used to test the system automatically.
 
@@ -504,7 +504,7 @@ human-elephant-conflict-mitigation-system/test
 └── 1-test-case-for-hecms-management-system     # Test case of HECMS Management System written in Python & Selenium.
 ```
 
-#### 6.1 Test Case for HECMS Monitoring System
+### 6.1 Test Case for HECMS Monitoring System
 
 #### 6.1.1 Execution
 
@@ -548,7 +548,7 @@ https://github.com/gunarakulangunaretnam/human-elephant-conflict-mitigation-syst
 
 <img src="docs/github-readme-content/test-results-hecms-monitoring-system.jpg" />
 
-#### 6.2 Test Case for HECMS Management System
+### 6.2 Test Case for HECMS Management System
 
 #### 6.2.1 Execution
 
@@ -587,13 +587,13 @@ https://github.com/gunarakulangunaretnam/human-elephant-conflict-mitigation-syst
 <img src="docs/github-readme-content/test-result-management-system-1.jpg" />
 <img src="docs/github-readme-content/test-result-management-system-2.jpg" />
 
-### 07 Additional Information
+## 07 Additional Information
 
 This section contains additional information about the project; these steps are unnecessary but essential to know. It has bugs, errors and solutions, and other information.
 
-#### 7.1 Errors & Bugs
+### 7.1 Errors & Bugs
 
-##### Error 1
+#### Error 1
 
 **Note:** After installation, if any errors occur similar to **"ModuleNotFoundError: No module named 'tensorflow.python.keras.preprocessing'"**, do the following steps to fix it.
 
@@ -611,7 +611,7 @@ This section contains additional information about the project; these steps are 
 
 ```
 
-#### 7.2. Instal Object Detection Framework
+### 7.2 Instal Object Detection Framework
 
 **Note:** Installing an object detection framework to run the HECMS project is optional, but it would be helpful in training and building different object detection projects from scratch.
 
@@ -651,7 +651,7 @@ Download Protobuf:- [https://github.com/protocolbuffers/protobuf/releases](https
 
   04.After the installation, we don't need the cloned models repo anymore.
 
-### 07 Demonstration
+## 07 Demonstration
 
 The demonstration section presents the project outcomes, highlights the functionalities, and provides a comprehensive overview of HECMS Monitoring and Management Systems. It showcases the project's deliverables, showcasing its functional components, features, and capabilities.
 
@@ -663,6 +663,7 @@ The demonstration section presents the project outcomes, highlights the function
   - All features
 
 - Management System
+
   - Super Admin
     - Login Option
     - Dashboard
@@ -675,6 +676,21 @@ The demonstration section presents the project outcomes, highlights the function
     - Data Management
     - Device Preferences
     - Settings
+
+### 7.1 Monitoring System
+
+The monitoring system is the primary system that runs on the ground to analyze video frames, detects elephants, sends warning email/SMS, and updates the conflict data to the management system. The result of the system is perfect, and it is built with so many functionalities and features. This section will explain the module and parts of the monitoring step by step.
+
+#### 7.1.1 Login Screen – Monitoring System
+
+This is the login screen of the monitoring system. Login credentials are created in the management system as Device Admin, and that credential can be used to login into the system.
+
+- Features
+  - Successful login when credentials are matched.
+  - Display an error message when a wrong credential is provided.
+  - Clear textboxes automatically after a wrong credential is provided.
+
+<img src="docs/github-readme-content/login-screen-monitoring-system.png" />
 
 ## Social Media Links
 
