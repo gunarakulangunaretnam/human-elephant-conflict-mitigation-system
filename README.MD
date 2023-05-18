@@ -540,6 +540,8 @@ python main.py
 python main-test.py
 ```
 
+https://github.com/gunarakulangunaretnam/human-elephant-conflict-mitigation-system/assets/45822509/d71748a8-7d37-4590-8ef4-bdb2837524df
+
 **Note:** The test case script will wait 5 seconds before it ends; click the HECMS Monitoring System window to be selected.
 
 #### 6.1.2 Test Results
