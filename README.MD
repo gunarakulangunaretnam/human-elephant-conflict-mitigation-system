@@ -694,6 +694,28 @@ This is the login screen of the monitoring system. Login credentials are created
 
 #### 7.1.2 Dashboard – Monitoring System
 
+This is the main dashboard of the monitoring system, and this dashboard contains a lot of features and functionalities. It is the primary system with AI-powered models to detect elephants in real-time, send SMS and email, and update the database, this is the dashboard, and this dashboard was with Python and Tkinter framework.
+
+This dashboard allows video processing from various sources, including the device camera, IP camera, pre-recorded videos, or browsing and selecting videos. There is an input video streams feature for real-time monitoring or analyzing recorded videos for post-event analysis. There are many features that are listed below.
+
+- Features
+  - Process video from the device camera.
+  - Process video from IP camera.
+  - Process video from pre-recorded videos.
+  - Browse to select videos.
+  - Have a screen to show the output on the left side.
+  - Snapshot button to take snaps of the screen.
+  - Threshold slider to adjust the detection rate.
+  - Alarm turns on/off feature.
+  - Sound effects can be changed.
+  - Model architecture can be changed.
+  - The brightness of the video can be adjusted.
+  - The Contrast of the video can be adjusted.
+  - The Blurriness of the video can be adjusted.
+  - Start Process button to begin the process.
+  - Stop Process button to stop the process.
+  - Restore Default Settings button to clear the changed options.
+
 <img src="docs/github-readme-content/dashboard-monitoring-system-1.png" />
 <img src="docs/github-readme-content/dashboard-monitoring-system-2.png" />
 <img src="docs/github-readme-content/dashboard-monitoring-system-3.png" />
