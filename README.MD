@@ -701,7 +701,7 @@ This is the login screen of the monitoring system. Login credentials are created
 <img src="docs/github-readme-content/dashboard-monitoring-system-5.jpg" />
 <img src="docs/github-readme-content/dashboard-monitoring-system-7.jpg" />
 <img src="docs/github-readme-content/dashboard-monitoring-system-6.jpg" />
-<img src="docs/github-readme-content/dashboard-monitoring-system-8.jpg" />
+<img src="docs/github-readme-content/dashboard-monitoring-system-08.jpg" />
 
 ## Social Media Links
 
