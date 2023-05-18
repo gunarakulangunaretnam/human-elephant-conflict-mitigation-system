@@ -651,11 +651,30 @@ Download Protobuf:- [https://github.com/protocolbuffers/protobuf/releases](https
 
   04.After the installation, we don't need the cloned models repo anymore.
 
-### Output
+### 07 Demonstration
 
-![Demo1](github-readme-content/demo1.jpg)
+The demonstration section presents the project outcomes, highlights the functionalities, and provides a comprehensive overview of HECMS Monitoring and Management Systems. It showcases the project's deliverables, showcasing its functional components, features, and capabilities.
 
-![Demo2](github-readme-content/demo2.jpg)
+- Monitoring System
+
+  - Login Option
+  - Processing Panel
+  - Video Options Panel
+  - All features
+
+- Management System
+  - Super Admin
+    - Login Option
+    - Dashboard
+    - Data Management
+    - Device Management
+    - Settings
+  - Device Admin
+    - Login Option
+    - Dashboard
+    - Data Management
+    - Device Preferences
+    - Settings
 
 ## Social Media Links
 
