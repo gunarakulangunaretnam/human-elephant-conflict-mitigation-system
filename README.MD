@@ -725,6 +725,142 @@ This dashboard allows video processing from various sources, including the devic
 <img src="docs/github-readme-content/dashboard-monitoring-system-6.jpg" />
 <img src="docs/github-readme-content/dashboard-monitoring-system-08.jpg" />
 
+### 7.2 Management System
+
+The management system is the secondary system used by the head office of the conflict management team to analyze the data. It is the core of the system because all the data will be transmitted to it and even monitoring system login accounts can be one created in the management system. There are two accounts in the management system, those are Super Admin is only used by the head office, the other one is Device Admin, which could be created by the management system and can be used in the monitoring system and well as in the management system to see its detection data.
+
+#### 7.2.1 Login Page – Management System
+
+The Management System login page has two different account types: Super Admin and Device Admin.
+
+- Features
+  - Able to select which account type that is wanted to be logged in.
+  - Successful login when credentials are matched.
+  - Display an error message when a wrong credential is provided.
+  - Clear textboxes automatically after a wrong credential is provided.
+
+<img src="docs/github-readme-content/login-page-management-system.jpg" />
+
+#### 7.2.2 Homepage – Management System (Super Admin)
+
+This is the Management System Homepage, also known as the dashboard of the Super Admin; it has so many features and functionalities. A line chart plots the elephant data by monthly; This Super Admin will get all the data transmitted by all the registered devices. Apart from the functional-based features, there are many UI-based features, such as an animative line chart, nice fade-in / face-out effects on hovering, etc. All the functional features are listed below.
+The sidebar has all the Super Admin pages, such as Data Management, Device Management, and Settings. Data management has all the data transmitted by all the devices; device management has all the created device information and has functionalities like creating new devices, deleting devices editing devices and viewing device locations, etc.
+
+- Features
+  - Plot all the detection data on a monthly wise line chart.
+  - A monthly-wise filter is built on the right top of the line chart.
+  - Display the total number of devices created in the system.
+  - Display the total number of elephant conflict incidents identified by all devices.
+  - Display the total number of elephants detected by all devices.
+
+<img src="docs/github-readme-content/homepage–management-system-Super-Admin.jpg" />
+
+#### 7.2.3 Data Management Page – Management System (Super Admin)
+
+This is the Management System data management page of Super Admin; This page fetches all the human-elephant conflicts data from the database that were transmitted by all the devices. It has so many features to view data. This page has a table with columns such as Device ID, Date, Time, Number of Elephants Detected, and Image; It has a built-in day-wise filter option to fetch data from the database on a specific date, and there is an option to view image on new tap to see it more clear with zoom options.
+
+- Features
+  - Show all conflict incidents data captured by all devices in the table.
+  - Have a pagination panel that splits data by 15 to speed up the system.
+  - Have a day-wise filter to list by a specific date.
+  - Have a radio button to switch between filter options.
+  - Show all data as a radio button option.
+  - Have a feature to view the incident image on a new window with zoom ability.
+
+<img src="docs/github-readme-content/data-management-page–management-system-Super-admin-1.jpg" />
+<img src="docs/github-readme-content/data-management-page–management-system-Super-admin-2.jpg" />
+<img src="docs/github-readme-content/data-management-page–management-system-Super-admin-3.jpg" />
+
+#### 7.2.4 Device Management Page - Management System (Super Admin)
+
+This is the Management System device management page of Super Admin; It is the core part of the system because device creation, deletion, updating, all device-related functions, and data are managed by this page.
+
+- Features
+  - Show all the device data in a table.
+  - Have a feature to create a new device.
+  - Have the option to delete devices.
+  - Have the option to edit/update devices.
+  - Have a pagination panel that splits data by 15 to speed up the system.
+  - Have a feature to ask for confirmation before deleting devices completely.
+  - Have the option to view the device’s location on Google Maps.
+  - Have a feature to show a successful message when a successful operation occurs.
+  - Have a feature to show an error message when an error occurs.
+
+<img src="docs/github-readme-content/device-management-page-management-system-super-admin-1.jpg" />
+<img src="docs/github-readme-content/device-management-page-management-system-super-admin-2.jpg" />
+<img src="docs/github-readme-content/device-management-page-management-system-super-admin-3.jpg" />
+<img src="docs/github-readme-content/device-management-page-management-system-super-admin-4.jpg" />
+<img src="docs/github-readme-content/device-management-page-management-system-super-admin-5.jpg" />
+
+#### 7.2.5 Device Settings Page - Management System (Super Admin)
+
+This is the Management System setting page of the Super Admin; it has features to change the password of the Super Admin; in the future, a feature will be added to the settings page to make it more standardized.
+
+- Features
+  - Change the password of the Super Admin.
+  - Have a feature to show a successful message when a successful operation occurs.
+  - Have a feature to show an error message when an error occurs.
+  - Have a feature to check the confirmation password.
+  - Have a feature to check the current password.
+
+<img src="docs/github-readme-content/device-settings-page-management-system-super-admin.jpg" />
+
+#### 7.2.6 Homepage – Management System (Device Admin)
+
+This is the Management System Homepage, also known as the dashboard of the Device Admin; it has so many features and functionalities related to the device. A line chart plots the elephant data monthly; This Device Admin will only get the data transmitted by its thin client. Apart from the functional-based features, there are many UI-based features, such as an animative line chart, nice fade-in / face-out effects on hovering, etc. All the functional parts are listed below.
+
+The sidebar has all the Device Admin pages, such as Data Management, Device Preferences, and Settings. Data management has the data transmitted by the current device through a thin client; Device Preferences have information about the current device and can be edited. In the side bar, it also shows the device information such as device name and ID.
+
+- Features
+  - Plot the detection data of the currently logged-in device on a monthly-wise line chart.
+  - A monthly-wise filter is built on the top of the line chart.
+  - Have a button to locate the location of the currently logged-in device.
+  - Display the total number of elephant conflict incidents identified by the current device.
+  - Display the total number of elephants detected by current device.
+
+<img src="docs/github-readme-content/homepage–management-system-device-admin.jpg" />
+
+#### 7.2.7 Data Management Page – Management System (Device Admin)
+
+This is Device Admin's Management System data management page; This page fetches currently logged-in device elephant conflicts data from the database transmitted by its thin client. It has so many features to view data. This page has a table with columns such as Date, Time, Number of Elephants Detected, and Image; It has a built-in day-wise filter option to fetch data from the database on a specific date, and there is an option to view images on new tap to see it more clear with zoom options.
+
+- Features
+  - Show all conflict incidents data captured by the current device in the table.
+  - Have a pagination panel that splits data by 15 to speed up the system.
+  - Have a day-wise filter to list by a specific date.
+  - Have a radio button to switch between filter options.
+  - Show all data of the current device as a radio button option.
+  - Have a feature to view the incident image on a new window with zoom ability.
+
+<img src="docs/github-readme-content/data-management-page–management-system-device-admin-1.jpg" />
+<img src="docs/github-readme-content/data-management-page–management-system-device-admin-2.jpg" />
+<img src="docs/github-readme-content/data-management-page–management-system-device-admin-3.jpg" />
+
+#### 7.2.8 Device Preferences Page – Management System (Device Admin)
+
+This is Device Admin's Management System device preferences page; It is used to update/edit current device information.
+
+- Features
+  - Show the current device information.
+  - Have an option to edit device data.
+  - Have a feature to show a successful message when a successful operation occurs.
+  - Have a feature to show an error message when an error occurs.
+
+<img src="docs/github-readme-content/device-preferences-page–management-system-device-admin.jpg" />
+
+#### 7.2.8 Device Settings Page – Management System (Device Admin)
+
+This is the Management System setting page of the Device Admin; it has features to change the password of the currently logged-in Device Admin; in the future, a part will be added to the settings page to make it more standardized.
+
+- Features
+  - Change the password of the Super Admin.
+  - Have a feature to show a successful message when a successful operation occurs.
+  - Have a feature to show an error message when an error occurs.
+  - Have a feature to check the confirmation password.
+  - Have a feature to check the current password.
+
+<img src="docs/github-readme-content/device-settings-page–management-system-device-admin.jpg" />
+
 ## Social Media Links
 
 - [Linkedin Profile](https://www.linkedin.com/in/gunarakulangunaretnam/)
