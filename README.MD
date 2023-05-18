@@ -580,6 +580,8 @@ human-elephant-conflict-mitigation-system/test/0-test-case-for-hecms-management-
 python main-test.py
 ```
 
+https://github.com/gunarakulangunaretnam/human-elephant-conflict-mitigation-system/assets/45822509/d51e6c0d-3a7a-4702-bf37-d1cf119dc9ec
+
 #### 6.2.2 Test Results
 
 <img src="docs/github-readme-content/test-result-management-system-1.jpg" />
