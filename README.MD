@@ -683,14 +683,14 @@ The monitoring system is the primary system that runs on the ground to analyze v
 
 #### 7.1.1 Login Screen – Monitoring System
 
-<img src="docs/github-readme-content/login-screen-monitoring-system.png" />
-
 This is the login screen of the monitoring system. Login credentials are created in the management system as Device Admin, and that credential can be used to login into the system.
 
 - Features
   - Successful login when credentials are matched.
   - Display an error message when a wrong credential is provided.
   - Clear textboxes automatically after a wrong credential is provided.
+
+<img src="docs/github-readme-content/login-screen-monitoring-system.png" />
 
 #### 7.1.2 Dashboard – Monitoring System
 
