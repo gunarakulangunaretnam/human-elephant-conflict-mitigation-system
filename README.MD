@@ -725,6 +725,8 @@ This dashboard allows video processing from various sources, including the devic
 <img src="docs/github-readme-content/dashboard-monitoring-system-6.jpg" />
 <img src="docs/github-readme-content/dashboard-monitoring-system-08.jpg" />
 
+https://github.com/gunarakulangunaretnam/human-elephant-conflict-mitigation-system/assets/45822509/5ea6d26b-24a3-45f7-88c5-b613e80fe0e2
+
 ### 7.2 Management System
 
 The management system is the secondary system used by the head office of the conflict management team to analyze the data. It is the core of the system because all the data will be transmitted to it and even monitoring system login accounts can be one created in the management system. There are two accounts in the management system, those are Super Admin is only used by the head office, the other one is Device Admin, which could be created by the management system and can be used in the monitoring system and well as in the management system to see its detection data.
