@@ -681,6 +681,12 @@ The demonstration section presents the project outcomes, highlights the function
 
 The monitoring system is the primary system that runs on the ground to analyze video frames, detects elephants, sends warning email/SMS, and updates the conflict data to the management system. The result of the system is perfect, and it is built with so many functionalities and features. This section will explain the module and parts of the monitoring step by step.
 
+https://github.com/gunarakulangunaretnam/human-elephant-conflict-mitigation-system/assets/45822509/06fbcfc2-7949-40f6-b06d-10bfb7c24023
+
+https://github.com/gunarakulangunaretnam/human-elephant-conflict-mitigation-system/assets/45822509/bb6862ea-e62d-476c-9afb-826ebdf01e73
+
+https://github.com/gunarakulangunaretnam/human-elephant-conflict-mitigation-system/assets/45822509/9ebb7d25-f1fa-4499-9dc2-e6b06e6ebe46
+
 #### 7.1.1 Login Screen – Monitoring System
 
 This is the login screen of the monitoring system. Login credentials are created in the management system as Device Admin, and that credential can be used to login into the system.
@@ -725,11 +731,11 @@ This dashboard allows video processing from various sources, including the devic
 <img src="docs/github-readme-content/dashboard-monitoring-system-6.jpg" />
 <img src="docs/github-readme-content/dashboard-monitoring-system-08.jpg" />
 
-https://github.com/gunarakulangunaretnam/human-elephant-conflict-mitigation-system/assets/45822509/5ea6d26b-24a3-45f7-88c5-b613e80fe0e2
-
 ### 7.2 Management System
 
 The management system is the secondary system used by the head office of the conflict management team to analyze the data. It is the core of the system because all the data will be transmitted to it and even monitoring system login accounts can be one created in the management system. There are two accounts in the management system, those are Super Admin is only used by the head office, the other one is Device Admin, which could be created by the management system and can be used in the monitoring system and well as in the management system to see its detection data.
+
+https://github.com/gunarakulangunaretnam/human-elephant-conflict-mitigation-system/assets/45822509/2489fa30-180c-48e1-852c-9dbecbbe2e1d
 
 #### 7.2.1 Login Page – Management System
 
