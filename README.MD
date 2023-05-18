@@ -692,7 +692,16 @@ This is the login screen of the monitoring system. Login credentials are created
   - Display an error message when a wrong credential is provided.
   - Clear textboxes automatically after a wrong credential is provided.
 
-#### 7.1.1 Login Screen – Monitoring System
+#### 7.1.2 Dashboard – Monitoring System
+
+<img src="docs/github-readme-content/dashboard-monitoring-system-1.png" />
+<img src="docs/github-readme-content/dashboard-monitoring-system-2.png" />
+<img src="docs/github-readme-content/dashboard-monitoring-system-3.png" />
+<img src="docs/github-readme-content/dashboard-monitoring-system-4.png" />
+<img src="docs/github-readme-content/dashboard-monitoring-system-5.jpg" />
+<img src="docs/github-readme-content/dashboard-monitoring-system-7.jpg" />
+<img src="docs/github-readme-content/dashboard-monitoring-system-6.jpg" />
+<img src="docs/github-readme-content/dashboard-monitoring-system-8.jpg" />
 
 ## Social Media Links
 
