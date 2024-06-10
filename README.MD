@@ -1,4 +1,4 @@
-# HUMAN ELEPHANT CONFLICT MITIGATION SYSTEM
+# Human Elephant Conflict Mitigation System
 
 ## Repo Structure
 
@@ -869,7 +869,7 @@ This is the Management System setting page of the Device Admin; it has features 
 
 <img src="docs/github-readme-content/device-settings-page–management-system-device-admin.jpg" />
 
-# CONTACT
+# Contact
 
 ### Website: 
 
