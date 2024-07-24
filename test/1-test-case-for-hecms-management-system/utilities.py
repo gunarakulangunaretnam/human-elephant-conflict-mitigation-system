@@ -20,7 +20,7 @@ driver = webdriver.Chrome(chromedriver_path)
 driver.maximize_window()
 
 # Navigate to hecms.local
-driver.get('http://hecms.local')
+driver.get('http://127.0.0.1:8000/')
 
 # Do something with the website...
 
