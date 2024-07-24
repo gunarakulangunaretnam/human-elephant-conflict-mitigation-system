@@ -11,7 +11,7 @@
 │   ├── 0-project-prototypes                      # Contains project prototypes; Ex: Detection scripts | TFLITE models.
 │   └── 1-supporting-scripts                      # Contains frame extractor & night image vision converter scripts.
 ├── source                                      # Contains Source Code (Main Project Folder)
-│   ├── 0-resources                               # Contains resources: database, requirements.yml.
+│   ├── 0-resources                               # Contains resources: database, environment
 │   ├── 1-hecms-monitoring-system                 # Contains HECMS Monitoring System Project.
 │   └── 1-hecms-management-system                 # Contains HECMS Management System Project.
 ├── test                                        # Contains testing scripts.
@@ -204,20 +204,20 @@ The first step is to install Anaconda on the deployed computer: Anaconda is a fr
 
 ##### **Step 02: Navigate to the requirements.yml file directory**
 
-The requirements.yml file is found under this project folder; it could be in the following directory named "hecms-monitoring-system-requirements.yml". Navigate to that directory in CMD.
+The requirements.yml file is found under this project folder; it could be in the following directory named "environment.yml". Navigate to that directory in CMD.
 
 ```
-human-elephant-conflict-mitigation-system/source/0-resources/1-requirements/hecms-monitoring-system-requirements.yml
+human-elephant-conflict-mitigation-system/source/0-resources/1-requirements/environment.yml
 ```
 
-- **The requirements file link:** **[hecms-monitoring-system-requirements.yml](source/0-resources/1-requirements/hecms-monitoring-system-requirements.yml)**
+- **The requirements file link:** **[environment.yml](source/0-resources/1-requirements/environment.yml)**
 
 ##### **Step 03: Install the requirements**
 
 **To Install:** After the navigation to the above directory in CMD then issue the following command to install it; An example screenshot is shown below.
 
 ```
- conda env create -f hecms-monitoring-system-requirements.yml
+ conda env create -f environment.yml
 ```
 
 - Example screenshot:
